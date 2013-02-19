@@ -29,6 +29,10 @@ public class VJMicrophoneEditor : Editor
             }
         }
 
+		if( mic.deviceName == null || mic.deviceName.Length == 0 ) {
+			index = 0;
+		}
+
         EditorGUILayout.BeginHorizontal();
 
         

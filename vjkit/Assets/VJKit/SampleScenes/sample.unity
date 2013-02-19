@@ -259,6 +259,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: 0
   valueMax: 10
   propertyToModify: 13
@@ -301,9 +302,10 @@ MonoBehaviour:
   lowerBand: 7
   upperBand: 7
   boost: 2
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: 1
+  normalize_decrease: 0
+  normalizeDecreaseRate: -10
+  normalize_increase: 0
+  normalizeIncreaseRate: 10
   current: .0165794231
   previous: .0186201893
   diff: -.00204076618
@@ -322,9 +324,10 @@ MonoBehaviour:
   lowerBand: 6
   upperBand: 6
   boost: 2
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: 1
+  normalize_decrease: 0
+  normalizeDecreaseRate: -10
+  normalize_increase: 0
+  normalizeIncreaseRate: 10
   current: .0360483453
   previous: .0366891585
   diff: -.000640813261
@@ -343,9 +346,10 @@ MonoBehaviour:
   lowerBand: 5
   upperBand: 5
   boost: 2
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: 1
+  normalize_decrease: 0
+  normalizeDecreaseRate: -10
+  normalize_increase: 0
+  normalizeIncreaseRate: 10
   current: .0237753801
   previous: .0255764462
   diff: -.0018010661
@@ -364,9 +368,10 @@ MonoBehaviour:
   lowerBand: 4
   upperBand: 4
   boost: 2
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: 1
+  normalize_decrease: 0
+  normalizeDecreaseRate: -10
+  normalize_increase: 0
+  normalizeIncreaseRate: 10
   current: .0199018363
   previous: .0191130489
   diff: .00078878738
@@ -385,9 +390,10 @@ MonoBehaviour:
   lowerBand: 3
   upperBand: 3
   boost: 2
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: 1
+  normalize_decrease: 0
+  normalizeDecreaseRate: -10
+  normalize_increase: 0
+  normalizeIncreaseRate: 10
   current: .0163325183
   previous: .0166589897
   diff: -.000326471403
@@ -406,9 +412,10 @@ MonoBehaviour:
   lowerBand: 2
   upperBand: 2
   boost: 2
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: .100000001
+  normalize_decrease: 0
+  normalizeDecreaseRate: -10
+  normalize_increase: 0
+  normalizeIncreaseRate: 10
   current: .0718246698
   previous: .0762030557
   diff: -.00437838584
@@ -427,9 +434,10 @@ MonoBehaviour:
   lowerBand: 1
   upperBand: 1
   boost: 2
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: .100000001
+  normalize_decrease: 0
+  normalizeDecreaseRate: -10
+  normalize_increase: 0
+  normalizeIncreaseRate: 10
   current: .147944197
   previous: .157944202
   diff: -.0100000054
@@ -448,9 +456,10 @@ MonoBehaviour:
   lowerBand: 0
   upperBand: 0
   boost: 2
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: .100000001
+  normalize_decrease: 0
+  normalizeDecreaseRate: -10
+  normalize_increase: 0
+  normalizeIncreaseRate: 10
   current: .365634054
   previous: .375634044
   diff: -.00999999046
@@ -659,6 +668,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: 0
   valueMax: 10
   propertyToModify: 13
@@ -899,6 +909,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: 0
   valueMax: 10
   propertyToModify: 13
@@ -985,6 +996,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: 0
   valueMax: 10
   propertyToModify: 13
@@ -1150,6 +1162,7 @@ MonoBehaviour:
   clampInput: 0
   clampMin: 0
   clampMax: .100000001
+  boost: 1
   valueMin: 0
   valueMax: 5
   propertyToModify: 21
@@ -1180,6 +1193,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: .5
   valueMax: 1.5
   propertyToModify: 15
@@ -1199,6 +1213,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: 0
   valueMax: 1
   targetMaterial: {fileID: 2100000, guid: bd0f37bb9604b45c6b94cbb5747a6af9, type: 2}
@@ -1322,6 +1337,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: 0
   valueMax: 10
   propertyToModify: 13
@@ -1408,6 +1424,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: 0
   valueMax: 10
   propertyToModify: 13
@@ -1494,6 +1511,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: 0
   valueMax: 10
   propertyToModify: 13
@@ -1647,6 +1665,7 @@ MonoBehaviour:
   clampInput: 1
   clampMin: 0
   clampMax: 1
+  boost: 1
   valueMin: 0
   valueMax: 10
   propertyToModify: 13

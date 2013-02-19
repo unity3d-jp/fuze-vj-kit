@@ -9,7 +9,7 @@ public class VJSpawnTrigger : VJBaseTrigger {
 	public float objectLiveSec = 1.0f;
 	public Vector3 randomPositionOffset;
 
-	public override void OnVJTrigger() {
+	public override void OnVJTrigger(GameObject go, float value) {
 		
 		if( !spawnObject ) {
 			return;
@@ -19,11 +19,11 @@ public class VJSpawnTrigger : VJBaseTrigger {
 		float y_offset = Random.Range(-randomPositionOffset.y, randomPositionOffset.y);
 		float z_offset = Random.Range(-randomPositionOffset.z, randomPositionOffset.z);
 															
-		Vector3 spawnPos = transform.position + new Vector3(x_offset, y_offset, z_offset);
+		Vector3 spawnPos = go.transform.position + new Vector3(x_offset, y_offset, z_offset);
 		
-		GameObject go = (GameObject)GameObject.Instantiate(spawnObject, spawnPos, transform.rotation);
+		GameObject spawn = (GameObject)GameObject.Instantiate(spawnObject, spawnPos, go.transform.rotation);
 		if(destroySpawnedObject) {
-			VJObjectDestroyer d = (VJObjectDestroyer)go.AddComponent<VJObjectDestroyer>();
+			VJObjectDestroyer d = (VJObjectDestroyer)spawn.AddComponent<VJObjectDestroyer>();
 			d.objectLiveSec = objectLiveSec;
 		}
 	}

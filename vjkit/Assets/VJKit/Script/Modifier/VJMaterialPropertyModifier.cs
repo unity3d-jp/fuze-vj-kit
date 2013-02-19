@@ -2,16 +2,15 @@
 using System.Collections;
 
 [AddComponentMenu("VJKit/Modifiers/Material Property")]
-[RequireComponent (typeof (Light))]
 public class VJMaterialPropertyModifier : VJBaseModifier {
 	
 	public Material targetMaterial;
 	public MaterialPropertyType propertyToModify;
 	public string propertyName;
 
-	void Update () {
+	public override void VJPerformAction(GameObject go, float value) {
 		if( targetMaterial ) {
-			VJMaterialPropertyHelper.UpdateMaterial(targetMaterial, propertyToModify, GetValue(), propertyName );			
+			VJMaterialPropertyHelper.UpdateMaterial(targetMaterial, propertyToModify, value, propertyName );			
 		}	
 	}
 }

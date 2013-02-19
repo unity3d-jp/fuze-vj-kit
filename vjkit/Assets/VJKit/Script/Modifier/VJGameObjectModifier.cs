@@ -6,7 +6,7 @@ public class VJGameObjectModifier : VJBaseModifier {
 
 	public GameObjectPropertyType propertyToModify;
 
-	void Update () {
-		VJGameObjectPropertyHelper.UpdateGameObject(gameObject, propertyToModify, GetValue() );
+	public override void VJPerformAction(GameObject go, float value) {
+		VJGameObjectPropertyHelper.UpdateGameObject(go, propertyToModify, value );
 	}
 }

@@ -1,0 +1,619 @@
+fileFormatVersion: 2
+guid: fbfacc11e7bea4a059694d94155ed901
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Head_End_Sphere
+    100002: Head_Sphere
+    100004: Hips_Sphere
+    100006: LArm_Sphere
+    100008: LFoot_Sphere
+    100010: LForeArm_Sphere
+    100012: LHand_Sphere
+    100014: LLeg_Sphere
+    100016: LShoulder_Sphere
+    100018: LUpLeg_Sphere
+    100020: RArm_Sphere
+    100022: RFoot_Sphere
+    100024: RForeArm_Sphere
+    100026: RHand_Sphere
+    100028: RLeg_Sphere
+    100030: RShoulder_Sphere
+    100032: RUpLeg_Sphere
+    100034: Skeleton:Head
+    100036: Skeleton:Head_End
+    100038: Skeleton:Hips
+    100040: Skeleton:LArm
+    100042: Skeleton:LFoot
+    100044: Skeleton:LFoot_End
+    100046: Skeleton:LForeArm
+    100048: Skeleton:LHand
+    100050: Skeleton:LHand_End
+    100052: Skeleton:LLeg
+    100054: Skeleton:LShoulder
+    100056: Skeleton:LToes
+    100058: Skeleton:LUpLeg
+    100060: Skeleton:Neck
+    100062: Skeleton:RArm
+    100064: Skeleton:RFoot
+    100066: Skeleton:RFoot_End
+    100068: Skeleton:RForeArm
+    100070: Skeleton:RHand
+    100072: Skeleton:RHand_End
+    100074: Skeleton:RLeg
+    100076: Skeleton:RShoulder
+    100078: Skeleton:RToes
+    100080: Skeleton:RUpLeg
+    100082: Skeleton:SL3
+    100084: Skeleton:SL5
+    100086: Skeleton:SReference
+    100088: Skeleton:ST12
+    100090: Skeleton:ST8
+    100092: SL5_Sphere
+    100094: //RootNode
+    100096: ST12_Sphere
+    400000: Head_End_Sphere
+    400002: Head_Sphere
+    400004: Hips_Sphere
+    400006: LArm_Sphere
+    400008: LFoot_Sphere
+    400010: LForeArm_Sphere
+    400012: LHand_Sphere
+    400014: LLeg_Sphere
+    400016: LShoulder_Sphere
+    400018: LUpLeg_Sphere
+    400020: RArm_Sphere
+    400022: RFoot_Sphere
+    400024: RForeArm_Sphere
+    400026: RHand_Sphere
+    400028: RLeg_Sphere
+    400030: RShoulder_Sphere
+    400032: RUpLeg_Sphere
+    400034: Skeleton:Head
+    400036: Skeleton:Head_End
+    400038: Skeleton:Hips
+    400040: Skeleton:LArm
+    400042: Skeleton:LFoot
+    400044: Skeleton:LFoot_End
+    400046: Skeleton:LForeArm
+    400048: Skeleton:LHand
+    400050: Skeleton:LHand_End
+    400052: Skeleton:LLeg
+    400054: Skeleton:LShoulder
+    400056: Skeleton:LToes
+    400058: Skeleton:LUpLeg
+    400060: Skeleton:Neck
+    400062: Skeleton:RArm
+    400064: Skeleton:RFoot
+    400066: Skeleton:RFoot_End
+    400068: Skeleton:RForeArm
+    400070: Skeleton:RHand
+    400072: Skeleton:RHand_End
+    400074: Skeleton:RLeg
+    400076: Skeleton:RShoulder
+    400078: Skeleton:RToes
+    400080: Skeleton:RUpLeg
+    400082: Skeleton:SL3
+    400084: Skeleton:SL5
+    400086: Skeleton:SReference
+    400088: Skeleton:ST12
+    400090: Skeleton:ST8
+    400092: SL5_Sphere
+    400094: //RootNode
+    400096: ST12_Sphere
+    2300000: Head_End_Sphere
+    2300002: Head_Sphere
+    2300004: Hips_Sphere
+    2300006: LArm_Sphere
+    2300008: LFoot_Sphere
+    2300010: LForeArm_Sphere
+    2300012: LHand_Sphere
+    2300014: LLeg_Sphere
+    2300016: LShoulder_Sphere
+    2300018: LUpLeg_Sphere
+    2300020: RArm_Sphere
+    2300022: RFoot_Sphere
+    2300024: RForeArm_Sphere
+    2300026: RHand_Sphere
+    2300028: RLeg_Sphere
+    2300030: RShoulder_Sphere
+    2300032: RUpLeg_Sphere
+    2300034: SL5_Sphere
+    2300036: ST12_Sphere
+    3300000: Head_End_Sphere
+    3300002: Head_Sphere
+    3300004: Hips_Sphere
+    3300006: LArm_Sphere
+    3300008: LFoot_Sphere
+    3300010: LForeArm_Sphere
+    3300012: LHand_Sphere
+    3300014: LLeg_Sphere
+    3300016: LShoulder_Sphere
+    3300018: LUpLeg_Sphere
+    3300020: RArm_Sphere
+    3300022: RFoot_Sphere
+    3300024: RForeArm_Sphere
+    3300026: RHand_Sphere
+    3300028: RLeg_Sphere
+    3300030: RShoulder_Sphere
+    3300032: RUpLeg_Sphere
+    3300034: SL5_Sphere
+    3300036: ST12_Sphere
+    4300000: LFoot_Sphere
+    7400000: Take 002
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Skeleton:Hips
+      humanName: Hips
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: .0787274539, y: 0, z: .039363727}
+        preQ: {x: .524765134, y: .473942578, z: -.524765074, w: -.473942548}
+        postQ: {x: .5, y: .49999997, z: -.49999994, w: -.49999994}
+        length: .0984093547
+        modified: 1
+    - boneName: Skeleton:LUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: -60.0000038, y: -60.0000038, z: -90}
+        max: {x: 60.0000038, y: 60.0000038, z: 50}
+        value: {x: .33387354, y: 0, z: .16693677}
+        preQ: {x: -.584232092, y: .398337454, z: -.584232152, w: .398337513}
+        postQ: {x: -.49999997, y: .49999994, z: -.49999997, w: .5}
+        length: .417342067
+        modified: 1
+    - boneName: Skeleton:RUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: -60.0000038, y: -60.0000038, z: -90}
+        max: {x: 60.0000038, y: 60.0000038, z: 50}
+        value: {x: .33387354, y: 0, z: .16693677}
+        preQ: {x: -.584232092, y: .398337454, z: -.584232152, w: .398337513}
+        postQ: {x: -.49999997, y: .49999994, z: -.49999997, w: .5}
+        length: .417342067
+        modified: 1
+    - boneName: Skeleton:LLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: .335812777, y: 0, z: .167906389}
+        preQ: {x: -.0499466434, y: .705340564, z: -.0499467328, w: .705340564}
+        postQ: {x: -.499999911, y: .49999994, z: -.5, w: .5}
+        length: .419766098
+        modified: 1
+    - boneName: Skeleton:RLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: .335812777, y: 0, z: .167906389}
+        preQ: {x: -.0499466434, y: .705340564, z: -.0499467328, w: .705340564}
+        postQ: {x: -.499999911, y: .49999994, z: -.5, w: .5}
+        length: .419766098
+        modified: 1
+    - boneName: Skeleton:LFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: -30.0000019, z: -50}
+        max: {x: 0, y: 30.0000019, z: 50}
+        value: {x: .0796465576, y: 0, z: .0398232788}
+        preQ: {x: -.5199067, y: .479267091, z: -.5199067, w: .47926712}
+        postQ: {x: -.49999997, y: .49999997, z: -.5, w: .5}
+        length: .0995582342
+        modified: 1
+    - boneName: Skeleton:RFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: -30.0000019, z: -50}
+        max: {x: 0, y: 30.0000019, z: 50}
+        value: {x: .0796465576, y: 0, z: .0398232788}
+        preQ: {x: -.5199067, y: .479267091, z: -.5199067, w: .47926712}
+        postQ: {x: -.49999997, y: .49999997, z: -.5, w: .5}
+        length: .0995582342
+        modified: 1
+    - boneName: Skeleton:SL5
+      humanName: Spine
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: .156960115, y: 0, z: .0784800574}
+        preQ: {x: .461678833, y: .535586238, z: -.461678803, w: -.535586238}
+        postQ: {x: .511383414, y: .488351256, z: -.511383414, w: -.488351256}
+        length: .196200222
+        modified: 1
+    - boneName: Skeleton:ST12
+      humanName: Chest
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: .253653258, y: 0, z: .126826629}
+        preQ: {x: .478243828, y: .520848155, z: -.478243887, w: -.520848036}
+        postQ: {x: .478243828, y: .520848215, z: -.478243887, w: -.520848095}
+        length: .317066729
+        modified: 1
+    - boneName: Skeleton:Head
+      humanName: Head
+      limit:
+        min: {x: -40, y: -40, z: -40}
+        max: {x: 40, y: 40, z: 40}
+        value: {x: .126826629, y: 0, z: .0634133145}
+        preQ: {x: -.552098572, y: -.441799879, z: .552098572, w: .441799909}
+        postQ: {x: -.554310203, y: -.439021796, z: .554310203, w: .439021826}
+        length: .158533365
+        modified: 1
+    - boneName: Skeleton:LShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: -15.000001, z: -15.000001}
+        max: {x: 0, y: 15.000001, z: 30.0000019}
+        value: {x: .120958813, y: 0, z: .0604794063}
+        preQ: {x: 8.05846986e-11, y: 3.72529008e-09, z: .99999994, w: 4.00994038e-12}
+        postQ: {x: 8.05847056e-11, y: 3.72529008e-09, z: .99999994, w: 4.00991306e-12}
+        length: .151198551
+        modified: 1
+    - boneName: Skeleton:RShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: -15.000001, z: -15.000001}
+        max: {x: 0, y: 15.000001, z: 30.0000019}
+        value: {x: .120958813, y: 0, z: .0604794063}
+        preQ: {x: -3.72529008e-09, y: 8.05846986e-11, z: -4.00994038e-12, w: .99999994}
+        postQ: {x: -3.72529008e-09, y: 8.05847056e-11, z: -4.0099161e-12, w: .99999994}
+        length: .151198551
+        modified: 1
+    - boneName: Skeleton:LArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: -90, y: -100, z: -60.0000038}
+        max: {x: 90, y: 100, z: 100}
+        value: {x: .245599851, y: 0, z: .122799926}
+        preQ: {x: .244210228, y: 3.36689632e-09, z: .911232233, w: -.331688493}
+        postQ: {x: 8.05635003e-11, y: 3.72543729e-09, z: .99999994, w: 4.15861356e-12}
+        length: .306999892
+        modified: 1
+    - boneName: Skeleton:RArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: -90, y: -100, z: -60.0000038}
+        max: {x: 90, y: 100, z: 100}
+        value: {x: .245599851, y: 0, z: .122799926}
+        preQ: {x: -3.42231288e-09, y: -.244210228, z: -.331688493, w: .911232233}
+        postQ: {x: -3.72543241e-09, y: 8.05634101e-11, z: -4.09624244e-12, w: .99999994}
+        length: .306999892
+        modified: 1
+    - boneName: Skeleton:LForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: .198479936, y: 0, z: .0992399678}
+        preQ: {x: .465441436, y: .532319546, z: .532319546, w: -.465441436}
+        postQ: {x: 1.91657668e-09, y: .707106769, z: .707106769, w: -1.86264504e-09}
+        length: .248099998
+        modified: 1
+    - boneName: Skeleton:RForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: -90, y: 0, z: -80}
+        max: {x: 90, y: 0, z: 80}
+        value: {x: .198479936, y: 0, z: .0992399678}
+        preQ: {x: -.532319546, y: -.465441436, z: -.465441436, w: .532319546}
+        postQ: {x: -.707106769, y: -1.91455096e-09, z: -1.86264504e-09, w: .707106769}
+        length: .248099998
+        modified: 1
+    - boneName: Skeleton:LHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: -40, z: -80}
+        max: {x: 0, y: 40, z: 80}
+        value: {x: .0992399678, y: 0, z: .0496199839}
+        preQ: {x: -0, y: 3.73724696e-09, z: .99999994, w: 1.54346563e-10}
+        postQ: {x: .0203954261, y: 3.82064691e-09, z: .99979192, w: 7.44300038e-11}
+        length: .124049999
+        modified: 1
+    - boneName: Skeleton:RHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: -40, z: -80}
+        max: {x: 0, y: 40, z: 80}
+        value: {x: .0992399678, y: 0, z: .0496199839}
+        preQ: {x: -3.73720344e-09, y: -0, z: 1.49674412e-10, w: .99999994}
+        postQ: {x: -3.81893139e-09, y: -.0203954261, z: 8.95899535e-11, w: .99979192}
+        length: .124049999
+        modified: 1
+    skeleton:
+    - name: Sphere
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:SReference
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:Hips
+      position: {x: 2.55738388e-30, y: .93479836, z: 6.18364274e-14}
+      rotation: {x: -.050822515, y: 6.75333467e-26, z: -3.81023453e-26, w: .998707652}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Hips_Sphere
+      position: {x: .00461198157, y: .0760057122, z: -.17583406}
+      rotation: {x: .050822515, y: -6.75333529e-26, z: 3.81023423e-26, w: .998707652}
+      scale: {x: 3.00258613, y: 3.00258613, z: 3.00258613}
+      transformModified: 1
+    - name: Skeleton:LUpLeg
+      position: {x: -.0700000003, y: 0, z: 0}
+      rotation: {x: .0747945681, y: 3.83348461e-25, z: 9.15800581e-26, w: .99719888}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LUpLeg_Sphere
+      position: {x: -.171248376, y: -.260012418, z: .0125006493}
+      rotation: {x: -.0240177549, y: 1.88183734e-18, z: 6.10263416e-18, w: .999711514}
+      scale: {x: 2.2263, y: 2.2263, z: 2.2263}
+      transformModified: 1
+    - name: Skeleton:LLeg
+      position: {x: -2.97517855e-09, y: -.417342126, z: -1.71434755e-09}
+      rotation: {x: .0166300051, y: -4.08289087e-25, z: -2.85799437e-26, w: .999861658}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LLeg_Sphere
+      position: {x: -.0942005813, y: -.128953665, z: .183741808}
+      rotation: {x: -.0406396426, y: 1.98306419e-18, z: 6.07049447e-18, w: .99917382}
+      scale: {x: 1.80999994, y: 1.80999994, z: 1.80999994}
+      transformModified: 1
+    - name: Skeleton:LFoot
+      position: {x: 2.3770439e-09, y: -.419766188, z: 2.39426945e-09}
+      rotation: {x: -.0406396389, y: -4.57391814e-26, z: 1.73104494e-26, w: .99917382}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LFoot_Sphere
+      position: {x: -.238682836, y: .052875381, z: .0541315675}
+      rotation: {x: -2.08059436e-09, y: 8.17019157e-28, z: -3.11048375e-28, w: .99999994}
+      scale: {x: 2.57999992, y: 2.57999992, z: 2.57999992}
+      transformModified: 1
+    - name: Skeleton:LToes
+      position: {x: -0, y: -.0513000004, z: .156499997}
+      rotation: {x: -6.93889349e-18, y: -2.25310712e-27, z: 8.99438558e-28, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:LFoot_End
+      position: {x: -.00081226998, y: -.00404168991, z: .0703684539}
+      rotation: {x: -1.040834e-17, y: -2.71050527e-20, z: 7.79270247e-20, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:RUpLeg
+      position: {x: .0700000003, y: 0, z: 0}
+      rotation: {x: .0747945681, y: 3.83348461e-25, z: 9.15800581e-26, w: .99719888}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RUpLeg_Sphere
+      position: {x: .109816976, y: -.204631776, z: -.120069653}
+      rotation: {x: -.0240177549, y: 1.88183734e-18, z: 6.10263416e-18, w: .999711514}
+      scale: {x: 1.27464783, y: 1.27464783, z: 1.27464783}
+      transformModified: 1
+    - name: Skeleton:RLeg
+      position: {x: 2.97517855e-09, y: -.417342126, z: -1.71434755e-09}
+      rotation: {x: .0166300051, y: -4.08289087e-25, z: -2.85799437e-26, w: .999861658}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RLeg_Sphere
+      position: {x: .109816976, y: -.0854189843, z: .0270679295}
+      rotation: {x: -.0406396426, y: 1.98306419e-18, z: 6.07049447e-18, w: .99917382}
+      scale: {x: 2.80422544, y: 2.80422544, z: 2.80422544}
+      transformModified: 1
+    - name: Skeleton:RFoot
+      position: {x: -2.3770439e-09, y: -.419766188, z: 2.39426945e-09}
+      rotation: {x: -.0406396389, y: -4.57391814e-26, z: 1.73104494e-26, w: .99917382}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RFoot_Sphere
+      position: {x: .350622773, y: .0316850059, z: .28906253}
+      rotation: {x: -2.08059436e-09, y: 1.73472337e-18, z: 6.14607065e-18, w: .99999994}
+      scale: {x: 2.10844016, y: 2.10844016, z: 2.10844016}
+      transformModified: 1
+    - name: Skeleton:RToes
+      position: {x: -0, y: -.0513000004, z: .156499997}
+      rotation: {x: 1.70943986e-05, y: 6.62160965e-05, z: 1.13192455e-09, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:RFoot_End
+      position: {x: .00079999998, y: -.00494166976, z: .0703684539}
+      rotation: {x: 1.040834e-17, y: 6.7622011e-21, z: -2.33466196e-19, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:SL5
+      position: {x: -0, y: .0984093994, z: 1.5677819e-09}
+      rotation: {x: .0968569964, y: -8.06026079e-11, z: 3.63280131e-12, w: .995298266}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:SL3
+      position: {x: -0, y: .0984093994, z: -1.5677819e-09}
+      rotation: {x: -.0461482666, y: -1.0833145e-18, z: -3.19972652e-18, w: .998934567}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:ST12
+      position: {x: -0, y: .0980000272, z: 0}
+      rotation: {x: 6.93902228e-17, y: -1.86899681e-18, z: -6.49262128e-18, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:ST8
+      position: {x: -0, y: .0978999287, z: 0}
+      rotation: {x: 9.71470888e-17, y: -2.80349542e-18, z: -9.73893171e-18, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:LShoulder
+      position: {x: -.0299999993, y: .0979000926, z: .00899999123}
+      rotation: {x: 2.35929487e-16, y: -8.74346203e-18, z: -2.72035252e-17, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LShoulder_Sphere
+      position: {x: -.240735099, y: .0250512026, z: .226847693}
+      rotation: {x: -4.16344249e-16, y: 8.05847403e-11, z: -4.00990786e-12, w: .99999994}
+      scale: {x: 2.10844016, y: 2.10844016, z: 2.10844016}
+      transformModified: 1
+    - name: Skeleton:LArm
+      position: {x: -.151198551, y: 0, z: 1.10157508e-10}
+      rotation: {x: 1.47848978e-13, y: 2.11957273e-14, z: 1.48700835e-13, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LArm_Sphere
+      position: {x: -.234576389, y: -.0314110331, z: -.00808326062}
+      rotation: {x: -1.48258372e-13, y: 8.05635419e-11, z: -4.15860835e-12, w: .99999994}
+      scale: {x: 1.39513695, y: 1.39513695, z: 1.39513695}
+      transformModified: 1
+    - name: Skeleton:LForeArm
+      position: {x: -.307000011, y: 0, z: 0}
+      rotation: {x: 1.50391366e-11, y: .0203954279, z: -2.04794775e-12, w: .99979192}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LForeArm_Sphere
+      position: {x: -.149542123, y: .0795077235, z: -.07560049}
+      rotation: {x: -1.51025546e-11, y: -.0203954279, z: -2.1128199e-12, w: .99979192}
+      scale: {x: 1.27464783, y: 1.27464783, z: 1.27464783}
+      transformModified: 1
+    - name: Skeleton:LHand
+      position: {x: -.248100013, y: 0, z: 0}
+      rotation: {x: 8.10298842e-11, y: -.0203954279, z: -3.66169031e-12, w: .99979192}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LHand_Sphere
+      position: {x: -.191962689, y: .0250512026, z: .216729596}
+      rotation: {x: -9.60808585e-11, y: 8.05635419e-11, z: 3.50921093e-12, w: .99999994}
+      scale: {x: 2.97290063, y: 2.97290063, z: 2.97290063}
+      transformModified: 1
+    - name: Skeleton:LHand_End
+      position: {x: -.206400618, y: -.00604201946, z: .00627695024}
+      rotation: {x: -2.71050527e-20, y: -1.05879112e-22, z: 8.71272545e-19, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:Neck
+      position: {x: -0, y: .0979000181, z: -1.48174506e-09}
+      rotation: {x: .110298686, y: -9.6514524e-18, z: -2.34257252e-17, w: .993898451}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Skeleton:Head
+      position: {x: -0, y: .123111218, z: -7.50853424e-09}
+      rotation: {x: .00502173509, y: -3.85018131e-17, z: -6.94246931e-17, w: .999987364}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Head_Sphere
+      position: {x: -.176895589, y: .0963848755, z: -.129593849}
+      rotation: {x: -.115288392, y: 7.95851232e-11, z: -1.32735802e-11, w: .993332028}
+      scale: {x: 1.52785957, y: 1.52785957, z: 1.52785957}
+      transformModified: 1
+    - name: Skeleton:Head_End
+      position: {x: .00289999996, y: .163065732, z: .000213530002}
+      rotation: {x: -8.27180563e-25, y: -1.0339757e-25, z: -3.14321472e-19, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Head_End_Sphere
+      position: {x: .130213931, y: .036835324, z: -.154164135}
+      rotation: {x: -.115288392, y: 7.95851232e-11, z: -1.32735802e-11, w: .993332028}
+      scale: {x: 2.6126399, y: 2.6126399, z: 2.6126399}
+      transformModified: 1
+    - name: Skeleton:RShoulder
+      position: {x: .0299999993, y: .0979000926, z: .00899999123}
+      rotation: {x: 2.35929487e-16, y: -7.00873855e-18, z: -2.43473301e-17, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RShoulder_Sphere
+      position: {x: .0816363394, y: .0684833825, z: .144537553}
+      rotation: {x: -4.16344249e-16, y: 8.05847403e-11, z: -4.00991046e-12, w: .99999994}
+      scale: {x: 1.16025639, y: 1.16025639, z: 1.16025639}
+      transformModified: 1
+    - name: Skeleton:RArm
+      position: {x: .151198551, y: 0, z: 1.10157508e-10}
+      rotation: {x: 1.42902549e-13, y: 2.12895514e-14, z: 8.63267384e-14, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RArm_Sphere
+      position: {x: .153471261, y: .0112742577, z: .164293557}
+      rotation: {x: -1.43325822e-13, y: 8.05634448e-11, z: -4.09623724e-12, w: .99999994}
+      scale: {x: 2.2263, y: 2.2263, z: 2.2263}
+      transformModified: 1
+    - name: Skeleton:RForeArm
+      position: {x: .307000011, y: 0, z: 0}
+      rotation: {x: 1.47371369e-11, y: -.0203954279, z: -1.53499425e-12, w: .99979192}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RForeArm_Sphere
+      position: {x: .233613461, y: .0778989941, z: .300967515}
+      rotation: {x: -1.49639641e-11, y: .0203954279, z: -2.55747441e-12, w: .99979192}
+      scale: {x: 3.48300004, y: 3.48300004, z: 3.48300004}
+      transformModified: 1
+    - name: Skeleton:RHand
+      position: {x: .248100013, y: 0, z: 0}
+      rotation: {x: 7.94530761e-11, y: .0203954279, z: -1.61685578e-11, w: .99979192}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: RHand_Sphere
+      position: {x: .370923847, y: .0112742577, z: .0583343431}
+      rotation: {x: -9.46750178e-11, y: 8.05634448e-11, z: 1.16825829e-11, w: .99999994}
+      scale: {x: 2.2263, y: 2.2263, z: 2.2263}
+      transformModified: 1
+    - name: Skeleton:RHand_End
+      position: {x: .203047886, y: -.0060284799, z: -.00160446996}
+      rotation: {x: -1.35525263e-20, y: 1.05879112e-22, z: -4.71022852e-19, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ST12_Sphere
+      position: {x: -.0589422509, y: .235268608, z: -.0157720558}
+      rotation: {x: 2.63375077e-09, y: 3.84820442e-09, z: 3.63878017e-09, w: .99999994}
+      scale: {x: 1.2998209, y: 1.2998209, z: 1.2998209}
+      transformModified: 1
+    - name: SL5_Sphere
+      position: {x: .0256210938, y: .277940154, z: .112032831}
+      rotation: {x: -.0461482666, y: 8.03138112e-11, z: -7.72453455e-12, w: .998934567}
+      scale: {x: 1.27769625, y: 1.27769625, z: 1.27769625}
+      transformModified: 1
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 3
+  userData: 

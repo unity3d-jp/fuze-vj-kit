@@ -13,10 +13,11 @@ public class VJMessageTrigger : VJBaseTrigger {
 		}
 	}
 
-	public override void OnVJTrigger() {
+	public override void OnVJTrigger(GameObject go, float value) {
 		if( null == message || message.Length == 0 ) {
 			return;
-		}		
-		objectToSend.SendMessage(message, GetValue(), SendMessageOptions.DontRequireReceiver);		
+		}
+		objectToSend.SendMessage(message, value, SendMessageOptions.DontRequireReceiver);		
+		go.SendMessage(message, value, SendMessageOptions.DontRequireReceiver);		
 	}
 }

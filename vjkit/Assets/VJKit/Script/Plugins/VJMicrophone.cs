@@ -10,11 +10,13 @@ public class VJMicrophone : MonoBehaviour {
 
 	public float level = 0.0f;
 	public int micSemaphor = 0;
-	public string deviceName = null;
+	public string deviceName = "";
 
 	private bool drawGui;
 
 	private static VJMicrophone s_instance;
+
+    public Rect windowRect = new Rect(20, 20, 120, 50);
 
 	public static VJMicrophone GetInstance() {
 
@@ -98,41 +100,45 @@ public class VJMicrophone : MonoBehaviour {
 		}
 	}
 	
-	public void Update() {		
+	public void Update() {
 		 if (Input.GetKeyDown (KeyCode.Space)) {
 		 	drawGui = !drawGui;
 		 }
 	}
 	
-	public void OnGUI() {
-		if( drawGui ) {
+    private void _DrawGUIWindow(int windowID) {
+		GUILayout.BeginVertical();
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Mic Device:");
+		deviceName = GUILayout.TextField(deviceName, 80);
+		GUILayout.EndHorizontal();
+		GUILayout.Label("Available Device:");
+
+		for (int i = 0; i < Microphone.devices.Length; i++)
+		{
+			GUILayout.Label("    "  + Microphone.devices[i]);
+		}
+		
+		if(GUILayout.Button("Save")) {
+			PlayerPrefs.SetString("VJMicrophone.deviceName", deviceName);
+		}
+		
+		GUILayout.EndVertical();
+
+		VJManager[] managers = UnityEngine.Object.FindObjectsOfType(typeof(VJManager)) as VJManager[];
+		foreach(VJManager m in managers) {
 			GUILayout.BeginVertical();
 			GUILayout.BeginHorizontal();
-			GUILayout.Label("Mic Device:");
-			deviceName = GUILayout.TextField(deviceName, 80);
+			bool newMic = GUILayout.Toggle(m.isMicSource, m.gameObject.name + " uses Microphone:");
+			m.ToogleMicSource(newMic);
 			GUILayout.EndHorizontal();
-			GUILayout.Label("Available Device:");
-
-			for (int i = 0; i < Microphone.devices.Length; i++)
-			{
-				GUILayout.Label(Microphone.devices[i]);
-			}
-			
-			if(GUILayout.Button("Save")) {
-				PlayerPrefs.SetString("VJMicrophone.deviceName", deviceName);
-			}
-			
 			GUILayout.EndVertical();
-
-			VJManager[] managers = UnityEngine.Object.FindObjectsOfType(typeof(VJManager)) as VJManager[];
-			foreach(VJManager m in managers) {
-				GUILayout.BeginVertical();
-				GUILayout.BeginHorizontal();
-				bool newMic = GUILayout.Toggle(m.isMicSource, m.gameObject.name + " uses Microphone:");
-				m.ToogleMicSource(newMic);
-				GUILayout.EndHorizontal();
-				GUILayout.EndVertical();
-			}
+		}
+    }
+	
+	public void OnGUI() {
+		if( drawGui ) {
+        	windowRect = GUILayout.Window(0, windowRect, _DrawGUIWindow, "Microphone Setting", GUILayout.Width(100));
 		}
 	}
 }

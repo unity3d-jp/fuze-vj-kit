@@ -8,79 +8,24 @@ public enum ThresholdType {
 	Difference_MoreThan
 }
 
-public abstract class VJBaseTrigger : MonoBehaviour {
+public abstract class VJBaseTrigger : VJBaseModifier {
 
-	[HideInInspector]
-	public VJManager manager;
-	[HideInInspector]
-	public VJDataSource source;
-	public ValueSourceType 	sourceType = ValueSourceType.Current;
-	public bool clampInput;
-	[Range(-100.0f, 0.0f)]
-	public float clampMin = 0.0f;
-	[Range(0.0f, 100.0f)]
-	public float clampMax = 1.0f;
-	
 	public ThresholdType 	thType = ThresholdType.Difference_MoreThan;
 	public float threshold = 0.25f;
-	private float lastVal  = 0.0f;
-
-	public float valueMin = 0.0f;
-	public float valueMax = 1.0f;
-
-	// Use this for initialization
-	void Start () {
-		if(!manager) {
-			manager = VJManager.GetDefaultManager();
-			if(!manager) {
-				Debug.LogError("[FATAL] VJ Manager not found.");
-			}
-		}
-	
-		if(!source) {
-			source = manager.GetDefaultDataSource();
-			if(!source) {
-				Debug.LogError("[FATAL] Data source not found.");
-			}
-		}
-	}
-	
-	void Update () {
-		if(_IsTriggered()) {
-			OnVJTrigger();
-		}
-	}
+	private float trigerlastVal  = 0.0f;
 	
 	// will be implemented by inherited classes
-	public abstract void OnVJTrigger();
+	public abstract void OnVJTrigger(GameObject go, float value);
 
-	protected float _GetRawValue() {
-		switch(sourceType) {
-			case ValueSourceType.Current:
-				return source.current;
-			case ValueSourceType.Previous:
-				return source.previous;
-			case ValueSourceType.Difference:
-				return source.diff;
-		}
-		return source.diff;
-	}
-	
-	// Update is called once per frame
-	public float GetValue () {
-		float inValue;
-		if(clampInput) {
-			inValue = Mathf.Clamp(_GetRawValue(), clampMin, clampMax);
-			float t = (inValue - clampMin) / clampMax;
-			return Mathf.Lerp(valueMin, valueMax, t);
-		} else {
-			return Mathf.Clamp(_GetRawValue(), valueMin, valueMax);
+	// do noting
+	public override void VJPerformAction(GameObject go, float value) {
+		if(_IsTriggered(value)) {
+			OnVJTrigger(go, value);
 		}
 	}
-	
-		// Update is called once per frame
-	private bool _IsTriggered () {
-		float val = GetValue();
+
+	private bool _IsTriggered (float value) {
+		float val = value;
 		bool trigger = false;
 		
 		switch( thType ) {
@@ -95,19 +40,18 @@ public abstract class VJBaseTrigger : MonoBehaviour {
 			}
 		break;
 		case ThresholdType.Difference_LessThan:
-			if( (val - lastVal) < threshold ) {
+			if( (val - trigerlastVal) < threshold ) {
 				trigger = true;
 			}
 		break;
 		case ThresholdType.Difference_MoreThan:
-			if( (val - lastVal) > threshold ) {
+			if( (val - trigerlastVal) > threshold ) {
 				trigger = true;
 			}
 		break;
 		}
 		
-		lastVal = val;
+		trigerlastVal = val;
 		return trigger;
 	}
-
 }

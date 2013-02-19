@@ -13,11 +13,6 @@ public class VJDataSource : MonoBehaviour {
 
 	[Range(0.01f, 100.0f)]
 	public float boost = 1.0f;
-	public bool normalize = false;
-	[Range(-100.0f, -0.001f)]
-	public float normalizeDecreaseMax = -0.1f;
-	[Range(0.001f, 100.0f)]
-	public float normalizeIncreaseMax = 1.0f;
 
 //	[HideInInspector]
 	public float current;
@@ -57,13 +52,7 @@ public class VJDataSource : MonoBehaviour {
 		float raw_current = Mathf.Sqrt( sum / (upperBand - lowerBand + 1) ) * boost;
 
 		previous = current;
-		
-		if(normalize) {
-			current += Mathf.Clamp(raw_current - previous, normalizeDecreaseMax, normalizeIncreaseMax);
-		} else {
-			current = raw_current;
-		}
-
+		current = raw_current;
 		diff = current - previous;
 	}
 }

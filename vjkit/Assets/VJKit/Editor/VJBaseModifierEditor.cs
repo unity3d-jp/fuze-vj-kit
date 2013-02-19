@@ -66,6 +66,11 @@ public class VJBaseModifierEditor : Editor
 
         base.OnInspectorGUI();
 
+		if(GUILayout.Button("Target Children")) {
+			modifier.SetVisibleChildrenAsTarget();
+		}
+
+        
         if (GUI.changed) {
             EditorUtility.SetDirty(target);
         }
