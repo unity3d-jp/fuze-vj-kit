@@ -5,6 +5,8 @@ using System.Collections;
 [RequireComponent (typeof (VJManager))]
 public class VJDataSource : MonoBehaviour {
 
+	public static float s_prog_max = 10.0f;
+
 	public string sourceName;
 	[Range(0, 7)]	// depends VJManager.numberOfBands
 	public int lowerBand;	
@@ -14,11 +16,11 @@ public class VJDataSource : MonoBehaviour {
 	[Range(0.01f, 100.0f)]
 	public float boost = 1.0f;
 
-//	[HideInInspector]
+	[HideInInspector]
 	public float current;
-//	[HideInInspector]
+	[HideInInspector]
 	public float previous;
-//	[HideInInspector]
+	[HideInInspector]
 	public float diff;
 	
 	private VJManager m_manager;

@@ -43,10 +43,7 @@ MonoBehaviour:
   sourceName: Bass
   lowerBand: 0
   upperBand: 1
-  boost: 1
-  normalize: 0
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: .100000001
+  boost: 5
   current: 0
   previous: 0
   diff: 0
@@ -63,6 +60,7 @@ MonoBehaviour:
   source: {fileID: 0}
   fft: 5
   bandLevels: []
+  debugWindow: 0
   isMicSource: 0
 --- !u!114 &11400004
 MonoBehaviour:
@@ -77,10 +75,7 @@ MonoBehaviour:
   sourceName: High
   lowerBand: 4
   upperBand: 7
-  boost: 1
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: .100000001
+  boost: 5
   current: 0
   previous: 0
   diff: 0
@@ -97,10 +92,7 @@ MonoBehaviour:
   sourceName: Middle
   lowerBand: 2
   upperBand: 4
-  boost: 1
-  normalize: 1
-  normalizeDecreaseMax: -.00999999978
-  normalizeIncreaseMax: .100000001
+  boost: 5
   current: 0
   previous: 0
   diff: 0

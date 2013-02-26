@@ -108,11 +108,19 @@ MonoBehaviour:
   manager: {fileID: 0}
   source: {fileID: 0}
   sourceType: 0
-  clampInput: 0
-  clampMin: 0
-  clampMax: .100000001
+  boost: 1
+  variationAmount: 0
+  variationSpeed: .200000003
+  variationOcterb: 0
+  limitMinMax: 0
   valueMin: 0
   valueMax: 5
+  middleOffset: 0
+  rest: 0
+  restStrength: .980000019
+  negative: 0
+  multiple: 0
+  targets: []
   propertyToModify: 21
 --- !u!1001 &100100000
 Prefab:

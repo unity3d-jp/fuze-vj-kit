@@ -12,7 +12,8 @@ public class VJMicrophone : MonoBehaviour {
 	public int micSemaphor = 0;
 	public string deviceName = "";
 
-	private bool drawGui;
+	[HideInInspector]
+	public bool drawGui;
 
 	private static VJMicrophone s_instance;
 
@@ -134,9 +135,10 @@ public class VJMicrophone : MonoBehaviour {
 			GUILayout.EndHorizontal();
 			GUILayout.EndVertical();
 		}
+		GUI.DragWindow ();
     }
 	
-	public void OnGUI() {
+	public void DrawGUI() {
 		if( drawGui ) {
         	windowRect = GUILayout.Window(0, windowRect, _DrawGUIWindow, "Microphone Setting", GUILayout.Width(100));
 		}
