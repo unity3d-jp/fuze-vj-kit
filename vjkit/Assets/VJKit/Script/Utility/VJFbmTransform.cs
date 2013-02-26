@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("VJKit/Utility/Fbm Motion")]
+[AddComponentMenu("VJKit/Utilities/Fbm Motion")]
 public class VJFbmTransform : VJFbm {
 
 	public bool fbmMotion = false;

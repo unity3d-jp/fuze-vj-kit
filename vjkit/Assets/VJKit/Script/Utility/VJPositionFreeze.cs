@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("VJKit/Utility/Freeze Position")]
+[AddComponentMenu("VJKit/Utilities/Freeze Position")]
 public class VJPositionFreeze : MonoBehaviour {
 
 	public bool freezePosition = true;
