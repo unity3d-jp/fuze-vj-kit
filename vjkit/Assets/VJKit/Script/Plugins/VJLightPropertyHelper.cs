@@ -15,7 +15,6 @@ public enum LightPropertyType {
 	Range,
 	SpotAngle,
 	Intensity,
-	AreaSize,
 	ShadowStrength,
 	ShadowBias,
 	ShadowSoftness,
@@ -110,9 +109,6 @@ public class VJLightPropertyHelper : MonoBehaviour {
 		break;
 		case LightPropertyType.Intensity:
 			obj.intensity = val;
-		break;
-		case LightPropertyType.AreaSize:
-			obj.areaSize = new Vector2(val,val);
 		break;
 		case LightPropertyType.ShadowStrength:
 			obj.shadowStrength = val;
