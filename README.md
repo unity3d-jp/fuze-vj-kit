@@ -5,6 +5,8 @@ fuze VJKitの以下の楽曲データは、Creative Commons ライセンスに�
 * fuZe 2minMix.wav
 * melo and Lead.wav 
 
+Youtubeなどにこの楽曲をつかってアップロードする際には、下記のクレジットを挿入してください。
+
 ##【ライセンス】
 
 表示 - 非営利 - 継承 3.0 非移植 : http://creativecommons.org/licenses/by-nc-sa/3.0/
@@ -15,9 +17,6 @@ fuze VJKitの以下の楽曲データは、Creative Commons ライセンスに�
 
 
 ##【WEBで利用する場合のメタデータ入りHTML】
-
-
-Youtubeなどにこの楽曲をつかってアップロードする際には、下記のクレジットを挿入してください。
 
 This 作品 by <a href="http://www.hirokisaitoh.com/">Hiroki Saitoh</a> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.ja">Creative Commons 表示 - 非営利 - 継承 3.0 非移植 License.</a>
 <hr>
