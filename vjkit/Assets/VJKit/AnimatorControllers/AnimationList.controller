@@ -31,19 +31,6 @@ State:
   m_Position: {x: 156, y: -156, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
---- !u!1102 &110200279
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 16NantaiMotion
-  m_Speed: 1
-  m_Motions:
-  - {fileID: 7400000, guid: 43bec7f07cf9c4d9c80b8fd6b818ba84, type: 3}
-  m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 612, y: 84, z: 0}
-  m_IKOnFeet: 1
-  m_Tag: 
 --- !u!1102 &110200759
 State:
   m_ObjectHideFlags: 3
@@ -94,6 +81,19 @@ State:
   - {fileID: 7400000, guid: a532aa92b2522461784d08f96ff73664, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 156, y: 144, z: 0}
+  m_IKOnFeet: 1
+  m_Tag: 
+--- !u!1102 &110216349
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 17IkakuMotion
+  m_Speed: 1
+  m_Motions:
+  - {fileID: 7400000, guid: c2ea5a5569dcb46ff89e1b56b85723cc, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 612, y: 144, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
 --- !u!1102 &110224457
@@ -200,19 +200,6 @@ State:
   m_Position: {x: 384, y: 144, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
---- !u!1102 &110268188
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 17IkakuMotion
-  m_Speed: 1
-  m_Motions:
-  - {fileID: 7400000, guid: e3e1afa49727744fa9fad594ecd24e47, type: 3}
-  m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 612, y: 144, z: 0}
-  m_IKOnFeet: 1
-  m_Tag: 
 --- !u!1102 &110272145
 State:
   m_ObjectHideFlags: 3
@@ -252,6 +239,19 @@ State:
   m_Position: {x: 612, y: -36, z: 0}
   m_IKOnFeet: 1
   m_Tag: 
+--- !u!1102 &110281005
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 16NantaiMotion
+  m_Speed: 1
+  m_Motions:
+  - {fileID: 7400000, guid: aa9fe5c89821f4d17b9d92be703f0416, type: 3}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 612, y: 84, z: 0}
+  m_IKOnFeet: 1
+  m_Tag: 
 --- !u!1102 &110288685
 State:
   m_ObjectHideFlags: 3
@@ -272,7 +272,7 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110288685}
+  m_DefaultState: {fileID: 110216349}
   m_States:
   - {fileID: 110252986}
   - {fileID: 110243467}
@@ -290,12 +290,18 @@ StateMachine:
   - {fileID: 110275228}
   - {fileID: 110200000}
   - {fileID: 110288685}
-  - {fileID: 110200279}
-  - {fileID: 110268188}
+  - {fileID: 110281005}
+  - {fileID: 110216349}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_LocalTransitions: {}
   m_OrderedTransitions:
+    data:
+      first: {fileID: 110216349}
+      second: []
+    data:
+      first: {fileID: 110281005}
+      second: []
     data:
       first: {fileID: 0}
       second: []
@@ -346,12 +352,6 @@ StateMachine:
       second: []
     data:
       first: {fileID: 110200000}
-      second: []
-    data:
-      first: {fileID: 110200279}
-      second: []
-    data:
-      first: {fileID: 110268188}
       second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: -96, y: -12, z: 0}
