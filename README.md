@@ -1,13 +1,16 @@
-
 ##README：
 
 fuze VJKitの以下の楽曲データは、Creative Commons ライセンスにて提供されています。
 
 * fuZe 2minMix.wav
 * melo and Lead.wav 
+
  ##【ライセンス】
+
 表示 - 非営利 - 継承 3.0 非移植 
+
 *  作品の改変：同じように共有するなら許諾 *  作品の商用利用：許さない *  ライセンスエリア：ワールドワイド  
+
 ##【WEBで利用する場合のメタデータ入りHTML】
 
 
