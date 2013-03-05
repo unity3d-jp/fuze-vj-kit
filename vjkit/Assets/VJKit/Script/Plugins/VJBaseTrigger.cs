@@ -12,15 +12,36 @@ public abstract class VJBaseTrigger : VJBaseModifier {
 
 	public ThresholdType 	thType = ThresholdType.Difference_MoreThan;
 	public float threshold = 0.25f;
+	
+	public int semaphore = 0;
+	private int _lastSemaphore = 0;
+	
 	private float trigerlastVal  = 0.0f;
 	
 	// will be implemented by inherited classes
 	public abstract void OnVJTrigger(GameObject go, float value);
 
+	public override void Start () {
+		_lastSemaphore = semaphore;
+		base.Start();
+	}
+	
+	private bool _Semaphore() {
+		if(_lastSemaphore == 0) {
+			_lastSemaphore = semaphore;
+			return true;
+		}
+		_lastSemaphore -= 1;
+		return false;
+	}
+
+
 	// do noting
 	public override void VJPerformAction(GameObject go, float value) {
 		if(_IsTriggered(value)) {
-			OnVJTrigger(go, value);
+			if( _Semaphore() ) {
+				OnVJTrigger(go, value);
+			}
 		}
 	}
 
