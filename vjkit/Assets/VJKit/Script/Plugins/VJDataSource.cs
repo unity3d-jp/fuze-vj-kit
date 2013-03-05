@@ -5,9 +5,11 @@ using System.Collections;
 [RequireComponent (typeof (VJManager))]
 public class VJDataSource : VJAbstractDataSource {
 
-	[Range(0, 7)]	// depends VJManager.numberOfBands
+	// depends VJManager.numberOfBands
+	[HideInInspector]
 	public int lowerBand;	
-	[Range(0, 7)]	// depends VJManager.numberOfBands
+	// depends VJManager.numberOfBands
+	[HideInInspector]
 	public int upperBand;
 	
 	private VJManager m_manager;
