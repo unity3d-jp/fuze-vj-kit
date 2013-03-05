@@ -7,7 +7,7 @@ public class VJMessageTrigger : VJBaseTrigger {
 	public GameObject objectToSend;	
 	public string message = null;
 
-	void Start() {
+	public override void Start() {
 		if(objectToSend == null) {
 			objectToSend = gameObject;
 		}

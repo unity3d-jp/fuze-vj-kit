@@ -21,20 +21,13 @@ public class VJModifierTarget {
 public abstract class VJBaseModifier : MonoBehaviour {
 
 	[HideInInspector]
-	public VJManager manager;
+	public VJAbstractManager manager;
 	[HideInInspector]
-	public VJDataSource source;
+	public VJAbstractDataSource source;
 	public ValueSourceType sourceType = ValueSourceType.Current;
 
 	[Range(0.0f, 100.0f)]
 	public float boost = 1.0f;				///< 値の増幅値
-
-	[Range(0.0f, 1.0f)]
-	public float variationAmount = 0.0f;	///< ランダム揺らぎ量
-	[Range(0.0f, 1.0f)]
-	public float variationSpeed = 0.2f;		///< ランダム揺らぎ量
-	[Range(0, 100)]
-	public int variationOcterb;
 
 	public bool limitMinMax = false;		///< min/maxに値を絞るかどうか
 	public float valueMin = 0.0f;
@@ -48,15 +41,24 @@ public abstract class VJBaseModifier : MonoBehaviour {
 
 	private float lastValue = 0.0f;			///< 前回の値
 
+	[HideInInspector]
+	public float lastReturnedValue = 0.0f;	///< 前回の値（実際の使用値）
+
 	public bool negative = false;			///< 値を反転するかどうか
 
 	public bool multiple = false;			///< 複数のオブジェクトに対する操作をするかどうか
 	public VJModifierTarget[] targets;
 
+	[HideInInspector]
+	public bool isModifierEnabled = true;
+
+	public virtual void Awake () {
+	}
+
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		if(!manager) {
-			manager = VJManager.GetDefaultManager();
+			manager = VJAbstractManager.GetDefaultManager();
 			if(!manager) {
 				Debug.LogError("[FATAL] VJ Manager not found.");
 			}
@@ -82,20 +84,20 @@ public abstract class VJBaseModifier : MonoBehaviour {
 		return source.diff;
 	}
 	
-	private float _GetVariation(ref int vOcterb) {
-		return (VJPerlin.Fbm(Time.time * variationSpeed, vOcterb)) * variationAmount;
-	}
-	
 	// Update is called once per frame
-	private float _GetValue (ref float _lastValue, ref int vOcterb) {
+	private float _GetValue (ref float _lastValue) {
 
 		// バリエーションを加えて、初期値を作成
-		float v = ( _GetRawValue() + _GetVariation(ref vOcterb) ) * boost;
+		float v = (isModifierEnabled) ? ( _GetRawValue() ) * boost : 0.0f;
 
 		// rest onなら、restの強度で値を下げる
 		// 今回の値が大きいなら今回の値を使う
 		if( rest ) {
-			v = Mathf.Max(_lastValue * restStrength, v);
+			if(_lastValue < 0.0f) {
+				v = Mathf.Min(_lastValue * restStrength, v);
+			} else {
+				v = Mathf.Max(_lastValue * restStrength, v);
+			}
 		}
 		
 		// 値をmin/maxの範囲内に固定する
@@ -108,22 +110,23 @@ public abstract class VJBaseModifier : MonoBehaviour {
 
 		// 反転onなら値を反転して返す
 		if( negative ) {
-			// 中央値オフセットの適用		
-			return -v + middleOffset;
+			// 中央値オフセットの適用
+			lastReturnedValue = -v + middleOffset;
 		} else {
 			// 中央値オフセットの適用		
-			return v + middleOffset;
+			lastReturnedValue = v + middleOffset;
 		}
+		return lastReturnedValue;
 	}
 	
 	public abstract void VJPerformAction(GameObject go, float value);
 	
 	void Update() {
 		if(!multiple) {
-			VJPerformAction(gameObject, _GetValue(ref lastValue, ref variationOcterb));
+			VJPerformAction(gameObject, _GetValue(ref lastValue));
 		} else if(targets != null) {			
 			foreach(VJModifierTarget t in targets) {
-				VJPerformAction(t.gameObject, _GetValue(ref t.lastValue, ref t.octerb));
+				VJPerformAction(t.gameObject, _GetValue(ref t.lastValue));
 			}
 		}
 	}

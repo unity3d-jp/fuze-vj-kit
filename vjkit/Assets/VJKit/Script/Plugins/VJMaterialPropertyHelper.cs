@@ -150,4 +150,87 @@ public class VJMaterialPropertyHelper : MonoBehaviour {
 		break;
 		}
 	}
+
+	public static float GetMaterialValue(Material obj, MaterialPropertyType pType, string paramName ) {
+		if( pType == MaterialPropertyType.Color_R 	||
+		pType == MaterialPropertyType.Color_G 		||
+		pType == MaterialPropertyType.Color_B 		||
+		pType == MaterialPropertyType.Color_RGB 	||
+		pType == MaterialPropertyType.Color_A 		||
+		pType == MaterialPropertyType.Color_G_Relative 		||
+		pType == MaterialPropertyType.Color_B_Relative 		||
+		pType == MaterialPropertyType.Color_RGB_Relative 	||
+		pType == MaterialPropertyType.Color_A_Relative 		) 
+		{
+			return _GetColor(obj, pType, paramName);
+		}
+		else {
+			return _GetMaterialProperty(obj, pType, paramName);
+		}
+	}
+
+	private static float _GetColor(Material obj, MaterialPropertyType pType, string paramName) {
+		
+		Color c;
+		
+		if(paramName == null || paramName.Length == 0) {
+			c = obj.color;
+		} else {
+			c = obj.GetColor(paramName);
+		}
+		
+		switch(pType) {
+		case MaterialPropertyType.Color_R:
+			return c.r;
+		case MaterialPropertyType.Color_G:
+			return c.g;
+		case MaterialPropertyType.Color_B:
+			return c.b;
+		case MaterialPropertyType.Color_RGB:
+			return c.r;
+		case MaterialPropertyType.Color_A:
+			return c.a;
+		case MaterialPropertyType.Color_R_Relative:
+			return c.r;
+		case MaterialPropertyType.Color_G_Relative:
+			return c.g;
+		case MaterialPropertyType.Color_B_Relative:
+			return c.b;
+		case MaterialPropertyType.Color_RGB_Relative:
+			return c.r;
+		case MaterialPropertyType.Color_A_Relative:
+			return c.a;
+		}
+		
+		return 0.0f;
+	}
+
+	private static float _GetMaterialProperty(Material obj, MaterialPropertyType pType, string paramName) {
+		
+		Vector2 offs;
+		
+		switch(pType) {
+		case MaterialPropertyType.TextureOffset_X:
+			offs = obj.mainTextureOffset;
+			return offs.x;
+		case MaterialPropertyType.TextureOffset_Y:
+			offs = obj.mainTextureOffset;
+			return offs.y;
+		case MaterialPropertyType.TextureScale_X:
+			offs = obj.mainTextureScale;
+			return offs.x;
+		case MaterialPropertyType.TextureScale_Y:
+			offs = obj.mainTextureScale;
+			return offs.y;
+		case MaterialPropertyType.Float:
+			if(paramName != null && paramName.Length > 0) {
+				return obj.GetFloat(paramName);
+			}
+			break;
+		}
+		
+		return 0.0f;
+	}
+	
+
 }

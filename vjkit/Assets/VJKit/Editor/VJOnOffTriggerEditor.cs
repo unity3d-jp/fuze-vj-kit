@@ -4,11 +4,10 @@ using UnityEditor;
 using System;
 using System.Collections.Generic;
 
-[CustomEditor(typeof(VJDataSource))]
-public class VJDataSourceEditor : VJAbstractDataSourceEditor 
+[CustomEditor(typeof(VJOnOffTrigger))]
+public class VJOnOffTriggerEditor : VJBaseTriggerEditor 
 {
-
-    public VJDataSourceEditor()
+    public VJOnOffTriggerEditor()
     {
     }
 

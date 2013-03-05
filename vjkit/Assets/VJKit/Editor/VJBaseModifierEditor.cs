@@ -21,7 +21,11 @@ public class VJBaseModifierEditor : Editor
 
 		modifier = target as VJBaseModifier;
 
-  		VJManager[] managers = UnityEngine.Object.FindObjectsOfType(typeof(VJManager)) as VJManager[];
+		if(!modifier.isModifierEnabled) {
+			EditorGUILayout.HelpBox("Diabled from On-Off Switch", MessageType.None);
+		}
+
+  		VJAbstractManager[] managers = UnityEngine.Object.FindObjectsOfType(typeof(VJAbstractManager)) as VJAbstractManager[];
   		if( managers.Length > 0 ) {
 			string[] options_managers = new string[managers.Length];
 			for(int i = 0; i < managers.Length; ++i) {
@@ -40,7 +44,7 @@ public class VJBaseModifierEditor : Editor
             //EditorUtility.SetDirty(target);
 			
 			GameObject go = managers[index].gameObject;
-			VJDataSource[] sources = go.GetComponents<VJDataSource>() as VJDataSource[];
+			VJAbstractDataSource[] sources = go.GetComponents<VJAbstractDataSource>() as VJAbstractDataSource[];
 			if( sources.Length > 0 ) {
 				string[] options_sources = new string[sources.Length];
 				for(int i = 0; i < sources.Length; ++i) {
@@ -66,9 +70,32 @@ public class VJBaseModifierEditor : Editor
 
         base.OnInspectorGUI();
 
+//		modifier.multiple = EditorGUILayout.Toggle("Multiple", modifier.multiple);
+//		if(modifier.multiple) {
+////			Rect r = GUILayoutUtility.GetLastRect();
+////			r.x += 8;
+////			r.width -= 16;
+////			r.y += 20;
+////			r.height = 16;
+//			//GUILayout.Space(72.0f);
+//			EditorGUILayout.PropertyField (serializedObject.FindProperty ("targets"), GUIContent.none);
+//		}
+
 		if(GUILayout.Button("Target Children")) {
+			modifier.multiple = true;
 			modifier.SetVisibleChildrenAsTarget();
 		}
+
+		//EditorGUILayout.Space();
+		Rect r = GUILayoutUtility.GetLastRect();
+		r.x += 8;
+		r.width -= 16;
+		r.y += 20;
+		r.height = 16;
+		EditorGUILayout.BeginVertical();
+		GUILayout.Space(32.0f);
+		EditorGUI.ProgressBar(r, modifier.lastReturnedValue / VJAbstractDataSource.s_prog_max, "value:"+modifier.lastReturnedValue);
+		EditorGUILayout.EndVertical();
 
         
         if (GUI.changed) {
