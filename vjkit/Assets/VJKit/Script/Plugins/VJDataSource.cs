@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("VJKit/System/VJ Data source")]
+[AddComponentMenu("VJKit/System/VJ Data source(Spectrum)")]
 [RequireComponent (typeof (VJManager))]
 public class VJDataSource : VJAbstractDataSource {
 

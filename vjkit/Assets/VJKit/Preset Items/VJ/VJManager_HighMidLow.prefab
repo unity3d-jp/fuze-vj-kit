@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: VJManager_HighMidLow
   m_TagString: Untagged
@@ -41,12 +42,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: Bass
-  lowerBand: 0
-  upperBand: 1
   boost: 5
   current: 0
   previous: 0
   diff: 0
+  lowerBand: 0
+  upperBand: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,11 +58,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ae2e2c214fc4ad4a084f5786789689, type: 3}
   m_Name: 
+  debugWindow: 0
   source: {fileID: 0}
   fft: 5
   bandLevels: []
-  debugWindow: 0
+  rawVolume: 0
   isMicSource: 0
+  rawSpectrum: []
+  rawData: []
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,12 +77,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: High
-  lowerBand: 4
-  upperBand: 7
   boost: 5
   current: 0
   previous: 0
   diff: 0
+  lowerBand: 4
+  upperBand: 7
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,8 +94,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: Middle
+  boost: 5
+  current: 0
+  previous: 0
+  diff: 0
   lowerBand: 2
   upperBand: 4
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5839f36bb8e547fa9cf9a6f1fd59a43, type: 3}
+  m_Name: 
+  sourceName: Volume
   boost: 5
   current: 0
   previous: 0

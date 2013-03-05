@@ -17,6 +17,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400018}
   m_Layer: 0
   m_Name: VJManager_8Spectrum
   m_TagString: Untagged
@@ -46,12 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: 7 - High
-  lowerBand: 7
-  upperBand: 7
   boost: 5
   current: .0165794231
   previous: .0186201893
   diff: -.00204076618
+  lowerBand: 7
+  upperBand: 7
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,12 +64,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: 6 - High
-  lowerBand: 6
-  upperBand: 6
   boost: 5
   current: .0360483453
   previous: .0366891585
   diff: -.000640813261
+  lowerBand: 6
+  upperBand: 6
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,12 +81,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: 5 - High
-  lowerBand: 5
-  upperBand: 5
   boost: 5
   current: .0237753801
   previous: .0255764462
   diff: -.0018010661
+  lowerBand: 5
+  upperBand: 5
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,12 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: 4 - Mid
-  lowerBand: 4
-  upperBand: 4
   boost: 5
   current: .0199018363
   previous: .0191130489
   diff: .00078878738
+  lowerBand: 4
+  upperBand: 4
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,12 +115,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: 3 - Mid
-  lowerBand: 3
-  upperBand: 3
   boost: 5
   current: .0163325183
   previous: .0166589897
   diff: -.000326471403
+  lowerBand: 3
+  upperBand: 3
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,6 +131,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ae2e2c214fc4ad4a084f5786789689, type: 3}
   m_Name: 
+  debugWindow: 1
   source: {fileID: 0}
   fft: 5
   bandLevels:
@@ -141,8 +143,10 @@ MonoBehaviour:
   - .0237753801
   - .0360483453
   - .0165794231
-  debugWindow: 1
+  rawVolume: 0
   isMicSource: 0
+  rawSpectrum: []
+  rawData: []
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,12 +158,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: 0 - Low
-  lowerBand: 0
-  upperBand: 0
   boost: 5
   current: .365634054
   previous: .375634044
   diff: -.00999999046
+  lowerBand: 0
+  upperBand: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,12 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: 1 - Low
-  lowerBand: 1
-  upperBand: 1
   boost: 5
   current: .147944197
   previous: .157944202
   diff: -.0100000054
+  lowerBand: 1
+  upperBand: 1
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,12 +192,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: 2 - Low
-  lowerBand: 2
-  upperBand: 2
   boost: 5
   current: .0718246698
   previous: .0762030557
   diff: -.00437838584
+  lowerBand: 2
+  upperBand: 2
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5839f36bb8e547fa9cf9a6f1fd59a43, type: 3}
+  m_Name: 
+  sourceName: Volume
+  boost: 5
+  current: 0
+  previous: 0
+  diff: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
