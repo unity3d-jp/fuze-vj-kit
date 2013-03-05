@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("VJKit/Utilities/Rotate Around")]
 public class OrbitalRotation : MonoBehaviour {
 
 	public float angularVelocity = 45;
