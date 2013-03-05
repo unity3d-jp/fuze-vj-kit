@@ -15,6 +15,7 @@ public abstract class VJBaseTrigger : VJBaseModifier {
 	
 	public int semaphore = 0;
 	private int _lastSemaphore = 0;
+	public float trigerDelaySec  = 0.0f;
 	
 	private float trigerlastVal  = 0.0f;
 	
@@ -38,12 +39,21 @@ public abstract class VJBaseTrigger : VJBaseModifier {
 		return false;
 	}
 
+	private IEnumerator _DelayedTrigger(GameObject go, float value) {
+		yield return new WaitForSeconds(trigerDelaySec);
+		OnVJTrigger(go, value);
+	}	
+
 
 	// do noting
 	public override void VJPerformAction(GameObject go, float value) {
 		if(_IsTriggered(value)) {
 			if( _Semaphore() ) {
-				OnVJTrigger(go, value);
+				if( trigerDelaySec > 0.0f ) {
+					StartCoroutine(_DelayedTrigger(go, value));
+				} else {
+					OnVJTrigger(go, value);
+				}
 			}
 		}
 	}

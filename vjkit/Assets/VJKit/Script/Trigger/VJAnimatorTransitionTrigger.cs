@@ -10,6 +10,8 @@ public class VJAnimatorTransitionTrigger : VJBaseTrigger {
 		Animator animator = go.GetComponent<Animator>();
 		if( animator != null ) {
 			animator.SetFloat(parameterName, value);
+		} else {
+			animator.SetFloat(parameterName, 0.0f);
 		}
 	}
 }
