@@ -18,6 +18,9 @@ public abstract class VJBaseTrigger : VJBaseModifier {
 	
 	private float trigerlastVal  = 0.0f;
 	
+	private bool gizmoTriger = false;
+	Color gizmoColor = Color.white;
+	
 	// will be implemented by inherited classes
 	public abstract void OnVJTrigger(GameObject go, float value);
 
@@ -73,6 +76,22 @@ public abstract class VJBaseTrigger : VJBaseModifier {
 		}
 		
 		trigerlastVal = val;
+		
+		gizmoTriger = trigger;
+		
 		return trigger;
+	}
+	
+
+	void OnDrawGizmosSelected () 
+	{
+		if( gizmoTriger )
+			gizmoColor = Color.red;
+		else
+			gizmoColor = Color.Lerp(gizmoColor, Color.white, 0.4f);
+		
+		Gizmos.color = gizmoColor;
+		
+		Gizmos.DrawWireSphere(transform.position, 0.5f);
 	}
 }
