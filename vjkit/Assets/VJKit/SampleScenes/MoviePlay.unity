@@ -86,6 +86,7 @@ GameObject:
   - 114: {fileID: 58366154}
   - 114: {fileID: 58366153}
   - 114: {fileID: 58366152}
+  - 114: {fileID: 58366157}
   m_Layer: 0
   m_Name: VJManager_HighMidLow
   m_TagString: Untagged
@@ -105,12 +106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: High
-  lowerBand: 4
-  upperBand: 7
   boost: 5
   current: 0
   previous: 0
   diff: 0
+  lowerBand: 4
+  upperBand: 7
 --- !u!114 &58366153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,12 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: Middle
-  lowerBand: 2
-  upperBand: 4
   boost: 5
   current: 0
   previous: 0
   diff: 0
+  lowerBand: 2
+  upperBand: 4
 --- !u!114 &58366154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,12 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f826694d44fb4ff9ac4e0334deb2088, type: 3}
   m_Name: 
   sourceName: Bass
-  lowerBand: 0
-  upperBand: 1
   boost: 5
   current: 0
   previous: 0
   diff: 0
+  lowerBand: 0
+  upperBand: 1
 --- !u!114 &58366155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,11 +159,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ae2e2c214fc4ad4a084f5786789689, type: 3}
   m_Name: 
+  debugWindow: 0
   source: {fileID: 1993236374}
   fft: 5
   bandLevels: []
-  debugWindow: 0
+  rawVolume: 0
   isMicSource: 0
+  rawSpectrum: []
+  rawData: []
 --- !u!4 &58366156
 Transform:
   m_ObjectHideFlags: 0
@@ -174,6 +178,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2062637716}
+--- !u!114 &58366157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400008, guid: c7834ce0ab33241f3ae989f3617db222,
+    type: 2}
+  m_PrefabInternal: {fileID: 1281094128}
+  m_GameObject: {fileID: 58366151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5839f36bb8e547fa9cf9a6f1fd59a43, type: 3}
+  m_Name: 
+  sourceName: Volume
+  boost: 5
+  current: 0
+  previous: 0
+  diff: 0
 --- !u!1 &934144793
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +220,7 @@ Transform:
   m_GameObject: {fileID: 934144793}
   m_LocalRotation: {x: -1.15202326e-07, y: -.707106829, z: .707106709, w: -1.15202312e-07}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 0, z: 2}
+  m_LocalScale: {x: 1, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 1247482326}
 --- !u!23 &934144795
@@ -216,7 +236,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9e366a176f9e34311a775da137fff532, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -241,8 +261,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a8f5500a514543339b8c357f0fb773a, type: 3}
   m_Name: 
-  movie: {fileID: 15200000, guid: bbb0401c2856144f4a0f9ce0d822abf3, type: 3}
-  source: {fileID: 0}
+  movie: {fileID: 15200000, guid: 3e1b80fa103304ab79d1e0378794206f, type: 3}
 --- !u!1001 &1091553653
 Prefab:
   m_ObjectHideFlags: 0
@@ -390,6 +409,23 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -1.15202312e-07
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f9cad5d20fd874760b19463f6ea3555f, type: 2}
+      propertyPath: movie
+      value: 
+      objectReference: {fileID: 15200000, guid: 3e1b80fa103304ab79d1e0378794206f,
+        type: 3}
+    - target: {fileID: 400000, guid: f9cad5d20fd874760b19463f6ea3555f, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f9cad5d20fd874760b19463f6ea3555f, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: f9cad5d20fd874760b19463f6ea3555f, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e366a176f9e34311a775da137fff532, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9cad5d20fd874760b19463f6ea3555f, type: 2}
   m_RootGameObject: {fileID: 934144793}
