@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 5.0.6 (400960)"/><meta name="keywords" content="Unity"/><meta name="author" content="tsubaki_t1"/><meta name="created" content="2013-03-04 07:36:57 +0000"/><meta name="updated" content="2013-03-05 06:49:19 +0000"/><title>VJKIT コンポーネント</title></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
+<div><span style="font-size: 24px;"><b>VJKitのコンポーネント簡易マニュアル</b></span></div>
+<div><b style="font-size: 14px;"><br/></b></div>
+<div><b style="font-size: 18px;">VJKitについて</b></div>
+<div><b style="font-size: 14px;"><br/></b></div>
+<div><a href="https://github.com/unity3d-jp/fuze-vj-kit">https://github.com/unity3d-jp/fuze-vj-kit</a></div>
+<div><br/></div>
+<div><br/></div>
+<div><span style="font-size: 18px;"><b>コンポーネントのアタッチ方法</b></span></div>
+<div><br/></div>
+<div>GameObjectを選択（Or作成）　＞　Add Componentをクリック　＞　アタッチしたいオブジェクトを選択する</div>
+<div><br/></div>
+<div><span><img src="VJKIT%20%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88.resources/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2013-03-04_18.15.47.png" height="450" width="596"/></span><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div>
+<hr/>
+<span style="font-size: 24px;"><b>System</b></span></div>
+<div><br/></div>
+<div>シーンに一つ（もしくは複数）配置する、ModifiresやTriggerを動かす情報源。</div>
+<div><br/></div>
+<div><span><img src="VJKIT%20%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88.resources/%E7%A9%BA%E7%99%BD%E3%83%98%E3%82%9A%E3%83%BC%E3%82%B7%E3%82%99.png" height="402" width="500"/></span><br/></div>
+<div>※設定が面倒な場合はAssets>VJKit>Preset Items>VJのプレハブを利用する。<span><br/></span></div>
+<div><br/></div>
+<div><span style="font-size: 18px;"><b>対応コンポーネント</b></span></div>
+<div><br/></div>
+<div><span style="font-size: 14px;">VJManager（Sourceに指定したAudioSourceを解析し音の周波数帯を管理する）</span></div>
+<div><span style="font-size: 14px;">     ・FFT（）</span></div>
+<div><span style="font-size: 14px;">     ・BandLevels（帯域の値。実行時VJDataSourceから自動で取得する）</span></div>
+<div><span style="font-size: 14px;">     ・Debug Window（周波数帯の動作状況を確認するデバッグウィンドウを表示する）</span></div>
+<div><span style="font-size: 14px;">     ・Use Microphone（マイクから音を取得する）</span></div>
+<div><span style="font-size: 14px;"><br/></span></div>
+<div><span style="font-size: 14px;">VJDataSource(Spectrum)（周波数帯の情報を設定する）</span></div>
+<div><span style="font-size: 14px;">     ・ Source Name（帯域名。ModifiersやTrigerではこの名称を指定する）</span></div>
+<div><span style="font-size: 14px;">     ・Boost（帯域の値を増幅する）</span></div>
+<div><span style="font-size: 14px;">     ・lowerBand（周波数の最低値）</span></div>
+<div><span style="font-size: 14px;">     ・upperBand（周波数の最大値）</span></div>
+<div><br/></div>
+<div>VJDataSource(Volume)（音量の情報を設定する）</div>
+<div><br/></div>
+<div><br/></div>
+<div>
+<hr/>
+<span style="font-size: 24px;"><b>Modifiers</b></span><span style="font-size: 15px;"> </span></div>
+<div><span style="font-size: 15px;"><br/></span></div>
+<div><span style="font-size: 15px;">オブジェクトにアタッチし、サウンド</span><span style="font-size: 15px;">に合わせて動かす（常に動作する</span><span style="font-size: 15px;">）</span><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><span style="font-size: 18px;"><b>基礎パラメータ</b></span></div>
+<div><br/></div>
+<div><span style="font-family: Osaka; font-size: 12px;">VJManager（音の周波数帯を管理するマネージャー）</span><br/></div>
+<div><span style="font-family: Osaka; font-size: 12px;">source（音の周波数帯）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div>boost（値の増幅値）</div>
+<div><span style="font-family: Osaka; font-size: 12px;">variationAmount（変化量のゆらぎ）</span><br/></div>
+<div><span style="font-family: Osaka; font-size: 12px;">variationSpeed（変化速度のゆらぎ）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">variationOcterb</span><span style="font-family: Osaka; font-size: 12px;">（オクターブのゆらぎ）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">limitMinMax（min/maxに値を絞るかどうか）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">valueMin（値の最小値）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">valueMax（値の最大値）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">middleOffset（中央値のオフセット）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">rest（値を中央値に徐々に戻すかどうか）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">restStrength（戻す際の強さ）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">negative（値を反転するかどうか）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">multiple（複数のオブジェクトに対する操作かどうか）</span></div>
+<div><br/></div>
+<div><br/></div>
+<div><span style="font-size: 18px;"><b>対応コンポーネント</b></span></div>
+<div><br/></div>
+<div><span style="font-size: 14px;">Animator（アニメーション速度を変更する）<br/></span></div>
+<p style="margin: 0px;"><span style="font-size: 14px;">GameObject Property（</span><span style="font-size: 14px;">Property to Modifyに従いアタッチしたオブジェクトを動かす</span><span style="font-size: 14px;">）</span></p>
+<p style="margin: 0px;"><span style="font-size: 14px;">Light Property（</span><span style="font-size: 14px;">Property to modifyに従いアタッチしたオブジェクトのライトを制御する</span><span style="font-size: 14px;">）</span></p>
+<div><span style="font-size: 14px;">Material Property （</span><span style="font-size: 14px;">Property to Modify及びProperty Nameに従いマテリアルの色を変更する</span><span style="font-size: 14px;">）</span></div>
+<div>Scene Speed（シーンの全体の速度を変化させる。ModifiersやTrigger等のサウンドが影響しないコンテンツに有効）</div>
+<p style="margin: 0px; font-size: 15px; min-height: 17px;"><br/></p>
+<div><br/></div>
+<div>
+<hr/>
+<span style="font-family: Arial;"><b>Trigger</b></span></div>
+<div><span style="font-family: Arial;"><span style="font-size: 15px;"><br/></span></span></div>
+<div><span style="font-family: Arial;"><span style="font-size: 15px;">オブジェクトにアタッチし、サウンド</span></span><span style="font-size: 15px;">に反応して動かす（トリガー発動時のみ動作）</span></div>
+<div><span><img src="VJKIT%20%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88.resources/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202013-03-05%2015.43.16.png" height="243" width="500"/></span><br/></div>
+<div><br/></div>
+<div><br/></div>
+<div><b style="font-size: 18px;">基礎パラメータ</b></div>
+<div><br/></div>
+<div><span style="font-family: Osaka; font-size: 12px;">VJManager（音の周波数帯を管理するマネージャー）</span><br/></div>
+<div><span style="font-family: Osaka; font-size: 12px;">source（音の周波数帯）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div>boost（値の増幅値）</div>
+<div><span style="font-family: Osaka; font-size: 12px;">variationAmount（変化量のゆらぎ）</span><br/></div>
+<div><span style="font-family: Osaka; font-size: 12px;">variationSpeed（変化速度のゆらぎ）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">variationOcterb</span><span style="font-family: Osaka; font-size: 12px;">（オクターブのゆらぎ）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">limitMinMax（min/maxに値を絞るかどうか）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">valueMin（値の最小値）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">valueMax（値の最大値）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">middleOffset（中央値のオフセット）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">rest（値を中央値に徐々に戻すかどうか）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">restStrength（戻す際の強さ）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">negative（値を反転するかどうか）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">multiple（複数のオブジェクトに対する操作かどうか）</span><br/></div>
+<div><span style="font-family: Osaka; font-size: 12px;">ThresholdType（トリガー発動のタイプ）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">          ・</span><span style="font-family: Osaka; font-size: 12px;">Value_LessThan（値が</span><span style="font-family: Osaka; font-size: 12px;">thresholdより小さい）</span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">          ・</span><span style="font-family: Osaka; font-size: 12px;">Value_MoreThan（値が</span><span style="font-family: Osaka; font-size: 12px;">thresholdより大きい）</span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">          ・</span><span style="font-family: Osaka; font-size: 12px;">Difference_LessThan（</span><span style="font-family: Osaka; font-size: 12px;">（現在の値-前回の値）の値が</span><span style="font-family: Osaka; font-size: 12px;">thresholdより小さい）</span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">          ・</span><span style="font-family: Osaka; font-size: 12px;">Difference_MoreThan</span><span style="font-family: Osaka; font-size: 12px;">（</span><span style="font-family: Osaka; font-size: 12px;">（現在の値-前回の値）の値が</span><span style="font-family: Osaka; font-size: 12px;">thresholdより大きい）</span></div>
+<div><span style="font-family: Osaka; font-size: 12px;">threshold（トリガー発動の基準値）</span><span style="font-family: Osaka; font-size: 12px;"><br/></span></div>
+<div><br/></div>
+<div><br/></div>
+<div><b style="font-size: 18px;">対応コンポーネント</b></div>
+<div><span style="font-size: 14px;"><br/></span></div>
+<div><span style="font-size: 14px;">Animator Transition（トリガー発動時、Animationを切り替える）</span></div>
+<div><span style="font-size: 14px;">Animatior（トリガー発動時、アニメーションを動かす。アニメーション速度はThresholdに依存する）</span></div>
+<div><span style="font-size: 14px;">Game Object Property（トリガー発動時、Property to Modifyに従いアタッチしたオブジェクトを動かす）<br/></span></div>
+<div><span style="font-size: 14px;">Light Property（トリガー発動時、Property to modifyに従いライトを制御する）<br/></span></div>
+<p style="margin: 0px;"><span style="font-size: 14px;">Material Property（トリガー発動時、Property to Modify及びProperty Nameに従いマテリアルの色を変更する）</span></p>
+<p style="margin: 0px;"><span style="font-size: 14px;">Send Message（トリガー発動時、SendMessageを対象のオブジェクトに送信する。オブジェクトが設定されていない場合、アタッチしたGameObjectに送信する）</span></p>
+<p style="margin: 0px;"><span style="font-size: 14px;">Emit Particle（Ol Particle system）（トリガー発動時、パーティクルを生成する。古いパーティクルシステムに対応）</span></p>
+<p style="margin: 0px;"><span style="font-size: 14px;">Emit Particle（Shuriken）（トリガー発動時、パーティクルを生成する。Shurikenに対応）</span></p>
+<div><span style="font-size: 14px;">On Off Trigger（Component to On Offで指定したコンポーネントのOn/Offを切り替える）</span></div>
+<div><span style="font-size: 14px;">Spown Object  （トリガー発動時、</span><span style="font-size: 14px; font-family: Osaka;">randomPositionOffsetに指定した座標に</span><span style="font-size: 14px;">オブジェクトを生成する。</span><span style="font-size: 14px; font-family: Osaka;">destroySpawnedObjectが指定されている場合、</span><span style="font-size: 14px; font-family: Osaka;">objectLiveSec秒後に自壊する</span><span style="font-size: 14px;">）</span><br/></div>
+<div><span style="font-size: 14px;"><br/></span></div>
+<div><br/></div>
+<div><br/></div>
+<div>
+<hr style="font-size: 15px;"/>
+<span style="font-size: 24px;"><b>Utilities</b></span></div>
+<div><span style="font-size: 15px;"><br/></span></div>
+<div><span style="font-size: 15px;">その他</span><span style="font-size: 15px; font-family: 'Hiragino Kaku Gothic ProN';">便利機能</span></div>
+<div><br/></div>
+<div><b style="font-size: 18px;">対応コンポーネント</b><br/></div>
+<div><br/></div>
+<div><span style="font-size: 14px;">Alway Look at camera （アタッチしたオブジェクトは常にカメラの方を向く。camを指定しなかった場合、main Cameraを指定する）</span></div>
+<div><span style="font-size: 14px;">Fbm Motion（Fbm Motionのチェックが入っている際、カメラの手振れを再現する）</span></div>
+<div><span style="font-size: 14px;">Destroy object in sec（アタッチしたオブジェクトを[ObjectLiveSec]秒後に消滅させる）<br/></span></div>
+<div><span style="font-size: 14px;">Freeze Position（座標・回転・大きさを固定する）</span></div>
+<div><span style="font-size: 14px;">Web Camera（Web Cameraで撮影した内容を指定のマテリアルのテクスチャに設定する。モバイルの場合はカメラで撮影した内容になる）</span></div>
+<p style="margin: 0px;"><span style="font-size: 14px;">Wirefame Camera（画面をワイヤーフレームモードにする）</span></p>
+<div>MoviePlayer（ムービーを再生する。音は出ない）</div>
+<div><br/></div>
+<div>
+<hr/></div>
+<div><span style="font-size: 24px;"><b>Cameras</b></span>：カメラにアタッチし、主にカメラを制御する</div>
+<div><span><br/></span></div>
+<div>Follow Camera（対象を追跡する）</div>
+<div>Rotate Camera（対象を中心に回転する）</div>
+</body></html>
