@@ -90,14 +90,8 @@ public abstract class VJBaseModifier : MonoBehaviour {
 		// バリエーションを加えて、初期値を作成
 		float v = (isModifierEnabled) ? ( _GetRawValue() ) * boost : 0.0f;
 
-		// rest onなら、restの強度で値を下げる
-		// 今回の値が大きいなら今回の値を使う
-		if( rest ) {
-			if(_lastValue < 0.0f) {
-				v = Mathf.Min(_lastValue * restStrength, v);
-			} else {
-				v = Mathf.Max(_lastValue * restStrength, v);
-			}
+		if( negative ) {
+			v = -v;
 		}
 		
 		// 値をmin/maxの範囲内に固定する
@@ -105,17 +99,22 @@ public abstract class VJBaseModifier : MonoBehaviour {
 			v = Mathf.Clamp(v, valueMin, valueMax);
 		}
 
+		// rest onなら、restの強度で値を下げる
+		// 今回の値が大きいなら今回の値を使う
+		if( rest ) {
+			Debug.Log("lastVal:" + _lastValue + " v:" + v);
+			if(negative) {
+				v = Mathf.Min(_lastValue * restStrength, v);
+			} else {
+				v = Mathf.Max(_lastValue * restStrength, v);
+			}
+		}
+
 		// 前回の値を保存
 		_lastValue = v;
 
-		// 反転onなら値を反転して返す
-		if( negative ) {
-			// 中央値オフセットの適用
-			lastReturnedValue = -v + middleOffset;
-		} else {
-			// 中央値オフセットの適用		
-			lastReturnedValue = v + middleOffset;
-		}
+		// 中央値オフセットの適用		
+		lastReturnedValue = v + middleOffset;
 		return lastReturnedValue;
 	}
 	
