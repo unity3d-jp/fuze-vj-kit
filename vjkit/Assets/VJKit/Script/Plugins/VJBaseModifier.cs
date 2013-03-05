@@ -102,7 +102,6 @@ public abstract class VJBaseModifier : MonoBehaviour {
 		// rest onなら、restの強度で値を下げる
 		// 今回の値が大きいなら今回の値を使う
 		if( rest ) {
-			Debug.Log("lastVal:" + _lastValue + " v:" + v);
 			if(negative) {
 				v = Mathf.Min(_lastValue * restStrength, v);
 			} else {
