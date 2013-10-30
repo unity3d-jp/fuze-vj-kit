@@ -5,27 +5,28 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Motion
-  m_AnimatorEvents:
+  m_Name: TransitionMotion
+  serializedVersion: 2
+  m_AnimatorParameters:
   - m_Name: Trans
     m_Type: 1
-    m_Min: -1
-    m_Max: 1
     m_DefaultVector: {x: 0, y: 0, z: 0}
     m_DefaultFloat: .200000003
     m_DefaultInt: 0
     m_DefaultBool: 0
-  m_Layers:
-  - serializedVersion: 2
+    m_Controller: {fileID: 9100000}
+  m_AnimatorLayers:
+  - serializedVersion: 3
     m_Name: Base Layer
-    m_Type: 0
     m_StateMachine: {fileID: 110700000}
-    m_HumanMask: {fileID: 0}
-    m_SkeletonMask: {fileID: 0}
+    m_Mask: {fileID: 0}
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_StateMachineMotionSetIndex: 0
+    m_DefaultWeight: 0
     m_IKPass: 0
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
 --- !u!1101 &110100000
 Transition:
   m_ObjectHideFlags: 3
@@ -87,11 +88,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 00IdleSlow
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: c818e942d79be43bc99be0c863c04975, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 168, y: 96, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110200759
 State:
@@ -100,11 +103,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 06MotionCrouchToSpin
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: d2a436b0e46f044a1a723e64395c152d, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 384, y: -156, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110200911
 State:
@@ -113,11 +118,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 10StepCareful
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 1294fe98a985943779086027289c596b, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 384, y: 84, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110208783
 State:
@@ -126,11 +133,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 08BackStepTempting
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 5b0d221edd3ce43ab81d0403e2581747, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 384, y: -36, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110211440
 State:
@@ -139,11 +148,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 05MotionCrouchToSlow
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: a532aa92b2522461784d08f96ff73664, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 156, y: 144, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110216349
 State:
@@ -152,11 +163,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 17IkakuMotion
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: c2ea5a5569dcb46ff89e1b56b85723cc, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 456, y: 96, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110224457
 State:
@@ -165,11 +178,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 07StepWithSpin
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: f46d3644eac1e4aec93de029c766db95, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 384, y: -96, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110243467
 State:
@@ -178,11 +193,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 03MotionSlow02
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 0f8ef5fc294e54209a62ffb0550d063c, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 156, y: 24, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110252986
 State:
@@ -191,11 +208,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 02MotionSlow01
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: d8ea5522d36ba4f68a92b4122ac69e63, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 156, y: -36, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110253390
 State:
@@ -204,11 +223,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 04MotionFlowing
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 36f59dbb193a1491dafdb69df61b09c1, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 156, y: 84, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110260289
 State:
@@ -217,11 +238,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 12PantomaimeFlowing
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 8d09435774a7e4edc8eb5de54ab127d8, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 612, y: -156, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110266421
 State:
@@ -230,11 +253,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 01IdleFast
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 2d0c94a86a733425aaac3791bc26c4f4, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 156, y: -96, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110266452
 State:
@@ -243,11 +268,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 09StepSwinging
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 5aa022e75f7d44560b34e214ec66f4d4, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 384, y: 24, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110266598
 State:
@@ -256,11 +283,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 11PantomimeWithStopping
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 0ab062b1a11d84edc9c77550d7845d05, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 300, y: -24, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110272145
 State:
@@ -269,11 +298,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 13PantomaimeFinding
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 3cf9d744c5f5d4516a6e44b3860de9cc, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 612, y: -96, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110275228
 State:
@@ -282,11 +313,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 15DanceingCheerfully
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: bec7ce7e1f99a4d9d8ed5967407a904e, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 612, y: 24, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110279459
 State:
@@ -295,11 +328,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 14PantomaimeCheerful
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: d2dafab856805490fbb99557dfbab2cd, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 612, y: -36, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110281005
 State:
@@ -308,11 +343,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 16NantaiMotion
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: aa9fe5c89821f4d17b9d92be703f0416, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 612, y: 84, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110288685
 State:
@@ -321,11 +358,13 @@ State:
   m_PrefabInternal: {fileID: 0}
   m_Name: 01IdleFast
   m_Speed: 1
+  m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 2d0c94a86a733425aaac3791bc26c4f4, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 156, y: -96, z: 0}
   m_IKOnFeet: 1
+  m_Mirror: 0
   m_Tag: 
 --- !u!1107 &110700000
 StateMachine:
@@ -341,19 +380,6 @@ StateMachine:
   - {fileID: 110216349}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
-  m_LocalTransitions:
-    data:
-      first: {fileID: 110200000}
-      second:
-      - {fileID: 110100000}
-    data:
-      first: {fileID: 110216349}
-      second:
-      - {fileID: 110199731}
-    data:
-      first: {fileID: 110266598}
-      second:
-      - {fileID: 110190838}
   m_OrderedTransitions:
     data:
       first: {fileID: 0}
