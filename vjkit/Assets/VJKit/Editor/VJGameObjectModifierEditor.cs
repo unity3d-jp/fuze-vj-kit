@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJGameObjectModifier))]
+[CanEditMultipleObjects]
 public class VJGameObjectModifierEditor : VJBaseModifierEditor 
 {
     public VJGameObjectModifierEditor()

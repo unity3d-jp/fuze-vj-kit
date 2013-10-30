@@ -4,11 +4,11 @@ using UnityEditor;
 using System;
 using System.Collections.Generic;
 
-[CustomEditor(typeof(VJBaseTrigger))]
-[CanEditMultipleObjects]
-public class VJBaseTriggerEditor : VJBaseModifierEditor 
+[CustomEditor(typeof(VJMidiKnobDataSource))]
+public class VJMidiKnobDataSourceEditor : VJAbstractDataSourceEditor 
 {
-    public VJBaseTriggerEditor()
+
+	public VJMidiKnobDataSourceEditor()
     {
     }
 

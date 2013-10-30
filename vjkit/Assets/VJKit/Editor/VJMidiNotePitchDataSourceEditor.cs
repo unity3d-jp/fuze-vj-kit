@@ -4,16 +4,16 @@ using UnityEditor;
 using System;
 using System.Collections.Generic;
 
-[CustomEditor(typeof(VJBaseTrigger))]
-[CanEditMultipleObjects]
-public class VJBaseTriggerEditor : VJBaseModifierEditor 
+[CustomEditor(typeof(VJMidiNotePitchDataSource))]
+public class VJMidiNotePitchDataSourceEditor : VJAbstractDataSourceEditor 
 {
-    public VJBaseTriggerEditor()
+
+	public VJMidiNotePitchDataSourceEditor()
     {
     }
 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-    }
+	}
 }

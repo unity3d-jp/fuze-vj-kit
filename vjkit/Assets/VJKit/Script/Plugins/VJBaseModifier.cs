@@ -26,27 +26,38 @@ public abstract class VJBaseModifier : MonoBehaviour {
 	public VJAbstractDataSource source;
 	public ValueSourceType sourceType = ValueSourceType.Current;
 
+	[SerializeField]
 	[Range(0.0f, 100.0f)]
-	public float boost = 1.0f;				///< 値の増幅値
+	protected float m_boost = 1.0f;			///< boost of value
 
-	public bool limitMinMax = false;		///< min/maxに値を絞るかどうか
+	public bool boostByOtherSource = false;	///< whether to use boost value from other source
+	[HideInInspector]
+	public VJAbstractDataSource boostSource;
+
+	public float boost {
+		get {
+			return _GetBoostValue();
+		}
+	}
+
+	public bool limitMinMax = false;		///< whether to limit min/max
 	public float valueMin = 0.0f;
 	public float valueMax = 1.0f;
 	
-	public float middleOffset = 0.0f;		///< 中央値のオフセット
+	public float middleOffset = 0.0f;		///< middle value offset
 
-	public bool rest = false;				///< 値を中央値に徐々に戻すかどうか
+	public bool rest = false;				///< wether to decrease value to middle
 	[Range(0.0f, 1.0f)]
 	public float restStrength = 0.98f;
 
-	private float lastValue = 0.0f;			///< 前回の値
+	private float lastValue = 0.0f;			///< last value straight from source
 
 	[HideInInspector]
-	public float lastReturnedValue = 0.0f;	///< 前回の値（実際の使用値）
+	public float lastReturnedValue = 0.0f;	///< last value actually used
 
-	public bool negative = false;			///< 値を反転するかどうか
+	public bool negative = false;			///< whether to negativate value
 
-	public bool multiple = false;			///< 複数のオブジェクトに対する操作をするかどうか
+	public bool multiple = false;			///< whether to operate multiple objects
 	public VJModifierTarget[] targets;
 
 	[HideInInspector]
@@ -57,6 +68,8 @@ public abstract class VJBaseModifier : MonoBehaviour {
 
 	// Use this for initialization
 	public virtual void Start () {
+		lastValue = lastReturnedValue = middleOffset;
+
 		if(!manager) {
 			manager = VJAbstractManager.GetDefaultManager();
 			if(!manager) {
@@ -66,6 +79,12 @@ public abstract class VJBaseModifier : MonoBehaviour {
 	
 		if(!source) {
 			source = manager.GetDefaultDataSource();
+			if(!source) {
+				Debug.LogError("[FATAL] Data source not found.");
+			}
+		}
+		if(!boostSource) {
+			boostSource = manager.GetDefaultDataSource();
 			if(!source) {
 				Debug.LogError("[FATAL] Data source not found.");
 			}
@@ -83,12 +102,20 @@ public abstract class VJBaseModifier : MonoBehaviour {
 		}
 		return source.diff;
 	}
+
+	protected float _GetBoostValue() {
+		if( boostByOtherSource ) {
+			return boostSource.current;
+		} else {
+			return m_boost;
+		}
+	}
 	
 	// Update is called once per frame
 	private float _GetValue (ref float _lastValue) {
 
 		// バリエーションを加えて、初期値を作成
-		float v = (isModifierEnabled) ? ( _GetRawValue() ) * boost : 0.0f;
+		float v = (isModifierEnabled) ? ( _GetRawValue() ) * _GetBoostValue() : 0.0f;
 
 		if( negative ) {
 			v = -v;
