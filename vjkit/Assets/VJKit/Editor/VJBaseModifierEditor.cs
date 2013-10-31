@@ -8,7 +8,6 @@ using System.Collections.Generic;
 [CanEditMultipleObjects]
 public class VJBaseModifierEditor : Editor 
 {
-	public VJBaseModifier modifier;
 	public int index;
 	public int index_src;
 
@@ -111,42 +110,52 @@ public class VJBaseModifierEditor : Editor
 			EditorGUILayout.LabelField("No VJManager found");
 		}
 
-
 		serializedObject.ApplyModifiedProperties();
+
         base.OnInspectorGUI();
 
-//		modifier.multiple = EditorGUILayout.Toggle("Multiple", modifier.multiple);
-//		if(modifier.multiple) {
-////			Rect r = GUILayoutUtility.GetLastRect();
-////			r.x += 8;
-////			r.width -= 16;
-////			r.y += 20;
-////			r.height = 16;
-//			//GUILayout.Space(72.0f);
-//			EditorGUILayout.PropertyField (serializedObject.FindProperty ("targets"), GUIContent.none);
-//		}
-
 		if(GUILayout.Button("Target Children")) {
-			modifier.multiple = true;
-			modifier.SetVisibleChildrenAsTarget();
+			if( serializedObject.isEditingMultipleObjects )
+			{
+				foreach(UnityEngine.Object o in targets) {
+					VJBaseModifier m = o as VJBaseModifier;
+					m.multiple = true;
+					m.SetVisibleChildrenAsTarget();
+				}
+			} else {
+				VJBaseModifier m = target as VJBaseModifier;
+				m.multiple = true;
+				m.SetVisibleChildrenAsTarget();
+			}
 		}
 
-		if( !serializedObject.isEditingMultipleObjects ) {
-			//EditorGUILayout.Space();
-			Rect r = GUILayoutUtility.GetLastRect();
-			r.x += 8;
-			r.width -= 16;
+		Rect r = GUILayoutUtility.GetLastRect();
+		r.width -= 16;
+		r.x += 8;
+		if( serializedObject.isEditingMultipleObjects ) 
+		{
+			foreach(UnityEngine.Object o in targets) {
+				//EditorGUILayout.Space();
+				VJBaseModifier m = o as VJBaseModifier;
+				r.y += 20;
+				r.height = 16;
+				EditorGUILayout.BeginVertical();
+				GUILayout.Space(20.0f);
+				EditorGUI.ProgressBar(r, m.lastReturnedValue / VJAbstractDataSource.s_prog_max, m.gameObject.name + " value:"+m.lastReturnedValue);
+				EditorGUILayout.EndVertical();
+			}
+		} else {
+			VJBaseModifier m = target as VJBaseModifier;
 			r.y += 20;
 			r.height = 16;
 			EditorGUILayout.BeginVertical();
-			GUILayout.Space(32.0f);
-			EditorGUI.ProgressBar(r, modifier.lastReturnedValue / VJAbstractDataSource.s_prog_max, "value:"+modifier.lastReturnedValue);
+			GUILayout.Space(20.0f);
+			EditorGUI.ProgressBar(r, m.lastReturnedValue / VJAbstractDataSource.s_prog_max, "value:"+m.lastReturnedValue);
 			EditorGUILayout.EndVertical();
 		}
 
-        
         if (GUI.changed) {
             EditorUtility.SetDirty(target);
-        }
-    }
+        }	
+	}
 }
