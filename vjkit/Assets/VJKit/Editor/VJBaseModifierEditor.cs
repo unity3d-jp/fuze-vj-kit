@@ -104,11 +104,13 @@ public class VJBaseModifierEditor : Editor
 					}
 				}
 
+				EditorGUI.showMixedValue = datasourceProperty.hasMultipleDifferentValues;
 				index_src = EditorGUILayout.Popup(
 					"DataSource:",
 					(datasourceProperty.hasMultipleDifferentValues?-1:index_src), 
 					options_sources);
-			
+				EditorGUI.showMixedValue = false;
+
 				//modifier.source = sources[index_src];
 				if( index_src >= 0 ) {
 					datasourceProperty.objectReferenceValue = sources[index_src];
