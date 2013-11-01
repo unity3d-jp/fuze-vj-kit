@@ -110,7 +110,29 @@ public class VJMidiInput : MonoBehaviour
 	{
 		return GetInstance().notes [noteNumber] < 0.0f;
 	}
-	
+
+//	// Returns true if the key was released in this frame.
+//	public static void RegisterSequencer (VJMidiSequencer seq)
+//	{
+//		if( !GetInstance().sequencers.Contains(seq) ) {
+//			GetInstance().sequencers.Add (seq);
+//		}
+//	}
+//
+//	// Returns true if the key was released in this frame.
+//	public static void UnregisterSequencer (VJMidiSequencer seq)
+//	{
+//		if( GetInstance().sequencers.Contains(seq) ) {
+//			GetInstance().sequencers.Remove (seq);
+//		}
+//	}
+
+	// Returns true if the key was released in this frame.
+	public static void ReceiveMidiEvents (List<SmfLite.MidiEvent> events)
+	{
+		GetInstance()._ReceiveMidiEvents (events);
+	}
+
 	// Provides the channel list.
 	public static int[] KnobChannels {
 		get {
@@ -164,7 +186,14 @@ public class VJMidiInput : MonoBehaviour
 		// MIDI data bytes.
 		public byte data1;
 		public byte data2;
-		
+
+		public MidiMessage (SmfLite.MidiEvent e) {
+			source = 0;
+			status = e.status;
+			data1 = e.data1;
+			data2 = e.data2;
+		}
+
 		public MidiMessage (ulong data)
 		{
 			source = (uint)(data & 0xffffffffUL);
@@ -211,6 +240,7 @@ public class VJMidiInput : MonoBehaviour
 	// 1<X<=2 : Triggered on this frame. (X-1) represents velocity.
 	float[] notes;
 	float	lastNotePitch;
+//	List<VJMidiSequencer> sequencers;
 	
 	// Channel number to knob mapping.
 	Dictionary<int, Knob> knobs;
@@ -305,7 +335,7 @@ public class VJMidiInput : MonoBehaviour
 			#if UNITY_EDITOR
 			// Record the message history.
 			messageHistory.Enqueue (message);
-			#endif
+			#endif		
 		}
 		
 		#if UNITY_EDITOR
@@ -314,6 +344,49 @@ public class VJMidiInput : MonoBehaviour
 			messageHistory.Dequeue ();
 		}
 		#endif
+	}
+
+	/*
+	 * Getting midi signals from outside and process it
+	 */ 
+	private void _ReceiveMidiEvents (List<SmfLite.MidiEvent> events) {
+		if( events == null ) {
+			return;
+		}
+		foreach(SmfLite.MidiEvent e in events ) {
+			// Parse the message.
+			var message = new MidiMessage (e);
+			
+			// Note on message?
+			if (message.status == 0x90) {
+				notes [message.data1] = 1.0f / 127 * message.data2 + 1.0f;
+				lastNotePitch = 1.0f / 127 * message.data1;
+			}
+			
+			// Note off message?
+			if (message.status == 0x80) {
+				notes [message.data1] = -1.0f;
+				lastNotePitch = -1.0f;
+			}
+			
+			// CC message?
+			if (message.status == 0xb0) {
+				// Normalize the value.
+				var value = 1.0f / 127 * message.data2;
+				
+				// Update the channel if it already exists, or add a new channel.
+				if (knobs.ContainsKey (message.data1)) {
+					knobs [message.data1].Update (value);
+				} else {
+					knobs [message.data1] = new Knob (value);
+				}
+			}
+			
+			#if UNITY_EDITOR
+			// Record the message history.
+			messageHistory.Enqueue (message);
+			#endif				
+		}
 	}
 	#endregion
 	
