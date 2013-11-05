@@ -1,4 +1,4 @@
-/* 
+﻿/* 
  * Copyright (C) 2013 Keijiro Takahashi
  * 
  * Permission is hereby granted, free of charge, to any 
@@ -26,28 +26,37 @@
  * is inspired by Visualizer Studio, created by Altered Reality 
  * Entertainment LLC.
  */
-using System.Collections.Generic;
-
-namespace SmfLite
+public struct MidiMessage
 {
-    public struct MidiFileContainer
+    // MIDI status byte.
+    public byte status;
+    
+    // MIDI data bytes.
+    public byte data1;
+    public byte data2;
+    
+    public MidiMessage (byte status)
     {
-        public int division;
-        public List<MidiTrack> tracks;
+        this.status = status;
+        data1 = data2 = 0;
+    }
 
-        public MidiFileContainer (int division, List<MidiTrack> tracks)
-        {
-            this.division = division;
-            this.tracks = tracks;
-        }
+    public MidiMessage (byte status, byte data1)
+    {
+        this.status = status;
+        this.data1 = data1;
+        data2 = 0;
+    }
 
-        public override string ToString ()
-        {
-            var temp = division.ToString () + ",";
-            foreach (var track in tracks) {
-                temp += track;
-            }
-            return temp;
-        }
+    public MidiMessage (byte status, byte data1, byte data2)
+    {
+        this.status = status;
+        this.data1 = data1;
+        this.data2 = data2;
+    }
+
+    public override string ToString ()
+    {
+        return string.Format ("s({0:X2}) d({1:X2},{2:X2})", status, data1, data2);
     }
 }

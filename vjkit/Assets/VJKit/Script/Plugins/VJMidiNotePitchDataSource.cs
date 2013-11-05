@@ -35,18 +35,21 @@ using System.Collections;
 [RequireComponent (typeof (VJMidiManager))]
 public class VJMidiNotePitchDataSource : VJAbstractDataSource {
 
+	private VJMidiManager m_manager;
+
 	[Range(0,127)]
 	public int baseNote;
 
 	// Use this for initialization
 	public void Awake() {
+		m_manager = GetComponent<VJMidiManager>();
 	}
 
 	// Update is called once per frame
 	public void Update () {
 		float raw_current = 0.0f;
-		if(VJMidiInput.IsNotePitchGiven()) {
-			raw_current = VJMidiInput.GetNotePitch() - (1.0f/127 * baseNote);
+		if(VJMidiInput.IsNotePitchGiven(m_manager.channel)) {
+			raw_current = VJMidiInput.GetNotePitch(m_manager.channel) - (1.0f/127 * baseNote);
 		}
 		raw_current = raw_current * boost;
 

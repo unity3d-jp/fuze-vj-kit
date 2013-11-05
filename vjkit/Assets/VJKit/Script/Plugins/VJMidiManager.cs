@@ -53,6 +53,8 @@ public class VJMidiManager : VJAbstractManager {
 //	}
 //	#endif
 //	
+	[Range(0,16)]
+	public int channel;
 
 	public override void Awake() {
 		base.Awake();		

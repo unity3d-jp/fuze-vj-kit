@@ -35,25 +35,25 @@ using System.Collections;
 [RequireComponent (typeof (VJMidiManager))]
 public class VJMidiKnobDataSource : VJAbstractDataSource {
 
-//	private VJGamepadManager m_manager;
+	private VJMidiManager m_manager;
 
 	[Range(0, 127)]
-	public int channel;
+	public int knobNumber;
 
 	[Range(-1.0f, 0.0f)]
 	public float middleOffset;
 
 	// Use this for initialization
 	public void Awake() {
-//		m_manager = GetComponent<VJGamepadManager>();
+		m_manager = GetComponent<VJMidiManager>();
 	}
 
 	// Update is called once per frame
 	public void Update () {
 		float raw_current = 0.0f;
 
-		if( VJMidiInput.DoesKnobExist(channel) ) {
-			raw_current = VJMidiInput.GetKnob(channel) + middleOffset;
+		if( VJMidiInput.DoesKnobExist(m_manager.channel, knobNumber) ) {
+			raw_current = VJMidiInput.GetKnob(m_manager.channel, knobNumber) + middleOffset;
 		}
 			
 		raw_current = raw_current * boost;

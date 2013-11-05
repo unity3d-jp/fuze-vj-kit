@@ -1,4 +1,4 @@
-/* 
+﻿/* 
  * Copyright (C) 2013 Keijiro Takahashi
  * 
  * Permission is hereby granted, free of charge, to any 
@@ -26,28 +26,24 @@
  * is inspired by Visualizer Studio, created by Altered Reality 
  * Entertainment LLC.
  */
-using System.Collections.Generic;
+using UnityEngine;
 
-namespace SmfLite
+public static class MidiOut
 {
-    public struct MidiFileContainer
+    public static void SendNoteOn(int channel, int noteNumber, float velocity)
     {
-        public int division;
-        public List<MidiTrack> tracks;
+        velocity = Mathf.Clamp (127.0f * velocity, 0.0f, 127.0f);
+        MidiBridge.instance.Send (0x90 + channel, noteNumber, (int)velocity);
+    }
 
-        public MidiFileContainer (int division, List<MidiTrack> tracks)
-        {
-            this.division = division;
-            this.tracks = tracks;
-        }
+    public static void SendNoteOff(int channel, int noteNumber)
+    {
+        MidiBridge.instance.Send (0x80 + channel, noteNumber, 0);
+    }
 
-        public override string ToString ()
-        {
-            var temp = division.ToString () + ",";
-            foreach (var track in tracks) {
-                temp += track;
-            }
-            return temp;
-        }
+    public static void SendControlChange(int channel, int controlChannel, float value)
+    {
+        value = Mathf.Clamp (127.0f * value, 0.0f, 127.0f);
+        MidiBridge.instance.Send (0xb0 + channel, controlChannel, (int)value);
     }
 }
