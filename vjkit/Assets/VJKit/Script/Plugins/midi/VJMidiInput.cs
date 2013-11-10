@@ -81,9 +81,11 @@ public class VJMidiInput : MidiInput
 			// Split the first byte.
 			var statusCode = message.status >> 4;
 			var channelNumber = message.status & 0xf;
-			
+
 			// Note on message?
 			if (statusCode == 9) {
+				Debug.Log ("[MIDI] NOTE ON: ch:" + channelNumber + " data:" + message.data1 + " " + message.data2);
+
 				var velocity = 1.0f / 127 * message.data2 + 1.0f;
 				channelArray [channelNumber].noteArray [message.data1] = velocity;
 				channelArray [(int)MidiChannel.All].noteArray [message.data1] = velocity;
@@ -91,12 +93,16 @@ public class VJMidiInput : MidiInput
 			
 			// Note off message?
 			if (statusCode == 8 || (statusCode == 9 && message.data2 == 0)) {
+				Debug.Log ("[MIDI] NOTE OFF: ch:" + channelNumber + " data:" + message.data1 + " " + message.data2);
+
 				channelArray [channelNumber].noteArray [message.data1] = -1.0f;
 				channelArray [(int)MidiChannel.All].noteArray [message.data1] = -1.0f;
 			}
 			
 			// CC message?
 			if (statusCode == 0xb) {
+				Debug.Log ("[MIDI] CC: ch:" + channelNumber + " data:" + message.data1 + " " + message.data2);
+
 				// Normalize the value.
 				var value = 1.0f / 127 * message.data2;
 				
