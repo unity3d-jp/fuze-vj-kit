@@ -1,31 +1,25 @@
-﻿/* 
- * Copyright (C) 2013 Keijiro Takahashi
- * 
- * Permission is hereby granted, free of charge, to any 
- * person obtaining a copy of this software and associated 
- * documentation files (the "Software"), to deal in the 
- * Software without restriction, including without limitation 
- * the rights to use, copy, modify, merge, publish, distribute, 
- * sublicense, and/or sell copies of the Software, and to permit 
- * persons to whom the Software is furnished to do so, subject 
- * to the following conditions: The above copyright notice and 
- * this permission notice shall be included in all copies or 
- * substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
- * OTHER DEALINGS IN THE SOFTWARE.
- * 
- * Special Thanks:
- * The original software design and architecture of fuZe vjkit 
- * is inspired by Visualizer Studio, created by Altered Reality 
- * Entertainment LLC.
- */
+﻿//
+// MidiBridge.cs - C# interface for MIDI Bridge
+//
+// Copyright (C) 2013 Keijiro Takahashi
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy of
+// this software and associated documentation files (the "Software"), to deal in
+// the Software without restriction, including without limitation the rights to
+// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+// the Software, and to permit persons to whom the Software is furnished to do so,
+// subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+// FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+// COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+// IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+// CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,21 +28,36 @@ using System.Net;
 
 public class MidiBridge : MonoBehaviour
 {
-    #region Configurations
-    // Port number used to communicate with Bridge.
-    const int portNumber = 52364;
-    #endregion
-
     #region Public interface
-    public Queue<MidiMessage> incomingMessageQueue;
 
-    public void Send (int status, int data1, int data2 = 0xff)
+    public struct Message
+    {
+        public byte status;
+        public byte data1;
+        public byte data2;
+        
+        public Message (byte status, byte data1, byte data2)
+        {
+            this.status = status;
+            this.data1 = data1;
+            this.data2 = data2;
+        }
+        
+        public override string ToString ()
+        {
+            return string.Format ("s({0:X2}) d({1:X2},{2:X2})", status, data1, data2);
+        }
+    }
+
+    public Queue<Message> incomingMessageQueue;
+
+    public void Send (int status, int data1 = 0xff, int data2 = 0xff)
     {
         if (tcpClient != null && tcpClient.Connected) {
-            smallBuffer [0] = (data2 == 0xff) ? (byte)2 : (byte)3;
-            smallBuffer [1] = (byte)status;
-            smallBuffer [2] = (byte)data1;
-            smallBuffer [3] = (byte)data2;
+            smallBuffer [0] = (byte)status;
+            smallBuffer [1] = (byte)data1;
+            smallBuffer [2] = (byte)data2;
+            smallBuffer [3] = 0xff;
             try {
                 tcpClient.GetStream ().Write (smallBuffer, 0, 4);
             } catch (System.IO.IOException exception) {
@@ -56,12 +65,19 @@ public class MidiBridge : MonoBehaviour
             }
         }
     }
+
+    public void Warmup()
+    {
+        // Do nothing!
+    }
+
     #endregion
 
     #region Monobehaviour functions
+
     void Awake ()
     {
-        incomingMessageQueue = new Queue<MidiMessage> ();
+        incomingMessageQueue = new Queue<Message> ();
         smallBuffer = new byte[4];
     }
 
@@ -70,9 +86,14 @@ public class MidiBridge : MonoBehaviour
         StartCoroutine (ConnectionCoroutine ());
         StartCoroutine (ReceiverCoroutine ());
     }
+
     #endregion
 
     #region TCP connection
+
+    // Port number used to communicate with Bridge.
+    const int portNumber = 52364;
+
     // TCP connection.
     TcpClient tcpClient;
     bool isConnecting;
@@ -84,7 +105,7 @@ public class MidiBridge : MonoBehaviour
     IEnumerator ConnectionCoroutine ()
     {
         // "Active Sense" message for heartbeating.
-        var heartbeat = new byte[4] {2, 0xff, 0xfe, 0};
+        var heartbeat = new byte[4] {0xfe, 0xff, 0xff, 0xff};
 
         while (true) {
             // Try to open the connection.
@@ -154,32 +175,36 @@ public class MidiBridge : MonoBehaviour
             var bufferFilled = tcpClient.GetStream ().Read (buffer, 0, available);
 
             for (var offset = 0; offset < bufferFilled; offset += 4) {
-                var length = buffer [offset];
-                if (length == 2) {
-                    incomingMessageQueue.Enqueue (new MidiMessage (buffer [offset + 1], buffer [offset + 2]));
-                } else if (length == 3) {
-                    incomingMessageQueue.Enqueue (new MidiMessage (buffer [offset + 1], buffer [offset + 2], buffer [offset + 3]));
-                }
+                incomingMessageQueue.Enqueue (new Message (buffer [offset], buffer [offset + 1], buffer [offset + 2]));
             }
 
             yield return null;
         }
     }
+
     #endregion
 
-    #region Singleton class interface
+    #region Singleton class handling
+
     static MidiBridge _instance;
     
     public static MidiBridge instance {
         get {
             if (_instance == null) {
-                var go = new GameObject ();
-                _instance = go.AddComponent<MidiBridge> ();
-                DontDestroyOnLoad (go);
-                go.hideFlags = HideFlags.HideInHierarchy;
+                var previous = FindObjectOfType (typeof(MidiBridge));
+                if (previous) {
+                    Debug.LogWarning ("Initialized twice. Don't use MidiBridge in the scene hierarchy.");
+                    _instance = (MidiBridge)previous;
+                } else {
+                    var go = new GameObject ("__MidiBridge");
+                    _instance = go.AddComponent<MidiBridge> ();
+                    DontDestroyOnLoad (go);
+                    go.hideFlags = HideFlags.HideInHierarchy;
+                }
             }
             return _instance;
         }
     }
+
     #endregion
 }
