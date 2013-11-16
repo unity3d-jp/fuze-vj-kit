@@ -63,6 +63,71 @@ using System.Collections.Generic;
 
 public class VJMidiInput : MidiInput
 {
+	// Debug Window	properties
+	protected static int windowIDSeed = 10000;
+	protected Rect windowRect = new Rect(160, 20, 120, 50);
+	protected int windowId;
+	public bool debugWindow = true;
+	public int nMsgs = 8;
+
+	private Queue<MidiBridge.Message> m_midimsgs;
+
+	public virtual void Awake() {
+		windowRect.x = PlayerPrefs.GetFloat("vjkit.window.pos." + gameObject.name + ".x", Screen.width - 220.0f);
+		windowRect.y = PlayerPrefs.GetFloat("vjkit.window.pos." + gameObject.name + ".y", 20.0f);
+		debugWindow  = 1 == PlayerPrefs.GetInt("vjkit.window." + gameObject.name + ".debug", 1);
+		windowRect.width = 200;
+		windowId = windowIDSeed;
+		windowIDSeed++;
+		m_midimsgs = new Queue<MidiBridge.Message>();
+	}
+	
+	protected virtual void OnDrawGUIWindow(int windowID) {
+		GUILayout.BeginVertical();
+		foreach(MidiBridge.Message m in m_midimsgs) {
+			Color lastColor = GUI.color;
+			GUI.color = Color.white;
+
+			var statusCode = m.status >> 4;
+			var channelNumber = m.status & 0xf;
+			
+			// Note on message?
+			if (statusCode == 9) {
+				var velocity = 1.0f / 127 * m.data2 + 1.0f;
+				GUILayout.Label (string.Format ("CH:{3}|NOTE ON {0} {1}", m.data1, velocity, channelNumber));
+			}
+			
+			// Note off message?
+			if (statusCode == 8 || (statusCode == 9 && m.data2 == 0)) {
+				GUILayout.Label (string.Format ("CH:{1}|NOTE OFF {0}", m.data1, channelNumber));
+			}
+			
+			// CC message?
+			if (statusCode == 0xb) {
+				// Normalize the value.
+				var value = 1.0f / 127 * m.data2;
+				GUILayout.Label (string.Format ("CH:{2}|CC {0} {1}", m.data1, value, channelNumber));
+			}
+
+			GUI.color = lastColor;
+			GUI.DragWindow ();
+		}				
+		GUILayout.EndVertical();
+	}
+	
+	public virtual void OnGUI() {
+		if( debugWindow ) {
+			windowRect = GUILayout.Window(windowId, windowRect, OnDrawGUIWindow, name, GUILayout.Width(200));
+		}
+	}
+	
+	public virtual void OnApplicationQuit() {
+		PlayerPrefs.SetFloat("vjkit.window.pos." + gameObject.name + ".x", windowRect.x);
+		PlayerPrefs.SetFloat("vjkit.window.pos." + gameObject.name + ".y", windowRect.y);
+		PlayerPrefs.SetInt("vjkit.window." + gameObject.name + ".debug", (debugWindow? 1:0));
+	}
+
+
 	public static void ReceiveMidiEvents (List<SmfLite.MidiEvent> events) {
 		vjinstance._ReceiveMidiEvents(events);
 	}
@@ -73,10 +138,15 @@ public class VJMidiInput : MidiInput
 	private void _ReceiveMidiEvents (List<SmfLite.MidiEvent> events) {
 		if( events == null ) {
 			return;
-		}		
+		}
+		if( m_midimsgs.Count > nMsgs ) {
+			m_midimsgs.Dequeue();
+		}
+
 		foreach(SmfLite.MidiEvent e in events ) {
 			// Parse the message.
 			var message = new MidiBridge.Message (e.status, e.data1, e.data2);			
+			m_midimsgs.Enqueue(message);
 
 			// Split the first byte.
 			var statusCode = message.status >> 4;

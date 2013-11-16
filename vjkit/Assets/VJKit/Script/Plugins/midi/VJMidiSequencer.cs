@@ -39,6 +39,7 @@ public class VJMidiSequencer : MonoBehaviour
 {
 	public TextAsset midiFile;
 	public float bpm = 131.0f;
+	public float startTime;
 	MidiFileContainer song;
 	MidiTrackSequencer[] sequencers;
 	
@@ -65,7 +66,7 @@ public class VJMidiSequencer : MonoBehaviour
 		sequencers = new MidiTrackSequencer[song.tracks.Count];
 		for(int i = 0; i < song.tracks.Count; ++i) {
 			sequencers[i] = new MidiTrackSequencer (song.tracks [i], song.division, bpm);
-			VJMidiInput.ReceiveMidiEvents(sequencers[i].Start ());
+			VJMidiInput.ReceiveMidiEvents(sequencers[i].Start (startTime));
 		}
 	}
 

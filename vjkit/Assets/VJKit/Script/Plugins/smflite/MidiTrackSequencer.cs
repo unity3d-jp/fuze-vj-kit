@@ -49,12 +49,12 @@ namespace SmfLite
             enumerator = track.GetEnumerator ();
         }
 
-        public List<MidiEvent> Start ()
+        public List<MidiEvent> Start (float startTime = 0.0f)
         {
             if (enumerator.MoveNext ()) {
                 pulseToNext = enumerator.Current.delta;
                 playing = true;
-                return Advance (0);
+				return Advance (startTime);
             } else {
                 playing = false;
                 return null;

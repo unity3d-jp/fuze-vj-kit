@@ -206,12 +206,18 @@ public class MidiInput : MonoBehaviour
     
     #region Monobehaviour functions
 
-    void Awake ()
-    {
+	void Initialize() {
+		if( channelArray == null ) {
         channelArray = new ChannelState[17];
         for (var i = 0; i < 17; i++) {
             channelArray [i] = new ChannelState ();
         }
+    }
+	}
+
+    void Awake ()
+    {
+		Initialize();
     }
 
     void Update ()
@@ -301,7 +307,8 @@ public class MidiInput : MonoBehaviour
                     _instance = (MidiInput)previous;
                 } else {
                     var go = new GameObject ("__MidiInput");
-                    _instance = go.AddComponent<MidiInput> ();
+                    _instance = go.AddComponent<VJMidiInput> ();
+					_instance.Initialize();
                     DontDestroyOnLoad (go);
                     go.hideFlags = HideFlags.HideInHierarchy;
                 }
