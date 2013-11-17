@@ -93,7 +93,7 @@ public class VJMidiInput : MidiInput
 			
 			// Note on message?
 			if (statusCode == 9) {
-				var velocity = 1.0f / 127 * m.data2 + 1.0f;
+				var velocity = 1.0f / 127 * m.data2;
 				GUILayout.Label (string.Format ("CH:{0}| NOTE ON {1} {2}", channelNumber, m.data1, velocity));
 			}
 			
