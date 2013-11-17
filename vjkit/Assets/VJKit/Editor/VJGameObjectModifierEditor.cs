@@ -38,10 +38,6 @@ using System.Collections.Generic;
 [CanEditMultipleObjects]
 public class VJGameObjectModifierEditor : VJBaseModifierEditor 
 {
-    public VJGameObjectModifierEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

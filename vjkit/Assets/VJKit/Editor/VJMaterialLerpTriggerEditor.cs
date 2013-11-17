@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJMaterialLerpTrigger))]
+[CanEditMultipleObjects]
 public class VJMaterialLerpTriggerEditor : VJBaseTriggerEditor 
 {
-    public VJMaterialLerpTriggerEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

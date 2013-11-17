@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJAnimatorTransitionTrigger))]
+[CanEditMultipleObjects]
 public class VJAnimatorTransitionTriggerEditor : VJBaseTriggerEditor 
 {
-    public VJAnimatorTransitionTriggerEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

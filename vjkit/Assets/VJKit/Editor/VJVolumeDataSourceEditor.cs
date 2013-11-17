@@ -35,13 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJVolumeDataSource))]
+[CanEditMultipleObjects]
 public class VJVolumeDataSourceEditor : VJAbstractDataSourceEditor 
 {
-
-    public VJVolumeDataSourceEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

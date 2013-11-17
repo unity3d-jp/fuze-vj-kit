@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJLightModifier))]
+[CanEditMultipleObjects]
 public class VJLightModifierEditor : VJBaseModifierEditor 
 {
-    public VJLightModifierEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

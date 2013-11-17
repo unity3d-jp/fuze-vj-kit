@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJSpawnTrigger))]
+[CanEditMultipleObjects]
 public class VJSpawnTriggerEditor : VJBaseTriggerEditor 
 {
-    public VJSpawnTriggerEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

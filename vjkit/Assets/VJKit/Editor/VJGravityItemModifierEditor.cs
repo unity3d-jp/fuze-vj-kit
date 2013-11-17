@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJGravityItemModifier))]
+[CanEditMultipleObjects]
 public class VJGravityItemModifierEditor : VJBaseModifierEditor 
 {
-    public VJGravityItemModifierEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

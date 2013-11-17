@@ -37,10 +37,6 @@ using System.Collections.Generic;
 [CustomEditor(typeof(VJMaterialLerpModifier))]
 public class VJMaterialLerpModifierEditor : VJBaseModifierEditor 
 {
-    public VJMaterialLerpModifierEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

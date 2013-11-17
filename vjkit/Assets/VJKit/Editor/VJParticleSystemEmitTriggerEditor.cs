@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJParticleSystemEmitTrigger))]
+[CanEditMultipleObjects]
 public class VJParticleSystemEmitTriggerEditor : VJBaseTriggerEditor 
 {
-    public VJParticleSystemEmitTriggerEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

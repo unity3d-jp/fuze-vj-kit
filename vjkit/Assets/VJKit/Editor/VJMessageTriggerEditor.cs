@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJMessageTrigger))]
+[CanEditMultipleObjects]
 public class VJMessageTriggerEditor : VJBaseTriggerEditor 
 {
-    public VJMessageTriggerEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

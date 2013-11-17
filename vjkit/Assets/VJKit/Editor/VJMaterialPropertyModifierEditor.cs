@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJMaterialPropertyModifier))]
+[CanEditMultipleObjects]
 public class VJMaterialPropertyModifierEditor : VJBaseModifierEditor 
 {
-    public VJMaterialPropertyModifierEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
