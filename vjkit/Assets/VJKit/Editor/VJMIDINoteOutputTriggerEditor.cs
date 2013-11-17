@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJMIDINoteOutputTrigger))]
+[CanEditMultipleObjects]
 public class VJMIDINoteOutputTriggerEditor : VJBaseTriggerEditor 
 {
-	public VJMIDINoteOutputTriggerEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

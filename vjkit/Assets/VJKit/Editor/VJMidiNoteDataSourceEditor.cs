@@ -35,30 +35,32 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJMidiNoteDataSource))]
+[CanEditMultipleObjects]
 public class VJMidiNoteDataSourceEditor : VJAbstractDataSourceEditor 
 {
+	public SerializedProperty lowerNoteProperty;
+	public SerializedProperty upperNoteProperty;
 
-	public VJMidiNoteDataSourceEditor()
-    {
-    }
+	void OnEnable() {
+		lowerNoteProperty = serializedObject.FindProperty("lowerNote");
+		upperNoteProperty = serializedObject.FindProperty("upperNote");
+	}
 
     public override void OnInspectorGUI()
     {
-		VJMidiNoteDataSource src = target as VJMidiNoteDataSource;
+		base.OnInspectorGUI();
 
-        base.OnInspectorGUI();
+		serializedObject.Update();
 
 		Rect r = GUILayoutUtility.GetLastRect();
 		r.y -= 6;
 
-		float lowerNote = (float)src.lowerNote;
-		float upperNote = (float)src.upperNote;
-		EditorGUI.MinMaxSlider(new GUIContent("Range[" +src.lowerNote +":"+ src.upperNote + "]"),  r, ref lowerNote, ref upperNote, 0,  127 ); 
-		src.lowerNote = (int)lowerNote;
-		src.upperNote = (int)upperNote;
-		
-		if (GUI.changed) {
-			EditorUtility.SetDirty(target);
-		}        
+		float lowerNote = (float)lowerNoteProperty.intValue;
+		float upperNote = (float)upperNoteProperty.intValue;
+		EditorGUI.MinMaxSlider(new GUIContent("Range[" +lowerNote +":"+ upperNote + "]"),  r, ref lowerNote, ref upperNote, 0,  127 ); 
+		lowerNoteProperty.intValue = (int)lowerNote;
+		upperNoteProperty.intValue = (int)upperNote;
+
+		serializedObject.ApplyModifiedProperties();
 	}
 }

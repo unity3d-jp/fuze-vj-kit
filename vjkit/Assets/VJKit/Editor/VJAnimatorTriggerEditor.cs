@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJAnimatorTrigger))]
+[CanEditMultipleObjects]
 public class VJAnimatorTriggerEditor : VJBaseTriggerEditor 
 {
-    public VJAnimatorTriggerEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

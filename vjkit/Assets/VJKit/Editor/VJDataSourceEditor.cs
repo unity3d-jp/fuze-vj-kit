@@ -35,26 +35,31 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJDataSource))]
+[CanEditMultipleObjects]
 public class VJDataSourceEditor : VJAbstractDataSourceEditor 
 {
+	public SerializedProperty lowerBandProperty;
+	public SerializedProperty upperBandProperty;
 
-    public VJDataSourceEditor()
+	public void OnEnable() {
+		lowerBandProperty = serializedObject.FindProperty("lowerBand");
+		upperBandProperty = serializedObject.FindProperty("upperBand");
+	}
+	
+	public override void OnInspectorGUI()
     {
-    }
-
-    public override void OnInspectorGUI()
-    {
-		VJDataSource src = target as VJDataSource;
-
-        base.OnInspectorGUI();
+		base.OnInspectorGUI();
+		serializedObject.Update();
 
 		Rect r = GUILayoutUtility.GetLastRect();
 		r.y -= 6;
-		
-		float lowerband = (float)src.lowerBand, upperBand = (float)src.upperBand;
+
+		float lowerband = (float)lowerBandProperty.intValue;
+		float upperBand = (float)upperBandProperty.intValue;
 		EditorGUI.MinMaxSlider(new GUIContent("Band"),  r, ref lowerband, ref upperBand, 0, 7 ); 
-		src.lowerBand = (int)lowerband;
-		src.upperBand = (int)upperBand;
-		
-    }
+		lowerBandProperty.intValue = (int)lowerband;
+		upperBandProperty.intValue = (int)upperBand;
+
+		serializedObject.ApplyModifiedProperties();
+	}
 }

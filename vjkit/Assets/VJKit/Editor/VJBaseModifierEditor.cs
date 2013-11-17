@@ -49,10 +49,6 @@ public class VJBaseModifierEditor : Editor
 	public SerializedProperty multipleProperty;
 	public SerializedProperty isModifierEnabledProperty;
 
-    public VJBaseModifierEditor()
-    {
-    }
-
 	public void OnEnable() {
 		managerProperty = serializedObject.FindProperty("manager");
 		datasourceProperty = serializedObject.FindProperty("source");

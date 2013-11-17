@@ -35,26 +35,42 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJGamepadDataSource))]
+[CanEditMultipleObjects]
 public class VJGamepadDataSourceEditor : VJAbstractDataSourceEditor 
 {
-    public VJGamepadDataSourceEditor()
-    {
-    }
+	public SerializedProperty buttonProperty;
+	public SerializedProperty sourceNameProperty;
 
-    public override void OnInspectorGUI()
-    {
-		VJGamepadDataSource src = target as VJGamepadDataSource;
+	public void OnEnable() {
+		buttonProperty = serializedObject.FindProperty("button");
+		sourceNameProperty = serializedObject.FindProperty("sourceName");
+	}
 
-		if( src.sourceName == null || src.sourceName.Length == 0 ) {
-        	src.sourceName = VJGamePadButtonUtility.GetButtonNameOf(src.button);
-            EditorUtility.SetDirty(target);
+	public override void OnInspectorGUI()
+    {
+		serializedObject.Update();
+
+		if(!serializedObject.isEditingMultipleObjects) {
+			VJGamepadDataSource src = target as VJGamepadDataSource;
+			if( src.sourceName == null || src.sourceName.Length == 0 ) {
+				src.sourceName = VJGamePadButtonUtility.GetButtonNameOf(src.button);
+				EditorUtility.SetDirty(src);
+			}
+		} else {
+			foreach(UnityEngine.Object o in targets) {
+				VJGamepadDataSource src = o as VJGamepadDataSource;
+				if( src.sourceName == null || src.sourceName.Length == 0 ) {
+					src.sourceName = VJGamePadButtonUtility.GetButtonNameOf(src.button);
+					EditorUtility.SetDirty(src);
+				}
+			}
 		}
 
-        base.OnInspectorGUI();
-                
+		base.OnInspectorGUI();
+
         if (GUI.changed) {
-        	src.sourceName = VJGamePadButtonUtility.GetButtonNameOf(src.button);
-            EditorUtility.SetDirty(target);
-        }        
-    }
+			sourceNameProperty.stringValue = VJGamePadButtonUtility.GetButtonNameOf((VJGamepadButton)buttonProperty.enumValueIndex);
+        }
+		serializedObject.ApplyModifiedProperties();
+	}
 }

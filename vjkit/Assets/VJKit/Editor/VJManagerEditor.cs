@@ -35,27 +35,42 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJManager))]
+[CanEditMultipleObjects]
 public class VJManagerEditor : Editor 
 {
-    public VJManagerEditor()
-    {
-    }
+	public SerializedProperty isMicSourceProperty;
 
+	public void OnEnable() {
+		isMicSourceProperty = serializedObject.FindProperty("isMicSource");
+	}
+	
     public override void OnInspectorGUI()
     {
-        GUI.changed = false;
-
         base.OnInspectorGUI();
 
-		VJManager manager = target as VJManager;
-		bool b = EditorGUILayout.Toggle("Use Microphone", manager.isMicSource);
-		
-		if(b != manager.isMicSource) {
-			manager.ToogleMicSource(b);
+		serializedObject.Update();
+
+		bool b = EditorGUILayout.Toggle("Use Microphone", isMicSourceProperty.boolValue);
+
+		if( serializedObject.isEditingMultipleObjects ) {
+			foreach(UnityEngine.Object o in targets) {
+				VJManager m = o as VJManager;
+
+				if (GUI.changed) {
+					if( m.isMicSource != b ) {
+						m.ToogleMicSource(b);
+					}
+				}
+			}
+		} else {
+			VJManager m = target as VJManager;
+			if (GUI.changed) {
+				if( m.isMicSource != b ) {
+					m.ToogleMicSource(b);
+				}
+			}
 		}
 
-        if (GUI.changed) {
-            EditorUtility.SetDirty(target);
-        }
+		serializedObject.ApplyModifiedProperties();
     }
 }

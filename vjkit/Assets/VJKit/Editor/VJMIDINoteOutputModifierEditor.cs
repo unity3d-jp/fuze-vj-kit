@@ -35,18 +35,11 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJMIDINoteOutputModifier))]
+[CanEditMultipleObjects]
 public class VJMIDINoteOutputModifierEditor : VJBaseModifierEditor 
 {
-	public VJMIDINoteOutputModifierEditor()
-	{
-	}
-	
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI();
-		
-		if (GUI.changed) {
-			EditorUtility.SetDirty(target);
-		}        
 	}
 }

@@ -35,37 +35,48 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJAbstractDataSource))]
+[CanEditMultipleObjects]
 public class VJAbstractDataSourceEditor : Editor 
 {
-
-    public VJAbstractDataSourceEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
-        GUI.changed = false;
+		serializedObject.Update();
 
-		VJAbstractDataSource src = target as VJAbstractDataSource;
-
-        base.OnInspectorGUI();
+		GUI.changed = false;
+		base.OnInspectorGUI();
 		EditorGUILayout.Space();
 		Rect r = GUILayoutUtility.GetLastRect();
 		r.x += 8;
 		r.width -= 16;
 		r.y += 20;
 		r.height = 16;
-		EditorGUILayout.BeginVertical();
-		GUILayout.Space(72.0f);
-		EditorGUI.ProgressBar(r, src.current / VJAbstractDataSource.s_prog_max, "Current:"+src.current);
-		r.y += 20;
-		EditorGUI.ProgressBar(r, src.previous / VJAbstractDataSource.s_prog_max, "Previous:"+src.previous);
-		r.y += 20;
-		EditorGUI.ProgressBar(r, src.diff / VJAbstractDataSource.s_prog_max, "Difference:"+src.diff);
-		EditorGUILayout.EndVertical();
+
+		if(!serializedObject.isEditingMultipleObjects) {
+			VJAbstractDataSource src = target as VJAbstractDataSource;
+			EditorGUILayout.BeginVertical();
+			GUILayout.Space(72.0f);
+			EditorGUI.ProgressBar(r, src.current / VJAbstractDataSource.s_prog_max, "Current:"+src.current);
+			r.y += 20;
+			EditorGUI.ProgressBar(r, src.previous / VJAbstractDataSource.s_prog_max, "Previous:"+src.previous);
+			r.y += 20;
+			EditorGUI.ProgressBar(r, src.diff / VJAbstractDataSource.s_prog_max, "Difference:"+src.diff);
+			EditorGUILayout.EndVertical();
+		} else {
+			EditorGUILayout.BeginVertical();
+			foreach(UnityEngine.Object o in targets){
+				VJAbstractDataSource src = o as VJAbstractDataSource;
+				GUILayout.Space(24.0f);
+				EditorGUI.ProgressBar(r, src.current / VJAbstractDataSource.s_prog_max, "Current("+ src.name +"):"+src.current);
+				r.y += 20;
+			}
+			GUILayout.Space(2.0f);
+			EditorGUILayout.EndVertical();
+		}
 
         if (GUI.changed) {
             EditorUtility.SetDirty(target);
         }
-    }
+
+		serializedObject.ApplyModifiedProperties();
+	}
 }

@@ -35,12 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJSceneSpeedModifier))]
+[CanEditMultipleObjects]
 public class VJSceneSpeedModifierEditor : VJBaseModifierEditor 
 {
-    public VJSceneSpeedModifierEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

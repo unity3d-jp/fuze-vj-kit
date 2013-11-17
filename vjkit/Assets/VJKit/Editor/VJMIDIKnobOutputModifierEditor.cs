@@ -35,18 +35,11 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJMIDIKnobOutputModifier))]
+[CanEditMultipleObjects]
 public class VJMIDIKnobOutputModifierEditor : VJBaseModifierEditor 
 {
-	public VJMIDIKnobOutputModifierEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-
-        if (GUI.changed) {
-            EditorUtility.SetDirty(target);
-        }        
     }
 }

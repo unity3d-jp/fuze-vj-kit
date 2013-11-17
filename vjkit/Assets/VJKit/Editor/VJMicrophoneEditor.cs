@@ -35,10 +35,6 @@ using UnityEditor;
 [CustomEditor(typeof(VJMicrophone))]
 public class VJMicrophoneEditor : Editor 
 {
-    public VJMicrophoneEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
     	VJMicrophone mic = target as VJMicrophone;

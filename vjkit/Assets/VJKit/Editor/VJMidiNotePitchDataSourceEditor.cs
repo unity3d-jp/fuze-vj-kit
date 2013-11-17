@@ -35,13 +35,9 @@ using System;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(VJMidiNotePitchDataSource))]
+[CanEditMultipleObjects]
 public class VJMidiNotePitchDataSourceEditor : VJAbstractDataSourceEditor 
 {
-
-	public VJMidiNotePitchDataSourceEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
