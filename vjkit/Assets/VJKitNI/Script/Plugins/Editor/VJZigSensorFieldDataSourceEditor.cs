@@ -37,10 +37,6 @@ using System.Collections.Generic;
 [CustomEditor(typeof(VJZigSensorFieldDataSource))]
 public class VJZigSensorFieldDataSourceEditor : VJAbstractDataSourceEditor 
 {
-	public VJZigSensorFieldDataSourceEditor()
-    {
-    }
-
     public override void OnInspectorGUI()
     {
 //		VJGamepadDataSource src = target as VJGamepadDataSource;

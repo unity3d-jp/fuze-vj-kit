@@ -296,21 +296,21 @@ public class MidiInput : MonoBehaviour
 
     #region Singleton class handling
 
-    static MidiInput _instance;
+	static VJMidiInput _instance;
 
-    public static MidiInput instance {
+    public static VJMidiInput instance {
         get {
             if (_instance == null) {
                 var previous = FindObjectOfType (typeof(MidiInput));
                 if (previous) {
                     Debug.LogWarning ("Initialized twice. Don't use MidiInput in the scene hierarchy.");
-                    _instance = (MidiInput)previous;
+					_instance = (VJMidiInput)previous;
                 } else {
                     var go = new GameObject ("__MidiInput");
                     _instance = go.AddComponent<VJMidiInput> ();
 					_instance.Initialize();
                     DontDestroyOnLoad (go);
-                    go.hideFlags = HideFlags.HideInHierarchy;
+                    //go.hideFlags = HideFlags.HideInHierarchy;
                 }
             }
             return _instance;

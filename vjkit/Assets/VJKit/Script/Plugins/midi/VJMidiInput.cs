@@ -68,7 +68,7 @@ public class VJMidiInput : MidiInput
 	protected Rect windowRect = new Rect(160, 20, 120, 50);
 	protected int windowId;
 	public bool debugWindow = true;
-	public int nMsgs = 8;
+	public int nMsgs = 16;
 
 	private Queue<MidiBridge.Message> m_midimsgs;
 
@@ -94,24 +94,24 @@ public class VJMidiInput : MidiInput
 			// Note on message?
 			if (statusCode == 9) {
 				var velocity = 1.0f / 127 * m.data2 + 1.0f;
-				GUILayout.Label (string.Format ("CH:{3}|NOTE ON {0} {1}", m.data1, velocity, channelNumber));
+				GUILayout.Label (string.Format ("CH:{0}| NOTE ON {1} {2}", channelNumber, m.data1, velocity));
 			}
 			
 			// Note off message?
 			if (statusCode == 8 || (statusCode == 9 && m.data2 == 0)) {
-				GUILayout.Label (string.Format ("CH:{1}|NOTE OFF {0}", m.data1, channelNumber));
+				GUILayout.Label (string.Format ("CH:{0}| NOTE OFF {1}", channelNumber, m.data1));
 			}
 			
 			// CC message?
 			if (statusCode == 0xb) {
 				// Normalize the value.
 				var value = 1.0f / 127 * m.data2;
-				GUILayout.Label (string.Format ("CH:{2}|CC {0} {1}", m.data1, value, channelNumber));
+				GUILayout.Label (string.Format ("CH:{0}| CC {1} {2}", channelNumber, m.data1, value));
 			}
 
 			GUI.color = lastColor;
-			GUI.DragWindow ();
 		}				
+		GUI.DragWindow ();
 		GUILayout.EndVertical();
 	}
 	
@@ -129,7 +129,7 @@ public class VJMidiInput : MidiInput
 
 
 	public static void ReceiveMidiEvents (List<SmfLite.MidiEvent> events) {
-		vjinstance._ReceiveMidiEvents(events);
+		instance._ReceiveMidiEvents(events);
 	}
 
 	/*
@@ -139,7 +139,7 @@ public class VJMidiInput : MidiInput
 		if( events == null ) {
 			return;
 		}
-		if( m_midimsgs.Count > nMsgs ) {
+		while( m_midimsgs.Count > nMsgs ) {
 			m_midimsgs.Dequeue();
 		}
 
@@ -154,8 +154,6 @@ public class VJMidiInput : MidiInput
 
 			// Note on message?
 			if (statusCode == 9) {
-				Debug.Log ("[MIDI] NOTE ON: ch:" + channelNumber + " data:" + message.data1 + " " + message.data2);
-
 				var velocity = 1.0f / 127 * message.data2 + 1.0f;
 				channelArray [channelNumber].noteArray [message.data1] = velocity;
 				channelArray [(int)MidiChannel.All].noteArray [message.data1] = velocity;
@@ -163,16 +161,12 @@ public class VJMidiInput : MidiInput
 			
 			// Note off message?
 			if (statusCode == 8 || (statusCode == 9 && message.data2 == 0)) {
-				Debug.Log ("[MIDI] NOTE OFF: ch:" + channelNumber + " data:" + message.data1 + " " + message.data2);
-
 				channelArray [channelNumber].noteArray [message.data1] = -1.0f;
 				channelArray [(int)MidiChannel.All].noteArray [message.data1] = -1.0f;
 			}
 			
 			// CC message?
 			if (statusCode == 0xb) {
-				Debug.Log ("[MIDI] CC: ch:" + channelNumber + " data:" + message.data1 + " " + message.data2);
-
 				// Normalize the value.
 				var value = 1.0f / 127 * message.data2;
 				
@@ -192,21 +186,4 @@ public class VJMidiInput : MidiInput
 			}
 		}
 	}
-
-	#region Singleton class interface
-	static VJMidiInput _instance;
-	
-	public static VJMidiInput vjinstance {
-		get {
-			if (_instance == null) {
-				var go = new GameObject ("__VJMidiInput");
-				_instance = go.AddComponent<VJMidiInput> ();
-				DontDestroyOnLoad (go);
-				go.hideFlags = HideFlags.HideInHierarchy;
-			}
-			return _instance;
-		}
-	}
-	#endregion
-
 }

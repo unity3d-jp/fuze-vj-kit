@@ -34,18 +34,39 @@ using System.Collections.Generic;
 using SmfLite;
 
 [AddComponentMenu("VJKit/System/Midi Sequencer")]
-[RequireComponent(typeof(AudioSource))]
 public class VJMidiSequencer : MonoBehaviour
 {
-	public TextAsset midiFile;
+	public TextAsset[] midiFiles;
+	public AudioClip[] audioFiles;
 	public float bpm = 131.0f;
 	public float startTime;
-	MidiFileContainer song;
-	MidiTrackSequencer[] sequencers;
-	
+	public bool receiveStartEvent = true;
+	MidiFileContainer[] songs;
+	List<MidiTrackSequencer> sequencers;
+
+	[Range(0,1)]
+	public float volume = 1.0f;
+	public bool playMasterMusic;
+	public AudioClip   masterMusic;
+
 	void Start ()
 	{
-		song = MidiFileLoader.Load (midiFile.bytes);
+		songs = new MidiFileContainer[ midiFiles.Length ];
+		sequencers = new List<MidiTrackSequencer>();
+		if( playMasterMusic ) {
+			AudioSource a = gameObject.AddComponent<AudioSource>() as AudioSource;
+			a.clip = masterMusic;
+			a.volume = volume;
+		} else {
+			for(int i=0; i < audioFiles.Length;++i) {
+				AudioSource a = gameObject.AddComponent<AudioSource>() as AudioSource;
+				a.clip = audioFiles[i];
+				a.volume = volume;
+			}
+		}
+		for(int i=0; i < midiFiles.Length;++i) {
+			songs[i] = MidiFileLoader.Load (midiFiles[i].bytes);
+		}
 		ResetAndPlay ();
 	}
 	
@@ -57,16 +78,34 @@ public class VJMidiSequencer : MonoBehaviour
 					VJMidiInput.ReceiveMidiEvents(seq.Advance (Time.deltaTime));
 				}
 			}
+			Component[] cs = GetComponents<AudioSource>();
+			if( cs != null ) {
+				foreach(Component c in cs) {
+					AudioSource a = c as AudioSource;
+					a.volume = volume;
+				}
+			}
 		}
 	}
 	
 	void ResetAndPlay ()
 	{
-		audio.Play ();
-		sequencers = new MidiTrackSequencer[song.tracks.Count];
-		for(int i = 0; i < song.tracks.Count; ++i) {
-			sequencers[i] = new MidiTrackSequencer (song.tracks [i], song.division, bpm);
-			VJMidiInput.ReceiveMidiEvents(sequencers[i].Start (startTime));
+		Component[] cs = GetComponents<AudioSource>();
+		foreach(Component c in cs) {
+			AudioSource a = c as AudioSource;
+			a.time = startTime;
+			a.Play ();
+		}
+
+		foreach(MidiFileContainer song in songs) {
+			for(int i = 0; i < song.tracks.Count; ++i) {
+				MidiTrackSequencer s = new MidiTrackSequencer (song.tracks [i], song.division, bpm);
+				List<MidiEvent> e = s.Start (startTime);
+				if(receiveStartEvent) {
+					VJMidiInput .ReceiveMidiEvents(e);
+				}
+				sequencers.Add(s);
+			}
 		}
 	}
 
