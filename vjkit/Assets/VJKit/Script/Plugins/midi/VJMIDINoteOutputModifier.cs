@@ -48,7 +48,7 @@ public class VJMIDINoteOutputModifier : VJBaseModifier {
 
 		if( value > 0.0f ) {
 			int noteNumber = Mathf.FloorToInt(Mathf.Clamp01(value) * 128.0f % 127.0f);			
-			StartCoroutine(_OutputNote(noteNumber,  0.8f));
+			StartCoroutine(_OutputNote(noteNumber, value));
 		}
 	}
 }

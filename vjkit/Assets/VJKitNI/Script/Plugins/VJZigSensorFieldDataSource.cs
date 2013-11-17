@@ -39,7 +39,10 @@ public class VJZigSensorFieldDataSource : VJAbstractDataSource {
 	enum Axis {
 		Horizontal,
 		Vertical,
-		Depth
+		Depth,
+		Touching,
+		TouchUp,
+		TouchDown
 	}
 
 	[SerializeField]
@@ -56,6 +59,8 @@ public class VJZigSensorFieldDataSource : VJAbstractDataSource {
 	public void Update () {
 		previous = current;
 
+		float vMax = Mathf.Max (m_sensorField.ValueHrz, Mathf.Max (m_sensorField.ValueVert, m_sensorField.ValueDpth));
+
 		switch(m_axis) {
 		case Axis.Horizontal:
 			current = m_sensorField.ValueHrz * boost;
@@ -65,6 +70,15 @@ public class VJZigSensorFieldDataSource : VJAbstractDataSource {
 			break;
 		case Axis.Depth:
 			current = m_sensorField.ValueDpth * boost;
+			break;
+		case Axis.Touching:
+			current = (m_sensorField.Touching?vMax:0.0f) * boost;
+			break;
+		case Axis.TouchUp:
+			current = (m_sensorField.TouchUp?vMax:0.0f) * boost;
+			break;
+		case Axis.TouchDown:
+			current = (m_sensorField.TouchDown?vMax:0.0f) * boost;
 			break;
 		}
 

@@ -48,6 +48,6 @@ public class VJMIDINoteOutputTrigger : VJBaseTrigger {
 	}
 
 	public override void OnVJTrigger(GameObject go, float value) {
-		StartCoroutine(_OutputNote(0.8f));
+		StartCoroutine(_OutputNote(value));
 	}
 }
