@@ -94,19 +94,19 @@ public class VJMidiInput : MidiInput
 			// Note on message?
 			if (statusCode == 9) {
 				var velocity = 1.0f / 127 * m.data2;
-				GUILayout.Label (string.Format ("CH:{0}| NOTE ON {1} {2}", channelNumber, m.data1, velocity));
+				GUILayout.Label (string.Format ("CH:{0}| NOTE ON {1} {2}", channelNumber+1, m.data1, velocity));
 			}
 			
 			// Note off message?
 			if (statusCode == 8 || (statusCode == 9 && m.data2 == 0)) {
-				GUILayout.Label (string.Format ("CH:{0}| NOTE OFF {1}", channelNumber, m.data1));
+				GUILayout.Label (string.Format ("CH:{0}| NOTE OFF {1}", channelNumber+1, m.data1));
 			}
 			
 			// CC message?
 			if (statusCode == 0xb) {
 				// Normalize the value.
 				var value = 1.0f / 127 * m.data2;
-				GUILayout.Label (string.Format ("CH:{0}| CC {1} {2}", channelNumber, m.data1, value));
+				GUILayout.Label (string.Format ("CH:{0}| CC {1} {2}", channelNumber+1, m.data1, value));
 			}
 
 			GUI.color = lastColor;
