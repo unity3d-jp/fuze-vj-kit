@@ -35,8 +35,8 @@ using System.Collections;
 [RequireComponent (typeof (VJMidiManager))]
 public class VJMidiNoteDataSource : VJAbstractDataSource {
 
-//	private VJGamepadManager m_manager;
-	// depends VJManager.numberOfBands
+	private VJMidiManager m_manager;
+
 	[HideInInspector]
 	public int lowerNote;
 	// depends VJManager.numberOfBands
@@ -45,7 +45,7 @@ public class VJMidiNoteDataSource : VJAbstractDataSource {
 	
 	// Use this for initialization
 	public void Awake() {
-//		m_manager = GetComponent<VJGamepadManager>();
+		m_manager = GetComponent<VJMidiManager>();
 	}
 
 	// Update is called once per frame
@@ -53,7 +53,7 @@ public class VJMidiNoteDataSource : VJAbstractDataSource {
 		float raw_current = 0.0f;
 		int noteCount = 0;
 		for(int i = lowerNote; i <= upperNote; ++i) {
-			float value = VJMidiInput.GetKey(i);
+			float value = VJMidiInput.GetKey(m_manager.midiChannel, i);
 			raw_current += value;
 			if(value > 0.0f) ++noteCount;
 		}
