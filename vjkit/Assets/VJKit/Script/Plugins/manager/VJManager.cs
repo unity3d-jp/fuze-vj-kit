@@ -40,14 +40,18 @@ public class VJManager : VJAbstractManager {
 	public AudioSource 	source;
 	public FFTWindow 	fft = FFTWindow.BlackmanHarris;
 	public float[] bandLevels;
+	[HideInInspector]
+	public int channel;
 
 	public float rawVolume;
+
+	[HideInInspector]
+	public string micDeviceName;
 
 	[HideInInspector]
 	public bool isMicSource = false;
 	private bool isMicSourceNow = false;
 
-	private VJMicrophone mic;
 	private AudioSource oldSource;
 
 	private int spectrumSamples = 1024;
@@ -65,13 +69,26 @@ public class VJManager : VJAbstractManager {
 
 		rawSpectrum = new float[spectrumSamples];
 		bandLevels = new float[numberOfBands];
-		mic = VJMicrophone.GetInstance();
 		rawData = null;
 	}
 
 	IEnumerator Start() {
 		
 		while (true) {
+			if( isMicSourceNow != isMicSource ) {
+				if(isMicSource) {
+					oldSource = source;
+					source = VJMicrophoneManager.GetInstance().StartMicrophone(micDeviceName);
+					rawData = null;
+					rawVolume = 0.0f;
+				} else {
+					VJMicrophoneManager.GetInstance().StopMicrophone(micDeviceName);
+					source = oldSource;
+					rawData = null;
+					rawVolume = 0.0f;
+				}
+				isMicSourceNow = isMicSource;
+			}
 			if( source && source.clip ) {
 				AudioClip ac = source.clip;
 			
@@ -83,35 +100,15 @@ public class VJManager : VJAbstractManager {
 				if( rawData != null ) {
 					ac.GetData(rawData, source.timeSamples);
 				}
-				source.GetSpectrumData(rawSpectrum, 0, FFTWindow.BlackmanHarris);
+				source.GetSpectrumData(rawSpectrum, channel, FFTWindow.BlackmanHarris);
 				_ConvertOutputDataToVolumeLevels();
 				_ConvertRawSpectrumToBandLevels();
 			}
-			if( isMicSourceNow != isMicSource ) {
-				if(mic) {
-					if(isMicSource) {
-						oldSource = source;
-						source = mic.StartMicrophone();
-						rawData = null;
-						rawVolume = 0.0f;
-					} else {
-						mic.StopMicrophone();
-						source = oldSource;
-						rawData = null;
-						rawVolume = 0.0f;
-					}
-					isMicSourceNow = isMicSource;
-				}
-			}
-			
+
 			yield return new WaitForSeconds(intervalSec);
 		}
 	}
 	
-	public void ToogleMicSource(bool b) {
-		isMicSource = b;
-	}
-
 	private void _ConvertOutputDataToVolumeLevels() {
 
 		if( rawData != null ) {
@@ -140,6 +137,5 @@ public class VJManager : VJAbstractManager {
 
 	public override void OnGUI() {
 		base.OnGUI();
-		mic.DrawGUI();
 	}
 }

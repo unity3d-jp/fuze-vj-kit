@@ -39,9 +39,15 @@ using System.Collections.Generic;
 public class VJManagerEditor : Editor 
 {
 	public SerializedProperty isMicSourceProperty;
+	public SerializedProperty micDeviceNameProperty;
+	public SerializedProperty channelProperty;
+	public SerializedProperty sourceProperty;
 
 	public void OnEnable() {
 		isMicSourceProperty = serializedObject.FindProperty("isMicSource");
+		micDeviceNameProperty = serializedObject.FindProperty("micDeviceName");
+		channelProperty = serializedObject.FindProperty("channel");
+		sourceProperty = serializedObject.FindProperty("source");
 	}
 	
     public override void OnInspectorGUI()
@@ -50,24 +56,55 @@ public class VJManagerEditor : Editor
 
 		serializedObject.Update();
 
+		if( !serializedObject.isEditingMultipleObjects ) {
+			AudioSource asrc = sourceProperty.objectReferenceValue as AudioSource;
+			if( asrc != null && asrc.clip != null ) {
+				List<string> channels = new List<string>();
+				for(int i=0; i< asrc.clip.channels; ++i) {
+					channels.Add ( "Ch " + i );
+				}
+				//channels.Add ("All");
+
+				channelProperty.intValue = EditorGUILayout.Popup(
+					"Sampling channel:",
+					channelProperty.intValue, 
+					channels.ToArray());
+			}
+		}
+
 		bool b = EditorGUILayout.Toggle("Use Microphone", isMicSourceProperty.boolValue);
+		if (GUI.changed) {
+			isMicSourceProperty.boolValue = b;
+		}
 
-		if( serializedObject.isEditingMultipleObjects ) {
-			foreach(UnityEngine.Object o in targets) {
-				VJManager m = o as VJManager;
+		if( isMicSourceProperty.boolValue ) {
+			string[] micDevices = Microphone.devices;
+			if( micDevices.Length > 0 ) {
+				int index = 0;
 
-				if (GUI.changed) {
-					if( m.isMicSource != b ) {
-						m.ToogleMicSource(b);
+				EditorGUI.showMixedValue = micDeviceNameProperty.hasMultipleDifferentValues;
+
+				if( micDeviceNameProperty.hasMultipleDifferentValues ) {
+					index = -1;
+				} else {
+					for(int i=0; i< micDevices.Length;++i) {
+						if( micDevices[i] == micDeviceNameProperty.stringValue ) {
+							index = i;
+							break;
+						}
 					}
 				}
-			}
-		} else {
-			VJManager m = target as VJManager;
-			if (GUI.changed) {
-				if( m.isMicSource != b ) {
-					m.ToogleMicSource(b);
+
+				index = EditorGUILayout.Popup(
+					"Mic Device:",
+					index, 
+					micDevices);
+
+				if( index >= 0 ) {
+					micDeviceNameProperty.stringValue = micDevices[index];
 				}
+			} else {
+				EditorGUILayout.LabelField("No Microphone found");
 			}
 		}
 
