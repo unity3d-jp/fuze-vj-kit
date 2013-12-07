@@ -128,7 +128,7 @@ public class MidiInput : MonoBehaviour
 	public static float GetNotePitch(MidiChannel channel)
 	{
 		var cs = instance.channelArray [(int)channel];
-		if( cs.lastNote < 0.0f ) {
+		if( cs.lastNote < 0.0f || cs.noteOnCount <= 0 ) {
 			return 0.0f;
 		} else {
 			return ( cs.lastNote * 1.0f / 127.0f );
@@ -187,6 +187,7 @@ public class MidiInput : MonoBehaviour
         // 1<X<=2 : Triggered on this frame. (X-1) represents velocity.
         public float[] noteArray;
 		public float lastNote;
+		public int noteOnCount;
         
         // Knob number to knob mapping.
         public Dictionary<int, KnobState> knobMap;
@@ -196,6 +197,7 @@ public class MidiInput : MonoBehaviour
             noteArray = new float[128];
             knobMap = new Dictionary<int, KnobState> ();
 			lastNote = -1.0f;
+			noteOnCount = 0;
         }
     }
 
@@ -230,10 +232,12 @@ public class MidiInput : MonoBehaviour
                     // Key down -> Hold.
                     cs.noteArray [i] = x - 1.0f;
 					cs.lastNote = i;
+					cs.noteOnCount+= 1;
                 } else if (x < 0) {
                     // Key up -> Off.
                     cs.noteArray [i] = 0.0f;
 					cs.lastNote = i;
+					cs.noteOnCount-= 1;
 				}
             }
         }
