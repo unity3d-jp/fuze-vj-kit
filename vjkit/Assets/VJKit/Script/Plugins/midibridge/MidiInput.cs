@@ -50,7 +50,7 @@ public class MidiInput : MonoBehaviour
     #region Public interface
 
     // Knob filter coefficient.
-    public static float knobSensibility = 20.0f;
+    public static float knobSensibility = 0.0f;
 
     // Returns the key state (on: velocity, off: zero).
     public static float GetKey (MidiChannel channel, int noteNumber)
