@@ -59,7 +59,7 @@ public class VJZigSensorFieldDataSource : VJAbstractDataSource {
 	public void Update () {
 		previous = current;
 
-		float vMax = Mathf.Max (m_sensorField.ValueHrz, Mathf.Max (m_sensorField.ValueVert, m_sensorField.ValueDpth));
+		//float vMax = Mathf.Max (m_sensorField.ValueHrz, Mathf.Max (m_sensorField.ValueVert, m_sensorField.ValueDpth));
 
 		switch(m_axis) {
 		case Axis.Horizontal:
@@ -72,13 +72,13 @@ public class VJZigSensorFieldDataSource : VJAbstractDataSource {
 			current = m_sensorField.ValueDpth * boost;
 			break;
 		case Axis.Touching:
-			current = (m_sensorField.Touching?vMax:0.0f) * boost;
+			current = (m_sensorField.Touching?1.0f:0.0f) * boost;
 			break;
 		case Axis.TouchUp:
-			current = (m_sensorField.TouchUp?vMax:0.0f) * boost;
+			current = (m_sensorField.TouchUp?1.0f:0.0f) * boost;
 			break;
 		case Axis.TouchDown:
-			current = (m_sensorField.TouchDown?vMax:0.0f) * boost;
+			current = (m_sensorField.TouchDown?1.0f:0.0f) * boost;
 			break;
 		}
 
