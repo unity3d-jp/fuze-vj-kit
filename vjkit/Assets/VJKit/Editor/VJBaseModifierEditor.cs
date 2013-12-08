@@ -43,6 +43,7 @@ public class VJBaseModifierEditor : Editor
 	public int index_src;
 
 	public SerializedProperty managerProperty;
+	public SerializedProperty boostManagerProperty;
 	public SerializedProperty datasourceProperty;
 	public SerializedProperty boostDatasourceProperty;
 	public SerializedProperty boostByOtherSourceProperty;
@@ -54,6 +55,7 @@ public class VJBaseModifierEditor : Editor
 		datasourceProperty = serializedObject.FindProperty("source");
 		boostDatasourceProperty = serializedObject.FindProperty("boostSource");
 		boostByOtherSourceProperty = serializedObject.FindProperty("boostByOtherSource");
+		boostManagerProperty = serializedObject.FindProperty("boostManager");
 		multipleProperty = serializedObject.FindProperty("multiple");
 		isModifierEnabledProperty = serializedObject.FindProperty("isModifierEnabled");
 	}
@@ -113,22 +115,42 @@ public class VJBaseModifierEditor : Editor
 				}
 
 				if(boostByOtherSourceProperty.boolValue) {
-					index_src = 0;
-					for(int i = 0; i < sources.Length; ++i) {
-						if( boostDatasourceProperty.objectReferenceValue == sources[i] ) {
-							index_src = i;
-							break;
+					int index_boostMgrs = 0;
+					for(int i = 0; i < managers.Length; ++i) {
+						if( boostManagerProperty.objectReferenceValue == managers[i] ) {
+							index_boostMgrs = i;
 						}
 					}
-					
-					index_src = EditorGUILayout.Popup(
-						"BoostSource:",
-						(boostDatasourceProperty.hasMultipleDifferentValues?-1:index_src), 
-						options_sources);
-					
-					//modifier.boostSource = sources[index_src];
-					if( index_src >= 0 ) {
-						boostDatasourceProperty.objectReferenceValue = sources[index_src];
+					EditorGUI.showMixedValue = boostManagerProperty.hasMultipleDifferentValues;
+					index_boostMgrs = EditorGUILayout.Popup(
+						"BoostManager:",
+						index_boostMgrs, 
+						options_managers);
+					EditorGUI.showMixedValue = false;
+					boostManagerProperty.objectReferenceValue = managers[index_boostMgrs];
+
+					go = managers[index_boostMgrs].gameObject;
+					VJAbstractDataSource[] boostSources = go.GetComponents<VJAbstractDataSource>() as VJAbstractDataSource[];
+					index_src = 0;
+					if( boostSources.Length > 0 ) {
+						string[] options_boostSources = new string[boostSources.Length];
+						for(int i = 0; i < boostSources.Length; ++i) {
+							options_boostSources[i] = boostSources[i].sourceName;
+							if( boostDatasourceProperty.objectReferenceValue == boostSources[i] ) {
+								index_src = i;
+							}
+						}
+						
+						EditorGUI.showMixedValue = boostDatasourceProperty.hasMultipleDifferentValues;
+						index_src = EditorGUILayout.Popup(
+							"DataSource:",
+							(boostDatasourceProperty.hasMultipleDifferentValues?-1:index_src), 
+							options_boostSources);
+						EditorGUI.showMixedValue = false;
+						
+						if( index_src >= 0 ) {
+							boostDatasourceProperty.objectReferenceValue = boostSources[index_src];
+						}
 					}
 				}
 				//EditorUtility.SetDirty(target);

@@ -57,9 +57,12 @@ public abstract class VJBaseModifier : MonoBehaviour {
 
 	[SerializeField]
 	[Range(0.0f, 100.0f)]
-	protected float m_boost = 1.0f;			///< boost of value
+	protected float m_boost = 1.0f;
 
-	public bool boostByOtherSource = false;	///< whether to use boost value from other source
+	public bool boostByOtherSource = false;
+
+	[HideInInspector]
+	public VJAbstractManager boostManager;
 	[HideInInspector]
 	public VJAbstractDataSource boostSource;
 
@@ -69,24 +72,24 @@ public abstract class VJBaseModifier : MonoBehaviour {
 		}
 	}
 
-	public bool limitMinMax = false;		///< whether to limit min/max
+	public bool limitMinMax = false;		
 	public float valueMin = 0.0f;
 	public float valueMax = 1.0f;
 	
-	public float middleOffset = 0.0f;		///< middle value offset
+	public float middleOffset = 0.0f;		
 
-	public bool rest = false;				///< wether to decrease value to middle
+	public bool rest = false;				
 	[Range(0.0f, 1.0f)]
 	public float restStrength = 0.98f;
 
-	private float lastValue = 0.0f;			///< last value straight from source
+	private float lastValue = 0.0f;			
 
 	[HideInInspector]
-	public float lastReturnedValue = 0.0f;	///< last value actually used
+	public float lastReturnedValue = 0.0f;	
 
-	public bool negative = false;			///< whether to negativate value
+	public bool negative = false;			
 
-	public bool multiple = false;			///< whether to operate multiple objects
+	public bool multiple = false;			
 	public VJModifierTarget[] targets;
 
 	[HideInInspector]
