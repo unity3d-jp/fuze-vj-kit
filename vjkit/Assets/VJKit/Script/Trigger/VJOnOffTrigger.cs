@@ -31,15 +31,28 @@
 using UnityEngine;
 using System.Collections;
 
+public enum OnOffTriggerType {
+	Toggle,
+	PushToOn,
+	PushToOff
+}
+
 [AddComponentMenu("VJKit/Triggers/On-Off Switch")]
 public class VJOnOffTrigger : VJBaseTrigger {
 
 	public Behaviour componentToOnOff;	
+	public OnOffTriggerType type;
+	
 	private bool _componentEnabled;
 	private VJBaseModifier _modifierToOnOff;
 
+	private bool _triggered, _lastTriggered;
+
 	public override void Awake () {
 		base.Awake();
+		
+		// HACK: We need this, maybe
+		multiple = false;
 		
 		if( componentToOnOff != null ) {
 			if( componentToOnOff is VJBaseModifier ) {
@@ -51,9 +64,23 @@ public class VJOnOffTrigger : VJBaseTrigger {
 		}
 	}
 	
-	private void _ToggleEnable() {
-		_componentEnabled = !_componentEnabled;
+	public override void Start() {
+		base.Start();
 		
+		switch (type) {
+		case OnOffTriggerType.PushToOn:
+			_componentEnabled = false;
+			break;
+
+		case OnOffTriggerType.PushToOff:
+			_componentEnabled = true;
+			break;
+		}
+		
+		_UpdateEnable();
+	}
+	
+	private void _UpdateEnable() {
 		if(_modifierToOnOff != null) {
 			_modifierToOnOff.isModifierEnabled = _componentEnabled;
 		} else {
@@ -61,7 +88,44 @@ public class VJOnOffTrigger : VJBaseTrigger {
 		}
 	}
 
+	public override void VJPerformAction(GameObject go, float value) {
+		base.VJPerformAction(go, value);
+		
+		if (_lastTriggered && !_triggered) {
+			switch (type) {
+			case OnOffTriggerType.PushToOn:
+				_componentEnabled = false;
+				break;
+	
+			case OnOffTriggerType.PushToOff:
+				_componentEnabled = true;
+				break;
+			}
+			
+			_UpdateEnable();
+		}
+		
+		_lastTriggered = _triggered;
+		_triggered = false;
+	}
+	
 	public override void OnVJTrigger(GameObject go, float value) {		
-		_ToggleEnable();
+		switch (type) {
+		case OnOffTriggerType.Toggle:
+			_componentEnabled = !_componentEnabled;
+			break;
+
+		case OnOffTriggerType.PushToOn:
+			_componentEnabled = true;
+			break;
+
+		case OnOffTriggerType.PushToOff:
+			_componentEnabled = false;
+			break;
+		}
+		
+		_UpdateEnable();
+
+		_triggered = true;
 	}
 }
