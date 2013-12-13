@@ -34,32 +34,12 @@ using UnityEditor;
 using System;
 using System.Collections.Generic;
 
-[CustomEditor(typeof(VJDataSource))]
+[CustomEditor(typeof(VJAudioJackVolumeDataSource))]
 [CanEditMultipleObjects]
-public class VJDataSourceEditor : VJAbstractDataSourceEditor 
+public class VJAudioJackVolumeDataSourceEditor : VJAbstractAudioJackDataSourceEditor 
 {
-	public SerializedProperty lowerBandProperty;
-	public SerializedProperty upperBandProperty;
-
-	public void OnEnable() {
-		lowerBandProperty = serializedObject.FindProperty("lowerBand");
-		upperBandProperty = serializedObject.FindProperty("upperBand");
-	}
-	
-	public override void OnInspectorGUI()
+    public override void OnInspectorGUI()
     {
-		base.OnInspectorGUI();
-		serializedObject.Update();
-
-		Rect r = GUILayoutUtility.GetLastRect();
-		r.y -= 6;
-
-		float lowerband = (float)lowerBandProperty.intValue;
-		float upperBand = (float)upperBandProperty.intValue;
-		EditorGUI.MinMaxSlider(new GUIContent("Band["+lowerband+":"+upperBand+"]"),  r, ref lowerband, ref upperBand, 0, 7 ); 
-		lowerBandProperty.intValue = (int)lowerband;
-		upperBandProperty.intValue = (int)upperBand;
-
-		serializedObject.ApplyModifiedProperties();
-	}
+        base.OnInspectorGUI();
+    }
 }

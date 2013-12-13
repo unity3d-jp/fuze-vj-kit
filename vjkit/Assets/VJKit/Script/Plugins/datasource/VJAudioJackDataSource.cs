@@ -30,36 +30,18 @@
  */
 using UnityEngine;
 using System.Collections;
-using UnityEditor;
-using System;
-using System.Collections.Generic;
 
-[CustomEditor(typeof(VJDataSource))]
-[CanEditMultipleObjects]
-public class VJDataSourceEditor : VJAbstractDataSourceEditor 
-{
-	public SerializedProperty lowerBandProperty;
-	public SerializedProperty upperBandProperty;
+[AddComponentMenu("VJKit/System/VJ Data source(Native-FFT-Spectrum)")]
+[RequireComponent (typeof (VJAudioJackManager))]
+public class VJAudioJackDataSource : VJAbstractAudioJackDataSource {
 
-	public void OnEnable() {
-		lowerBandProperty = serializedObject.FindProperty("lowerBand");
-		upperBandProperty = serializedObject.FindProperty("upperBand");
-	}
-	
-	public override void OnInspectorGUI()
-    {
-		base.OnInspectorGUI();
-		serializedObject.Update();
+	// depends VJManager.numberOfBands
+	[Range(0,25)]
+	public int band;
 
-		Rect r = GUILayoutUtility.GetLastRect();
-		r.y -= 6;
-
-		float lowerband = (float)lowerBandProperty.intValue;
-		float upperBand = (float)upperBandProperty.intValue;
-		EditorGUI.MinMaxSlider(new GUIContent("Band["+lowerband+":"+upperBand+"]"),  r, ref lowerband, ref upperBand, 0, 7 ); 
-		lowerBandProperty.intValue = (int)lowerband;
-		upperBandProperty.intValue = (int)upperBand;
-
-		serializedObject.ApplyModifiedProperties();
+	protected override float GetInput() {
+		band = Mathf.Clamp (band, 0, m_manager.numberOfBands-1);
+//		return (band < 0 ? -1e6f : m_manager.bandLevels [band]);
+		return m_manager.bandLevels [band];
 	}
 }

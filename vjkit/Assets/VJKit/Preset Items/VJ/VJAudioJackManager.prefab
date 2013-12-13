@@ -1,0 +1,294 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400006}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400020}
+  - 114: {fileID: 11400018}
+  - 114: {fileID: 11400016}
+  - 114: {fileID: 11400014}
+  - 114: {fileID: 11400012}
+  - 114: {fileID: 11400010}
+  - 114: {fileID: 11400008}
+  m_Layer: 0
+  m_Name: VJAudioJackManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.93551564, y: -1.5, z: -1.1920929e-07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea94bfa636b74d86af30829fd3259bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bandType: 1
+  channelToAnalyze: 3
+  channelSelect: 0
+  minimumInterval: 0
+  internalMode: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e427423b39f344494832efc5236ada45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugWindow: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f4f164ff2048d19ca908730f8d48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceName: Band-0
+  boost: 1
+  current: 0
+  previous: 0
+  diff: 0
+  dynamicRange: 20
+  headroom: 6
+  falldown: .400000006
+  lowerBound: -60
+  powerFactor: 1
+  sensibility: 18
+  showOptions: 0
+  band: 0
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3194b3d5a38694080a10e92ee59b9fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceName: Volume
+  boost: 1
+  current: 0
+  previous: 0
+  diff: 0
+  dynamicRange: 20
+  headroom: 6
+  falldown: .400000006
+  lowerBound: -60
+  powerFactor: 1
+  sensibility: 18
+  showOptions: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f4f164ff2048d19ca908730f8d48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceName: Band-7
+  boost: 1
+  current: 0
+  previous: 0
+  diff: 0
+  dynamicRange: 20
+  headroom: 6
+  falldown: .400000006
+  lowerBound: -60
+  powerFactor: 1
+  sensibility: 18
+  showOptions: 0
+  band: 7
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f4f164ff2048d19ca908730f8d48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceName: Band-6
+  boost: 1
+  current: 0
+  previous: 0
+  diff: 0
+  dynamicRange: 20
+  headroom: 6
+  falldown: .400000006
+  lowerBound: -60
+  powerFactor: 1
+  sensibility: 18
+  showOptions: 0
+  band: 6
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f4f164ff2048d19ca908730f8d48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceName: Band-5
+  boost: 1
+  current: 0
+  previous: 0
+  diff: 0
+  dynamicRange: 20
+  headroom: 6
+  falldown: .400000006
+  lowerBound: -60
+  powerFactor: 1
+  sensibility: 18
+  showOptions: 0
+  band: 5
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f4f164ff2048d19ca908730f8d48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceName: Band-4
+  boost: 1
+  current: 0
+  previous: 0
+  diff: 0
+  dynamicRange: 20
+  headroom: 6
+  falldown: .400000006
+  lowerBound: -60
+  powerFactor: 1
+  sensibility: 18
+  showOptions: 0
+  band: 4
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f4f164ff2048d19ca908730f8d48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceName: Band-3
+  boost: 1
+  current: 0
+  previous: 0
+  diff: 0
+  dynamicRange: 20
+  headroom: 6
+  falldown: .400000006
+  lowerBound: -60
+  powerFactor: 1
+  sensibility: 18
+  showOptions: 0
+  band: 3
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f4f164ff2048d19ca908730f8d48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceName: Band-2
+  boost: 1
+  current: 0
+  previous: 0
+  diff: 0
+  dynamicRange: 20
+  headroom: 6
+  falldown: .400000006
+  lowerBound: -60
+  powerFactor: 1
+  sensibility: 18
+  showOptions: 0
+  band: 2
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f4f164ff2048d19ca908730f8d48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceName: Band-1
+  boost: 1
+  current: 0
+  previous: 0
+  diff: 0
+  dynamicRange: 20
+  headroom: 6
+  falldown: .400000006
+  lowerBound: -60
+  powerFactor: 1
+  sensibility: 18
+  showOptions: 0
+  band: 1
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
