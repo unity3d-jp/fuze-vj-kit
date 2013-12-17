@@ -36,29 +36,27 @@ using System.Collections;
 public class VJDataSource : VJAbstractDataSource {
 
 	// depends VJManager.numberOfBands
-	[HideInInspector]
-	public int lowerBand;	
+	public int lowerBand;
 	// depends VJManager.numberOfBands
-	[HideInInspector]
 	public int upperBand;
 	
 	private VJManager m_manager;
 
 	// Use this for initialization
 	public void Awake() {
-		if( lowerBand >= VJManager.numberOfBands ) {
+		m_manager = GetComponent<VJManager>();
+		if( lowerBand >= m_manager.bandLevels.Length ) {
 			Debug.LogWarning("[FATAL]lowerBand too large.");
-			lowerBand = VJManager.numberOfBands-1;
+			lowerBand = m_manager.bandLevels.Length - 1;
 		}
-		if( upperBand >= VJManager.numberOfBands ) {
+		if( upperBand >= m_manager.bandLevels.Length ) {
 			Debug.LogWarning("[FATAL]lowerBand too large.");
-			upperBand = VJManager.numberOfBands-1;
+			upperBand = m_manager.bandLevels.Length - 1;
 		}
 		if( upperBand < lowerBand ) {
 			Debug.LogWarning("upperBand can not be lower than lowerBand.");
 			upperBand = lowerBand;
 		}
-		m_manager = GetComponent<VJManager>();
 	}
 
 	// Update is called once per frame
@@ -72,5 +70,12 @@ public class VJDataSource : VJAbstractDataSource {
 		previous = current;
 		current = raw_current;
 		diff = current - previous;
+	}
+
+	public int GetNumberOfBands() {
+		if (m_manager == null) {
+			m_manager = GetComponent<VJManager>();
+		}
+		return m_manager.bandLevels.Length;
 	}
 }
