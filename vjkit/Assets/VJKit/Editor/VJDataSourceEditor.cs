@@ -47,7 +47,12 @@ public class VJDataSourceEditor : VJAbstractDataSourceEditor
 	}
 	
 	public override void OnInspectorGUI()
-    {
+	{
+		VJDataSource dataSource = target as VJDataSource;
+		int maxBand = dataSource.GetNumberOfBands() - 1;
+		if (maxBand < 0) {
+			maxBand = 7;
+		}
 		base.OnInspectorGUI();
 		serializedObject.Update();
 
@@ -56,9 +61,12 @@ public class VJDataSourceEditor : VJAbstractDataSourceEditor
 
 		float lowerband = (float)lowerBandProperty.intValue;
 		float upperBand = (float)upperBandProperty.intValue;
-		EditorGUI.MinMaxSlider(new GUIContent("Band"),  r, ref lowerband, ref upperBand, 0, 7 ); 
-		lowerBandProperty.intValue = (int)lowerband;
-		upperBandProperty.intValue = (int)upperBand;
+		EditorGUI.BeginChangeCheck();
+		EditorGUI.MinMaxSlider(new GUIContent("Band"),  r, ref lowerband, ref upperBand, 0, maxBand );
+		if (EditorGUI.EndChangeCheck()) {
+			lowerBandProperty.intValue = (int)lowerband;
+			upperBandProperty.intValue = (int)upperBand;
+		}
 
 		serializedObject.ApplyModifiedProperties();
 	}

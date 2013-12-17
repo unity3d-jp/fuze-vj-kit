@@ -34,7 +34,6 @@ using System.Collections;
 [AddComponentMenu("VJKit/System/VJ Manager")]
 public class VJManager : VJAbstractManager {
 	
-	public static int numberOfBands = 8;
 	public static float analysisWindowSec = 0.2f;
 	
 	public AudioSource 	source;
@@ -64,7 +63,6 @@ public class VJManager : VJAbstractManager {
 		base.Awake();
 
 		rawSpectrum = new float[spectrumSamples];
-		bandLevels = new float[numberOfBands];
 		mic = VJMicrophone.GetInstance();
 		rawData = null;
 	}
