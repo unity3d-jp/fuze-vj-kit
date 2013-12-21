@@ -30,6 +30,9 @@ public class VJZigSensorField : MonoBehaviour {
 	[SerializeField]
 	private GameObject m_sensor;
 
+	[SerializeField]
+	private GameObject target;
+
 	public bool Touching 	{	get { return m_touching; } }
 	public bool TouchUp 	{	get { return m_touchUp; } }
 	public bool TouchDown 	{	get { return m_touchDown; } }
@@ -95,5 +98,7 @@ public class VJZigSensorField : MonoBehaviour {
 			m_valueV = 0.0f;
 			m_valueH = 0.0f;
 		}
+
+		//target.GetComponent<ExternalControl> ().isPosed = Touching;
 	}
 }

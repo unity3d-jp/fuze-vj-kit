@@ -40,8 +40,6 @@ public class VJCameraBackgroundColorLerpModifier : VJBaseModifier {
 
 	public override void VJPerformAction(GameObject go, float value) {
 
-		Camera c = GetComponent<Camera>() as Camera;
-
 		if( camera != null ) {
 			camera.backgroundColor = Color.Lerp(from, to, value);
 		}
