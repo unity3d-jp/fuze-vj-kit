@@ -12,32 +12,7 @@
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="VJKit" expanded="True">
-                <Node name="Script" expanded="True">
-                  <Node name="Plugins" expanded="True">
-                    <Node name="audiojack" expanded="True" />
-                    <Node name="datasource" expanded="True">
-                      <Node name="VJAbstractAudioJackDataSource.cs" selected="True" />
-                    </Node>
-                    <Node name="manager" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-          <Node name="Assembly-CSharp-Editor" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="VJKit" expanded="True">
-                <Node name="Editor" expanded="True">
-                  <Node name="audiojack" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
