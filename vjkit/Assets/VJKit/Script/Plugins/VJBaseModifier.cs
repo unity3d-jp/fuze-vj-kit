@@ -70,6 +70,9 @@ public abstract class VJBaseModifier : MonoBehaviour {
 		get {
 			return _GetBoostValue();
 		}
+		set {
+			m_boost = value;
+		}
 	}
 
 	public bool limitMinMax = false;		
@@ -87,7 +90,9 @@ public abstract class VJBaseModifier : MonoBehaviour {
 	[HideInInspector]
 	public float lastReturnedValue = 0.0f;	
 
-	public bool negative = false;			
+	public bool delayFlag = false; //kida add
+	
+			public bool negative = false;			
 
 	public bool multiple = false;			
 	public VJModifierTarget[] targets;
@@ -167,6 +172,9 @@ public abstract class VJBaseModifier : MonoBehaviour {
 				v = Mathf.Max(_lastValue * restStrength, v);
 			}
 		}
+
+		if( delayFlag ){ v = _lastValue + ( v - _lastValue ) * restStrength; } // kida add 
+
 
 		// 前回の値を保存
 		_lastValue = v;
