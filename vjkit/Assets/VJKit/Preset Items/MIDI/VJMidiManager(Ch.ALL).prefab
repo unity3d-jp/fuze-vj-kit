@@ -71,6 +71,7 @@ MonoBehaviour:
   diff: 0
   lowerNote: 64
   upperNote: 95
+  initialValue: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,6 +90,7 @@ MonoBehaviour:
   diff: 0
   lowerNote: 32
   upperNote: 63
+  initialValue: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,6 +109,7 @@ MonoBehaviour:
   diff: 0
   lowerNote: 0
   upperNote: 31
+  initialValue: 0
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,6 +128,7 @@ MonoBehaviour:
   diff: 0
   lowerNote: 0
   upperNote: 127
+  initialValue: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +147,9 @@ MonoBehaviour:
   diff: 0
   knobNumber: 19
   middleOffset: -.5
+  initialValue: 0
+  digital: 0
+  inverse: 0
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,6 +168,9 @@ MonoBehaviour:
   diff: 0
   knobNumber: 18
   middleOffset: 0
+  initialValue: 0
+  digital: 0
+  inverse: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,6 +189,9 @@ MonoBehaviour:
   diff: 0
   knobNumber: 17
   middleOffset: 0
+  initialValue: 0
+  digital: 0
+  inverse: 0
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,6 +210,9 @@ MonoBehaviour:
   diff: 0
   knobNumber: 16
   middleOffset: 0
+  initialValue: 0
+  digital: 0
+  inverse: 0
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugWindow: 1
-  channel: 16
+  midiChannel: 16
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
