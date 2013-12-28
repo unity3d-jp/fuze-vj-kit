@@ -6,4 +6,4 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/VJKit/SampleScenes/fuZe/fuZe01_vj_sample.unity
+    path: Assets/VJKit/SampleScenes/fuZe/fuZe01_vj_sample_audioJack.unity

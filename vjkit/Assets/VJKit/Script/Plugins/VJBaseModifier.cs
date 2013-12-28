@@ -70,13 +70,16 @@ public abstract class VJBaseModifier : MonoBehaviour {
 		get {
 			return _GetBoostValue();
 		}
+		set {
+			m_boost = value;
+		}
 	}
 
-	public bool limitMinMax = false;		
+	public bool limitValueMinMax = false;		
 	public float valueMin = 0.0f;
 	public float valueMax = 1.0f;
 	
-	public float middleOffset = 0.0f;		
+	public float valueBaseOffset = 0.0f;		
 
 	public bool rest = false;				
 	[Range(0.0f, 1.0f)]
@@ -100,7 +103,7 @@ public abstract class VJBaseModifier : MonoBehaviour {
 
 	// Use this for initialization
 	public virtual void Start () {
-		lastValue = lastReturnedValue = middleOffset;
+		lastValue = lastReturnedValue = valueBaseOffset;
 
 		if(!manager) {
 			manager = VJAbstractManager.GetDefaultManager();
@@ -146,20 +149,16 @@ public abstract class VJBaseModifier : MonoBehaviour {
 	// Update is called once per frame
 	private float _GetValue (ref float _lastValue) {
 
-		// バリエーションを加えて、初期値を作成
 		float v = (isModifierEnabled) ? ( _GetRawValue() ) * _GetBoostValue() : 0.0f;
 
 		if( negative ) {
 			v = -v;
 		}
 		
-		// 値をmin/maxの範囲内に固定する
-		if( limitMinMax ) {
+		if( limitValueMinMax ) {
 			v = Mathf.Clamp(v, valueMin, valueMax);
 		}
 
-		// rest onなら、restの強度で値を下げる
-		// 今回の値が大きいなら今回の値を使う
 		if( rest ) {
 			if(negative) {
 				v = Mathf.Min(_lastValue * restStrength, v);
@@ -168,17 +167,18 @@ public abstract class VJBaseModifier : MonoBehaviour {
 			}
 		}
 
-		// 前回の値を保存
 		_lastValue = v;
 
-		// 中央値オフセットの適用		
-		lastReturnedValue = v + middleOffset;
+		lastReturnedValue = v + valueBaseOffset;
 		return lastReturnedValue;
 	}
 	
 	public abstract void VJPerformAction(GameObject go, float value);
 	
 	void Update() {
+		if( float.IsNaN(lastValue) || float.IsInfinity(lastValue) ) {
+			return;
+		}
 		if(!multiple) {
 			VJPerformAction(gameObject, _GetValue(ref lastValue));
 		} else if(targets != null) {			

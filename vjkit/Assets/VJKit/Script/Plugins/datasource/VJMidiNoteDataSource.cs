@@ -43,6 +43,9 @@ public class VJMidiNoteDataSource : VJAbstractDataSource {
 	[HideInInspector]
 	public int upperNote;
 	
+	[Range(0.0f, 1.0f)]
+	public float initialValue;
+	
 	// Use this for initialization
 	public void Awake() {
 		m_manager = GetComponent<VJMidiManager>();
@@ -59,6 +62,8 @@ public class VJMidiNoteDataSource : VJAbstractDataSource {
 		}
 		if(noteCount > 0) {
 			raw_current /= noteCount;
+		} else {
+			raw_current = initialValue;
 		}
 		raw_current = raw_current * boost;
 

@@ -35,7 +35,8 @@ public enum ThresholdType {
 	Value_LessThan,
 	Value_MoreThan,
 	Difference_LessThan,
-	Difference_MoreThan
+	Difference_MoreThan,
+	Difference_MoreThanAbs,
 }
 
 public abstract class VJBaseTrigger : VJBaseModifier {
@@ -110,6 +111,11 @@ public abstract class VJBaseTrigger : VJBaseModifier {
 		break;
 		case ThresholdType.Difference_MoreThan:
 			if( (val - trigerlastVal) > threshold ) {
+				trigger = true;
+			}
+		break;
+		case ThresholdType.Difference_MoreThanAbs: 
+			if( Mathf.Abs(val - trigerlastVal) > threshold ) {
 				trigger = true;
 			}
 		break;

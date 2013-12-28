@@ -46,6 +46,9 @@ public class VJMidiKnobDataSource : VJAbstractDataSource {
 	[Range(0.0f, 1.0f)]
 	public float initialValue;
 
+	public bool digital;
+	public bool inverse;
+
 	// Use this for initialization
 	public void Awake() {
 		m_manager = GetComponent<VJMidiManager>();
@@ -57,8 +60,16 @@ public class VJMidiKnobDataSource : VJAbstractDataSource {
 
 		if( VJMidiInput.DoesKnobExist(m_manager.midiChannel, knobNumber) ) {
 			raw_current = VJMidiInput.GetKnob(m_manager.midiChannel, knobNumber) + middleOffset;
+
+			if(inverse) {
+				raw_current = 1.0f - raw_current;
+			}
 		} else {
 			raw_current = initialValue;
+		}
+			
+		if(digital) {
+			raw_current = Mathf.Floor(raw_current);
 		}
 			
 		raw_current = raw_current * boost;

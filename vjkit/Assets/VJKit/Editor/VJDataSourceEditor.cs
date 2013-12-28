@@ -56,7 +56,7 @@ public class VJDataSourceEditor : VJAbstractDataSourceEditor
 
 		float lowerband = (float)lowerBandProperty.intValue;
 		float upperBand = (float)upperBandProperty.intValue;
-		EditorGUI.MinMaxSlider(new GUIContent("Band"),  r, ref lowerband, ref upperBand, 0, 7 ); 
+		EditorGUI.MinMaxSlider(new GUIContent("Band["+lowerband+":"+upperBand+"]"),  r, ref lowerband, ref upperBand, 0, 7 ); 
 		lowerBandProperty.intValue = (int)lowerband;
 		upperBandProperty.intValue = (int)upperBand;
 
