@@ -31,26 +31,40 @@
 using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("VJKit/Triggers/On-Off Switch(GameObject)")]
-public class VJGameObjectOnOffTrigger : VJBaseTrigger {
+public enum AudioSourcePropertyType {
+//	DopplerLevel,
+//	Pan,
+//	Mute,
+	Pitch,
+	Volume,
+	Spread,
+}
 
-	public GameObject gameObjectToOnOff;
-	public bool forSlider;
 
-	public override void Awake () {
-		base.Awake();		
-	}
-	
-	private void _ToggleEnable(float value) {
-		if(forSlider) {
-			bool isActive = value >= 1.0f;
-			gameObjectToOnOff.SetActive(isActive);
-		} else {
-		gameObjectToOnOff.SetActive(!gameObjectToOnOff.activeSelf);
-	}
+[AddComponentMenu("VJKit/Modifiers/AudioSource")]
+public class VJAudioSourceModifier : VJBaseModifier {
+
+	public AudioSourcePropertyType propertyToModify;
+
+	public override void VJPerformAction(GameObject go, float value) {
+
+		AudioSource a = go.GetComponent<AudioSource>();
+		if(null != a) {
+			ModifyProperty(propertyToModify, value);
+		}
 	}
 
-	public override void OnVJTrigger(GameObject go, float value) {		
-		_ToggleEnable(value);
+	void ModifyProperty(AudioSourcePropertyType pt, float value) {
+		switch(pt) {
+		case AudioSourcePropertyType.Pitch:
+			audio.pitch = value;
+			break;
+		case AudioSourcePropertyType.Spread:
+			audio.spread = value;
+			break;
+		case AudioSourcePropertyType.Volume:
+			audio.volume = value;
+			break;
+		}
 	}
 }

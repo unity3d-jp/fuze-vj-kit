@@ -43,46 +43,51 @@ public class VJMidiSequencer : MonoBehaviour
 	public bool receiveStartEvent = true;
 	MidiFileContainer[] songs;
 	List<MidiTrackSequencer> sequencers;
-
 	[Range(0,1)]
-	public float volume = 1.0f;
+	public float
+		volume = 1.0f;
 	public bool playMasterMusic;
-	public AudioClip   masterMusic;
+	public AudioClip masterMusic;
+	public bool playOnAwake;
+	private bool _isPlaying;
 
 	void Start ()
 	{
 		songs = new MidiFileContainer[ midiFiles.Length ];
-		sequencers = new List<MidiTrackSequencer>();
-		if( playMasterMusic ) {
-			AudioSource a = gameObject.AddComponent<AudioSource>() as AudioSource;
+		sequencers = new List<MidiTrackSequencer> ();
+		if (playMasterMusic) {
+			AudioSource a = gameObject.AddComponent<AudioSource> () as AudioSource;
 			a.clip = masterMusic;
 			a.volume = volume;
 		} else {
-			for(int i=0; i < audioFiles.Length;++i) {
-				AudioSource a = gameObject.AddComponent<AudioSource>() as AudioSource;
-				a.clip = audioFiles[i];
+			for (int i=0; i < audioFiles.Length; ++i) {
+				AudioSource a = gameObject.AddComponent<AudioSource> () as AudioSource;
+				a.clip = audioFiles [i];
 				a.volume = volume;
 			}
 		}
-		for(int i=0; i < midiFiles.Length;++i) {
-			songs[i] = MidiFileLoader.Load (midiFiles[i].bytes);
+		for (int i=0; i < midiFiles.Length; ++i) {
+			songs [i] = MidiFileLoader.Load (midiFiles [i].bytes);
 		}
-		ResetAndPlay ();
+		if (playOnAwake) {
+			ResetAndPlay ();
+		}
 	}
 	
 	void LateUpdate ()
 	{
-		if( sequencers != null ) {
-			foreach(MidiTrackSequencer seq in sequencers) {
-				if(seq.Playing) {
-					VJMidiInput.ReceiveMidiEvents(seq.Advance (Time.deltaTime));
+		if (sequencers != null) {
+			foreach (MidiTrackSequencer seq in sequencers) {
+				if (seq.Playing) {
+					VJMidiInput.ReceiveMidiEvents (seq.Advance (Time.deltaTime));
 				}
 			}
-			Component[] cs = GetComponents<AudioSource>();
-			if( cs != null ) {
-				foreach(Component c in cs) {
+			Component[] cs = GetComponents<AudioSource> ();
+			if (cs != null) {
+				foreach (Component c in cs) {
 					AudioSource a = c as AudioSource;
 					a.volume = volume;
+					_isPlaying = a.isPlaying;
 				}
 			}
 		}
@@ -90,29 +95,31 @@ public class VJMidiSequencer : MonoBehaviour
 	
 	void ResetAndPlay ()
 	{
-		Component[] cs = GetComponents<AudioSource>();
-		foreach(Component c in cs) {
+		Component[] cs = GetComponents<AudioSource> ();
+		foreach (Component c in cs) {
 			AudioSource a = c as AudioSource;
 			a.time = startTime;
 			a.Play ();
 		}
 
-		foreach(MidiFileContainer song in songs) {
-			for(int i = 0; i < song.tracks.Count; ++i) {
+		foreach (MidiFileContainer song in songs) {
+			for (int i = 0; i < song.tracks.Count; ++i) {
 				MidiTrackSequencer s = new MidiTrackSequencer (song.tracks [i], song.division, bpm);
 				List<MidiEvent> e = s.Start (startTime);
-				if(receiveStartEvent) {
-					VJMidiInput .ReceiveMidiEvents(e);
+				if (receiveStartEvent) {
+					VJMidiInput .ReceiveMidiEvents (e);
 				}
-				sequencers.Add(s);
+				sequencers.Add (s);
 			}
 		}
 	}
 
 	void OnGUI ()
 	{
-		if (GUI.Button (new Rect (0, 0, 300, 50), "Reset")) {
-			ResetAndPlay ();
+		if (!_isPlaying) {
+			if (GUI.Button (new Rect (0, 0, 300, 50), "Play " + name)) {
+				ResetAndPlay ();
+			}
 		}
 	}
 }

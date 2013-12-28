@@ -63,6 +63,11 @@ public class VJAudioJackManager : VJAbstractManager {
 			return m_audioJack.BandLevels;
 		}
 	}
+	public float[] rawData {
+		get {
+			return m_audioJack.Data;
+		}
+	}
 
 	public override void Awake() {
 		m_audioJack = GetComponent<AudioJack>();

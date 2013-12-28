@@ -30,27 +30,19 @@
  */
 using UnityEngine;
 using System.Collections;
+using UnityEditor;
+using System;
+using System.Collections.Generic;
 
-[AddComponentMenu("VJKit/Triggers/On-Off Switch(GameObject)")]
-public class VJGameObjectOnOffTrigger : VJBaseTrigger {
+[CustomEditor(typeof(VJAudioSourceModifier))]
+public class VJAudioSourceModifierEditor : VJBaseModifierEditor 
+{
+    public VJAudioSourceModifierEditor()
+    {
+    }
 
-	public GameObject gameObjectToOnOff;
-	public bool forSlider;
-
-	public override void Awake () {
-		base.Awake();		
-	}
-	
-	private void _ToggleEnable(float value) {
-		if(forSlider) {
-			bool isActive = value >= 1.0f;
-			gameObjectToOnOff.SetActive(isActive);
-		} else {
-		gameObjectToOnOff.SetActive(!gameObjectToOnOff.activeSelf);
-	}
-	}
-
-	public override void OnVJTrigger(GameObject go, float value) {		
-		_ToggleEnable(value);
-	}
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+    }
 }

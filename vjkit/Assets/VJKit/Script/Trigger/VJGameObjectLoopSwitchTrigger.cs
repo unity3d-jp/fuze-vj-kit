@@ -31,11 +31,14 @@
 using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("VJKit/Triggers/On-Off Switch(GameObject)")]
-public class VJGameObjectOnOffTrigger : VJBaseTrigger {
+[AddComponentMenu("VJKit/Triggers/On-Off Looop(GameObject)")]
+public class VJGameObjectLoopSwitchTrigger : VJBaseTrigger {
 
-	public GameObject gameObjectToOnOff;
+	public GameObject[] gameObjectToLoop;
 	public bool forSlider;
+	public int index;
+
+//	public bool inverse;
 
 	public override void Awake () {
 		base.Awake();		
@@ -43,11 +46,17 @@ public class VJGameObjectOnOffTrigger : VJBaseTrigger {
 	
 	private void _ToggleEnable(float value) {
 		if(forSlider) {
-			bool isActive = value >= 1.0f;
-			gameObjectToOnOff.SetActive(isActive);
+			int lastIndex = index;
+			index = Mathf.FloorToInt(value);
+			gameObjectToLoop[lastIndex].SetActive(false);
+			gameObjectToLoop[index].SetActive(true);
 		} else {
-		gameObjectToOnOff.SetActive(!gameObjectToOnOff.activeSelf);
-	}
+			int lastIndex = index;
+//			index = (inverse? Mathf.Abs (index-1) : index+1) % gameObjectToLoop.Length;
+			index = (index+1) % gameObjectToLoop.Length;
+			gameObjectToLoop[lastIndex].SetActive(false);
+			gameObjectToLoop[index].SetActive(true);
+		}
 	}
 
 	public override void OnVJTrigger(GameObject go, float value) {		

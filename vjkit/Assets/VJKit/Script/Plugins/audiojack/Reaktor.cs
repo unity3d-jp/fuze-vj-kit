@@ -29,6 +29,7 @@ public class Reaktor : MonoBehaviour
     
     float output;
     float peak;
+	public AudioJack audiojack;
 
     #endregion
 
@@ -36,6 +37,9 @@ public class Reaktor : MonoBehaviour
 
     void Start ()
     {
+		if(audiojack == null) {
+			audiojack = GetComponent<AudioJack>();
+		}
         // Begins with the lowest level.
         peak = lowerBound + dynamicRange + headroom;
     }
@@ -43,7 +47,7 @@ public class Reaktor : MonoBehaviour
     void Update ()
     {
         // Audio input.
-        var input = bandIndex < 0 ? -1e6f : AudioJack.instance.BandLevels [bandIndex];
+		var input = bandIndex < 0 ? -1e6f : audiojack.BandLevels [bandIndex];
 
         // Check the peak level.
         peak -= Time.deltaTime * falldown;
@@ -56,6 +60,18 @@ public class Reaktor : MonoBehaviour
         // Interpolation.
         output = input - (input - output) * Mathf.Exp (-sensibility * Time.deltaTime);
     }
+
+	public float Calcurate(float input) {
+		// Check the peak level.
+		peak -= Time.deltaTime * falldown;
+		peak = Mathf.Max (peak, Mathf.Max (input, lowerBound + dynamicRange + headroom));
+		
+		// Normalize the input level.
+		input = (input - peak + headroom + dynamicRange) / dynamicRange;
+		input = Mathf.Pow (Mathf.Clamp01 (input), powerFactor);
+
+		return input;
+	}
 
     // Search an available Reaktor placed close to the game object.
     public static Reaktor SearchAvailableFrom (GameObject go)

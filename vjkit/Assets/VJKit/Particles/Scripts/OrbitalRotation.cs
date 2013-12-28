@@ -39,6 +39,6 @@ public class OrbitalRotation : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
-		transform.RotateAround(transform.up,Mathf.Deg2Rad*angularVelocity*Time.deltaTime);
+		transform.Rotate(transform.up, angularVelocity*Time.deltaTime);
 	}
 }

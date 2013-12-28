@@ -83,6 +83,9 @@ public class VJBaseModifierEditor : Editor
 					index = i;
 				}
 			}
+			if( managerProperty.objectReferenceValue == null ) {
+				EditorGUILayout.HelpBox ("Manager is currently null. please select and set value.", MessageType.Warning);
+			}
 			
 			index = EditorGUILayout.Popup(
 				"Manager:",
@@ -110,8 +113,14 @@ public class VJBaseModifierEditor : Editor
 				EditorGUI.showMixedValue = false;
 
 				//modifier.source = sources[index_src];
+				if( index_src >= sources.Length ) {
+					index_src = 0;
+				}
 				if( index_src >= 0 ) {
 					datasourceProperty.objectReferenceValue = sources[index_src];
+				}
+				if( datasourceProperty.objectReferenceValue == null ) {
+					EditorGUILayout.HelpBox ("DataSource is currently null. please select and set value.", MessageType.Warning);
 				}
 
 				if(boostByOtherSourceProperty.boolValue) {

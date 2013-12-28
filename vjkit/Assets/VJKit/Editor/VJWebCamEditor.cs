@@ -64,7 +64,6 @@ public class VJWebCamEditor : Editor
     
         GUI.changed = false;
         
-        EditorGUIUtility.LookLikeInspector();
         base.OnInspectorGUI();
 //        EditorGUILayout.BeginHorizontal();
 //        
