@@ -46,10 +46,17 @@ public class OSCClient {
 
 		byte[] bytes = BitConverter.GetBytes(f);
 	    if (BitConverter.IsLittleEndian) {
-    	    Array.Reverse(bytes);
+			datagram[p++] = bytes[3];
+			datagram[p++] = bytes[2];
+			datagram[p++] = bytes[1];
+			datagram[p++] = bytes[0];
+		} else {
+			datagram[p++] = bytes[0];
+			datagram[p++] = bytes[1];
+			datagram[p++] = bytes[2];
+			datagram[p++] = bytes[3];
 		}
-		Buffer.BlockCopy(bytes, 0, datagram, p, 4);
-		
+
 		udpClient.Send(datagram, datagram.Length);
 	}
 
