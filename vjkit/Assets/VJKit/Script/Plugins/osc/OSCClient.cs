@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Net.Sockets;
 
 public class OSCClient {
@@ -8,9 +9,9 @@ public class OSCClient {
 		udpClient = new UdpClient(serverHostname, serverPort);
 	}
 	
-	// Currently, we implement only the needed methods
+	// Currently, we implement only the basic data types
 	public void SendSimpleMessage(string path, int i) {
-		byte[] pathByte = System.Text.Encoding.UTF8.GetBytes(path);
+		byte[] pathByte = Encoding.UTF8.GetBytes(path);
 
 		byte[] datagram = new byte[(pathByte.Length + 1 + 3) / 4 * 4 + 4 + 4];
 		
@@ -31,7 +32,7 @@ public class OSCClient {
 	}
 
 	public void SendSimpleMessage(string path, float f) {
-		byte[] pathByte = System.Text.Encoding.UTF8.GetBytes(path);
+		byte[] pathByte = Encoding.UTF8.GetBytes(path);
 
 		byte[] datagram = new byte[(pathByte.Length + 1 + 3) / 4 * 4 + 4 + 4];
 		
@@ -52,8 +53,27 @@ public class OSCClient {
 		udpClient.Send(datagram, datagram.Length);
 	}
 
+	public void SendSimpleMessage(string path, string s) {
+		byte[] pathByte = Encoding.UTF8.GetBytes(path);
+		byte[] stringByte = Encoding.UTF8.GetBytes(s);
+		
+		byte[] datagram = new byte[(pathByte.Length + 1 + 3) / 4 * 4 + 4 + (stringByte.Length + 1 + 3) / 4 * 4];
+		
+		Buffer.BlockCopy(pathByte, 0, datagram, 0, pathByte.Length);
+		
+		int p = (pathByte.Length + 1 + 3) / 4 * 4;
+		
+		datagram[p++] = (byte)',';
+		datagram[p++] = (byte)'s';
+		p += 2;
+		
+		Buffer.BlockCopy(stringByte, 0, datagram, p, stringByte.Length);
+		
+		udpClient.Send(datagram, datagram.Length);
+	}
+
 	public void SendSimpleMessage(string path, byte[] b) {
-		byte[] pathByte = System.Text.Encoding.UTF8.GetBytes(path);
+		byte[] pathByte = Encoding.UTF8.GetBytes(path);
 
 		byte[] datagram = new byte[(pathByte.Length + 1 + 3) / 4 * 4 + 4 + 4 + (b.Length + 3) / 4 * 4];
 		
