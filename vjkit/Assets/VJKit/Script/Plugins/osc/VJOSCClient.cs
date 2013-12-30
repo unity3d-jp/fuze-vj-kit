@@ -1,12 +1,46 @@
+/* 
+ * fuZe vjkit
+ * 
+ * Copyright (C) 2013 Unity Technologies Japan, G.K.
+ * 
+ * Permission is hereby granted, free of charge, to any 
+ * person obtaining a copy of this software and associated 
+ * documentation files (the "Software"), to deal in the 
+ * Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, 
+ * sublicense, and/or sell copies of the Software, and to permit 
+ * persons to whom the Software is furnished to do so, subject 
+ * to the following conditions: The above copyright notice and 
+ * this permission notice shall be included in all copies or 
+ * substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
+ * 
+ * Special Thanks:
+ * The original software design and architecture of fuZe vjkit 
+ * is inspired by Visualizer Studio, created by Altered Reality 
+ * Entertainment LLC.
+ */
+using UnityEngine;
 using System;
 using System.Text;
 using System.Net.Sockets;
 
-public class OSCClient {
+public class VJOSCClient : MonoBehaviour {
+	public string serverHostname = "127.0.0.1";
+	public int serverPort = 8000;
+
 	private UdpClient udpClient;
-	
-	public OSCClient(string serverHostname, int serverPort) {
-		udpClient = new UdpClient(serverHostname, serverPort);
+
+	void Start() {
+		udpClient = new UdpClient ();
 	}
 	
 	// Currently, we implement only the basic data types
@@ -27,8 +61,8 @@ public class OSCClient {
 		datagram[p++] = (byte)((uint)i >> 16);
 		datagram[p++] = (byte)((uint)i >> 8);
 		datagram[p++] = (byte)((uint)i);
-		
-		udpClient.Send(datagram, datagram.Length);
+
+		SendMessageBytes (datagram);
 	}
 
 	public void SendSimpleMessage(string path, float f) {
@@ -57,7 +91,7 @@ public class OSCClient {
 			datagram[p++] = bytes[3];
 		}
 
-		udpClient.Send(datagram, datagram.Length);
+		SendMessageBytes (datagram);
 	}
 
 	public void SendSimpleMessage(string path, string s) {
@@ -73,10 +107,10 @@ public class OSCClient {
 		datagram[p++] = (byte)',';
 		datagram[p++] = (byte)'s';
 		p += 2;
-		
+
 		Buffer.BlockCopy(stringByte, 0, datagram, p, stringByte.Length);
 		
-		udpClient.Send(datagram, datagram.Length);
+		SendMessageBytes (datagram);
 	}
 
 	public void SendSimpleMessage(string path, byte[] b) {
@@ -99,7 +133,12 @@ public class OSCClient {
 		
 		Buffer.BlockCopy(b, 0, datagram, p, b.Length);
 		
-		udpClient.Send(datagram, datagram.Length);
+		SendMessageBytes (datagram);
 	}
 
+	private void SendMessageBytes(byte[] bytes) {
+		if (enabled) {
+			udpClient.Send (bytes, bytes.Length, serverHostname, serverPort);
+		}
+	}
 }
