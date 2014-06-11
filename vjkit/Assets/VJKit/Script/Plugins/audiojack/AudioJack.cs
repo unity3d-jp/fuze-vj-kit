@@ -102,7 +102,9 @@ public class AudioJack : MonoBehaviour
     }
 
 	public float currentChannelLevel {
-		get { return channelLevels[Mathf.Clamp (channelToAnalyze,0, nChannels)]; }
+		get {
+			return channelLevels[Mathf.Clamp (channelToAnalyze,0, nChannels-1)];
+		}
 	}
 
 	public float[] FFTSpectrum {
@@ -170,10 +172,10 @@ public class AudioJack : MonoBehaviour
 
     static void AudioJackGetSpectrum (int channel, int mode, int pointNumber, float[] spectrum)
     {
-        for (var i = 0; i < pointNumber; i++)
-        {
-            spectrum.elements [i] = 0.0f;
-        }
+        //for (var i = 0; i < pointNumber; i++)
+        //{
+        //    spectrum [i] = 0.0f;
+        //}
     }
 #endif
 
@@ -260,7 +262,9 @@ public class AudioJack : MonoBehaviour
 		}
 		else
 		{
+#if UNITY_STANDALONE_OSX
 			AudioJackGetRawData (channelToAnalyze, rawData, sampleCount);
+#endif
 		}
 		 
         
