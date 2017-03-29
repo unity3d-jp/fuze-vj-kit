@@ -33,11 +33,18 @@ using UnityEditor;
 public class VJAudioImporter : AssetPostprocessor
 {
 
-		void OnPreprocessAudio ()
-		{
-				var importer = (AudioImporter)assetImporter;
-				importer.threeD = false;
-				if (importer.loadType == AudioImporterLoadType.CompressedInMemory)
-						importer.loadType = AudioImporterLoadType.DecompressOnLoad;
+	void OnPreprocessAudio ()
+	{
+		var importer = (AudioImporter)assetImporter;
+	#if !UNITY_5_5_OR_NEWER
+		importer.threeD = false;
+		if (importer.loadType == UnityEngine.AudioClipLoadType.CompressedInMemory)
+				importer.loadType = UnityEngine.AudioClipLoadType.DecompressOnLoad;
+	#else
+		var sampleSettings = importer.defaultSampleSettings;
+		if (sampleSettings.loadType == UnityEngine.AudioClipLoadType.CompressedInMemory) {
+			sampleSettings.loadType = UnityEngine.AudioClipLoadType.DecompressOnLoad;
 		}
+	#endif
+	}
 }

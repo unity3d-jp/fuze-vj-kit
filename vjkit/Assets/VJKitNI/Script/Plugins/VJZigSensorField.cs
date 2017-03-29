@@ -49,23 +49,23 @@ public class VJZigSensorField : MonoBehaviour {
 
 	void OnDrawGizmos() {
 		Gizmos.color = Color.white;
-		Gizmos.DrawWireCube(collider.bounds.center,collider.bounds.size);
+		Gizmos.DrawWireCube(GetComponent<Collider>().bounds.center,GetComponent<Collider>().bounds.size);
 
 		if(m_touching) {
 			Gizmos.color = Color.white;
-			Vector3 c = collider.bounds.center;
+			Vector3 c = GetComponent<Collider>().bounds.center;
 			c.x += Mathf.Sin (Time.time * tx) * ux;
 			c.y += Mathf.Cos (Time.time * tx) * ux;
 			c.z += Mathf.Sin (Time.time * tx) * ux;
-			Gizmos.DrawWireCube(c,collider.bounds.size);
+			Gizmos.DrawWireCube(c,GetComponent<Collider>().bounds.size);
 		}
 	}
 	// Update is called once per frame
 	void Update () {
 		Vector3 sensorPos_local = transform.InverseTransformPoint(m_sensor.transform.position);
 
-		Vector3 lowEnd 	= transform.InverseTransformPoint(collider.bounds.min);
-		Vector3 highEnd = transform.InverseTransformPoint(collider.bounds.max);
+		Vector3 lowEnd 	= transform.InverseTransformPoint(GetComponent<Collider>().bounds.min);
+		Vector3 highEnd = transform.InverseTransformPoint(GetComponent<Collider>().bounds.max);
 
 		float valueV = sensorPos_local.x / (highEnd.x - lowEnd.x) + 0.5f;
 		float valueH = sensorPos_local.y / (highEnd.y - lowEnd.y) + 0.5f;

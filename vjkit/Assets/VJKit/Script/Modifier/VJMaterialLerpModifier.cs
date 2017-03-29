@@ -44,7 +44,7 @@ public class VJMaterialLerpModifier : VJBaseModifier {
 
 	public override void VJPerformAction(GameObject go, float value) {		
 		if( !_materialToLerp ) {
-			_materialToLerp = renderer.materials[matIndex];
+			_materialToLerp = GetComponent<Renderer>().materials[matIndex];
 		} 
 		if( _materialToLerp ) {
 			_materialToLerp.Lerp(from, to, Mathf.Clamp01(value) );			

@@ -45,7 +45,7 @@ public class VJMaterialPropertyModifier2 : VJBaseModifier {
 	public override void VJPerformAction(GameObject go, float value) {
 
 		if( !_materialToModify ) {
-			_materialToModify = renderer.materials[matIndex];
+			_materialToModify = GetComponent<Renderer>().materials[matIndex];
 		} 
 
 		if( _materialToModify ) {

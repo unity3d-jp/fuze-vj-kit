@@ -57,13 +57,13 @@ public class VJAudioSourceModifier : VJBaseModifier {
 	void ModifyProperty(AudioSourcePropertyType pt, float value) {
 		switch(pt) {
 		case AudioSourcePropertyType.Pitch:
-			audio.pitch = value;
+			GetComponent<AudioSource>().pitch = value;
 			break;
 		case AudioSourcePropertyType.Spread:
-			audio.spread = value;
+			GetComponent<AudioSource>().spread = value;
 			break;
 		case AudioSourcePropertyType.Volume:
-			audio.volume = value;
+			GetComponent<AudioSource>().volume = value;
 			break;
 		}
 	}

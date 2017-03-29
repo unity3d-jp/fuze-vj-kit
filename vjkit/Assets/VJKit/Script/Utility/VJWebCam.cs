@@ -76,7 +76,7 @@ public class VJWebCam : MonoBehaviour {
 			webcam = new WebCamTexture(w, h, f);
 			
 			if(targetMaterial == null) {
-				targetMaterial = renderer.material;
+				targetMaterial = GetComponent<Renderer>().material;
 			}
 			
 			if(texturePropertyName == null || texturePropertyName.Length == 0) {

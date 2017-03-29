@@ -88,8 +88,8 @@ public class VJMicrophone : MonoBehaviour {
 
 			micClip = Microphone.Start(currentDeviceName, true, clipLength, sampleRate);
 			float[] samples = new float[(int)(analysisWindow * sampleRate)];
-			audio.clip = micClip;
-			audio.Play();
+			GetComponent<AudioSource>().clip = micClip;
+			GetComponent<AudioSource>().Play();
 
 			while (currentDeviceName == deviceName && micSemaphor > 0) {
 				yield return 0;
@@ -97,7 +97,7 @@ public class VJMicrophone : MonoBehaviour {
 				int position = Microphone.GetPosition(deviceName);
 				if (position < samples.Length) position += clipLength * sampleRate;
 				micClip.GetData(samples, position - samples.Length);
-				audio.timeSamples = position;
+				GetComponent<AudioSource>().timeSamples = position;
 
 				float rms = 0.0f;
 				foreach (float lvl in samples) {
@@ -108,8 +108,8 @@ public class VJMicrophone : MonoBehaviour {
 				level = Mathf.Clamp01( 0.5f * (2.0f + Mathf.Log10(rms)) );
 			}
 		
-			audio.Stop();
-			audio.clip = null;
+			GetComponent<AudioSource>().Stop();
+			GetComponent<AudioSource>().clip = null;
 			Debug.Log("Microphone stopping: " + currentDeviceName );
 			Microphone.End(currentDeviceName);
 		}

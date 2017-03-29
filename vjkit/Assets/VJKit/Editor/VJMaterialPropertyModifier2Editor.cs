@@ -43,7 +43,7 @@ public class VJMaterialPropertyModifier2Editor : VJBaseModifierEditor
 
 		VJMaterialPropertyModifier2 ml = target as VJMaterialPropertyModifier2;
 			
-		Material[] mats = ml.renderer.sharedMaterials;
+		Material[] mats = ml.GetComponent<Renderer>().sharedMaterials;
 
         string[] matNames = new string[mats.Length];
         int index = 0;

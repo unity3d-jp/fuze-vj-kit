@@ -43,7 +43,7 @@ public class VJMaterialLerpModifierEditor : VJBaseModifierEditor
 
 		VJMaterialLerpModifier ml = target as VJMaterialLerpModifier;
 			
-		Material[] mats = ml.renderer.sharedMaterials;
+		Material[] mats = ml.GetComponent<Renderer>().sharedMaterials;
 
         string[] matNames = new string[mats.Length];
         int index = 0;

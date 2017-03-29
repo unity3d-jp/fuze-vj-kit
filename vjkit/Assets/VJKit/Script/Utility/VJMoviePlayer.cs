@@ -38,7 +38,7 @@ public class VJMoviePlayer : MonoBehaviour {
 	public MovieTexture movie;
 	
 	void Start () {
-		renderer.material.mainTexture = (Texture)movie;
+		GetComponent<Renderer>().material.mainTexture = (Texture)movie;
 		movie.loop = true;
 		
 		movie.Play();

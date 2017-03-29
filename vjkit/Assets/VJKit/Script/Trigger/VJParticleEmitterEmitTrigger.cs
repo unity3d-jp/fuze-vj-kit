@@ -37,7 +37,7 @@ public class VJParticleEmitterEmitTrigger : VJBaseTrigger {
 
 		ParticleEmitter p = go.GetComponent<ParticleEmitter>();
 		if(p) {
-			particleEmitter.Emit();
+			GetComponent<ParticleEmitter>().Emit();
 		}
 	}
 }
